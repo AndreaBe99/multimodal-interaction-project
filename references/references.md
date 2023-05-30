@@ -27,7 +27,36 @@ GitHub Repository References:
 
 - [Gauravsahadev/Drowsiness-detection-and-alert-system-DDAS](https://github.com/Gauravsahadev/Drowsiness-detection-and-alert-system-DDAS-): Drowsiness detection and alert system(DDAS) is an electronic device for the safety of the people who travel and drive.
 
+
+- [Abhinav1004/Distracted-Driver-Detection](https://github.com/Abhinav1004/Distracted-Driver-Detection)
+
+
+--- 
+
 Sites References:
 
-- [Iris](https://rubeneezy.github.io/Iris/)
-- [brain4cars](http://brain4cars.com/)
+- Complete systems:
+  - [Iris](https://rubeneezy.github.io/Iris/)
+  - [brain4cars](http://brain4cars.com/)
+
+- Detect Drowsiness:
+  - [Drowsy Driver Alert System](https://data-flair.training/blogs/python-project-driver-drowsiness-detection-system/)
+  - [Drowsiness detection with OpenCV](https://pyimagesearch.com/2017/05/08/drowsiness-detection-opencv/)
+  - [Driver Drowsiness Detection Using Mediapipe In Python](https://learnopencv.com/driver-drowsiness-detection-using-mediapipe-in-python/)
+  - [Deep Drowsiness Detection using YOLO, Pytorch and Python](https://www.youtube.com/watch?v=tFNJGim3FXw&ab_channel=NicholasRenotte) (YoutTube)
+  - [Drowsiness Detection using OpenCV & Machine Learning](https://www.youtube.com/watch?v=WW-lnaqUoGA&ab_channel=StudyGyaan) (YouTube)
+  - [Real-time Drowsiness Detection Tutorial | Transfer Learning | TensorFlow | Python | OpenCV](https://www.youtube.com/watch?v=qwUIFKi4V48&ab_channel=DeepLearning_by_PhDScholar) (YouTube)
+
+- Distracted Driver Detection:
+  - [State Farm Distracted Driver Detection](https://www.kaggle.com/competitions/state-farm-distracted-driver-detection/overview) (Kaggle Competition)
+  - [Driver Distraction Detection Methods: A Literature Review and Framework](https://ieeexplore.ieee.org/document/9405644) (Paper)
+  - [Detection of Distracted Driver using Convolution Neural Network](https://arxiv.org/pdf/2204.03371.pdf) (Paper)
+  - [Abhinav1004/Distracted-Driver-Detection](https://github.com/Abhinav1004/Distracted-Driver-Detection) (GitHub)
+  - [Distracted Driver Detection using Deep Learning](https://towardsdatascience.com/distracted-driver-detection-using-deep-learning-e893715e02a4) (Medium) ([PDF](references/Medium_Distracted-Driver-Detection.pdf))
+  - [Distracted Driver Dataset](https://heshameraqi.github.io/distraction_detection) (Dataset)
+  - [Distracted Driver Detection using CNN](https://medium.com/@nk-kumawat/distracted-driver-detection-using-cnn-ee5af6975bd7) (Medium)
+  - [Real-time detection of distracted driving based on deep learning](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-its.2018.5172) (Paper)
+
+- Detect Loudness:
+  - [pyloudnorm](https://github.com/csteinmetz1/pyloudnorm) (GitHub)
+  - [soundmeter](https://pypi.org/project/soundmeter/)
