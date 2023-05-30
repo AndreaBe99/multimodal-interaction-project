@@ -60,3 +60,9 @@ Sites References:
 - Detect Loudness:
   - [pyloudnorm](https://github.com/csteinmetz1/pyloudnorm) (GitHub)
   - [soundmeter](https://pypi.org/project/soundmeter/)
+
+- Heart Rate Monitoring:
+  - [Identifying signs of tiredness using sequence classification](https://towardsdatascience.com/identifying-signs-of-tiredness-using-sequence-classification-f312e0adb6c) (Medium)
+  - [HeartPy](https://python-heart-rate-analysis-toolkit.readthedocs.io/en/latest/)
+  - [Real-driving-implementable drowsy driving detection method using heart rate variability based on long short-term memory and autoencoder](https://www.sciencedirect.com/science/article/pii/S2405896321017158) (Paper)
+  - [Drowsiness detection using heart rate variability analysis based on microcontroller unit](https://iopscience.iop.org/article/10.1088/1742-6596/1153/1/012047/meta) (Paper)
