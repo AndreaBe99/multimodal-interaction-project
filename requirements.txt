@@ -30,6 +30,7 @@ prompt-toolkit==3.0.38
 psutil==5.9.5
 ptyprocess==0.7.0
 pure-eval==0.2.2
+pvrecorder==1.1.1
 PyAudio==0.2.13
 pycparser==2.21
 Pygments==2.15.1
