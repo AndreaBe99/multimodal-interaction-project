@@ -14,26 +14,29 @@ class AudioRecorder:
         self.wavfile = None
         self.audio_thread = None
 
-    def compute_decibel(self, pcm):
+    def compute_decibel(self, pcm)->float:
         """
-        Calculate decibel from PCM data.
+        Calculate decibel from PCM data. Pulse Code Modulation, it is a method 
+        used to digitally represent analog audio signals. 
 
         Args:
-            pcm (_type_): pcm data 
+            pcm (list[int]): Sequence of numeric values representing the audio 
+            waveform captured from the microphone.
 
         Returns:
-            decibel (float): decibel value
+            decibel (float): decibel value.
         """
         rms = math.sqrt(sum([(sample / 32768.0) ** 2 for sample in pcm]) / len(pcm))
         if rms > 0:
             return 20 * math.log10(rms)
-        return -float('inf')  # Set decibel to negative infinity if rms is zero
+        return -float('inf')
 
-    def start_recording(self):
+    def start_recording(self)->None:
         """
         Start recording audio.
         """
-        self.recorder = PvRecorder(device_index=self.device_index, frame_length=512)
+        self.recorder = PvRecorder(device_index=self.device_index, 
+                                   frame_length=512)
         self.recorder.start()
         print("Using device: %s" % self.recorder.selected_device)
         print("Press Ctrl+C to stop recording...")
@@ -47,11 +50,10 @@ class AudioRecorder:
                 decibel = self.compute_decibel(pcm)
                 if decibel > 50:
                     print("Decibel: %.2f" % decibel)
-                if self.wavfile is not None and self.stop_threads is False:
+                if self.wavfile is not None:
                     self.wavfile.writeframes(struct.pack("h" * len(pcm), *pcm))
 
         except KeyboardInterrupt:
-            self.stop_threads = True
             print("\nStopping...")
         finally:
             self.recorder.delete()
