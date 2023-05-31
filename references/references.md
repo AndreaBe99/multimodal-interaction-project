@@ -60,6 +60,7 @@ Sites References:
 - Detect Loudness:
   - [pyloudnorm](https://github.com/csteinmetz1/pyloudnorm) (GitHub)
   - [soundmeter](https://pypi.org/project/soundmeter/)
+  - [pvrecorder](https://github.com/Picovoice/pvrecorder/tree/main/sdk/python) (GitHub)
 
 - Heart Rate Monitoring:
   - [Identifying signs of tiredness using sequence classification](https://towardsdatascience.com/identifying-signs-of-tiredness-using-sequence-classification-f312e0adb6c) (Medium)
