@@ -26,25 +26,8 @@ class AudioRecorder:
         """
         rms = math.sqrt(sum([(sample / 32768.0) ** 2 for sample in pcm]) / len(pcm))
         if rms > 0:
-            decibel = 20 * math.log10(rms)
-        else:
-            decibel = -float('inf')  # Set decibel to negative infinity if rms is zero
-        return decibel
-
-    def process_audio(self):
-        """
-        Process audio data from recorder.
-        """
-        try:
-            while True:
-                pcm = self.recorder.read()
-                decibel = self.calculate_decibel(pcm)
-                if decibel > 50:
-                    print("Decibel: %.2f" % decibel)
-                if self.wavfile is not None:
-                    self.wavfile.writeframes(struct.pack("h" * len(pcm), *pcm))
-        except KeyboardInterrupt:
-            print("Stopping recording thread...")
+            return 20 * math.log10(rms)
+        return -float('inf')  # Set decibel to negative infinity if rms is zero
 
     def start_recording(self):
         """
@@ -59,20 +42,21 @@ class AudioRecorder:
                 self.wavfile = wave.open(self.output_path, "w")
                 self.wavfile.setparams((1, 2, 16000, 512, "NONE", "NONE"))
 
-            self.audio_thread = threading.Thread(target=self.process_audio)
-            self.audio_thread.start()
-
             while True:
-                time.sleep(1)
+                pcm = self.recorder.read()
+                decibel = self.compute_decibel(pcm)
+                if decibel > 50:
+                    print("Decibel: %.2f" % decibel)
+                if self.wavfile is not None and self.stop_threads is False:
+                    self.wavfile.writeframes(struct.pack("h" * len(pcm), *pcm))
 
         except KeyboardInterrupt:
-            print("Stopping main thread...")
+            self.stop_threads = True
+            print("\nStopping...")
         finally:
             self.recorder.delete()
             if self.wavfile is not None:
                 self.wavfile.close()
-            if self.audio_thread is not None:
-                self.audio_thread.join()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
