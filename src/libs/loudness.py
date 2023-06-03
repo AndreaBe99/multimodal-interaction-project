@@ -4,42 +4,32 @@ import pyaudio
 import audioop
 import numpy as np
 
-
-class AudioRecorder:
+class Loudness():
     """
-    Record audio from the microphone and compute the rms level.
+    Compute the RMS level of the audio data.
     """
-    def __init__(self, 
-                 chunk=1024, 
-                 rate=44100,
-                 device_index=-1, 
-                 output_path='output.wav',
-                 py_format=pyaudio.paInt16,  
-                 channel= 1 if sys.platform == 'darwin' else 2):
-        
-        # Samples: 1024,  512, 256, 128
-        self.chunk = chunk
-        # Equivalent to Human Hearing at 40 kHz
-        self.rate = rate
-        # -1: Default device
-        self.device_index = device_index
-        # Output file path
-        self.output_path = output_path
-        # Format of the audio data
-        self.py_format = py_format
-        # Number of channels
-        self.channel = channel
-        
-        self.audio = pyaudio.PyAudio()
-        self.stream = self.audio.open(format=self.py_format, 
-                                      channels=self.channel, 
-                                      rate=self.rate, 
-                                      input=True)
-
-
-    def compute_loudness(self, data, width=2)->float:
+    
+    def __init__(self, width=2, normalization=32767) -> None:
+        """
+        Args:
+            width (int): Width of the audio data. Default is 2.
+            normalization (int): Normalization of the audio data. 
+                Default is 32767.
+                The division by 32767 is performed in the code to normalize the 
+                RMS (Root Mean Square) value of the audio data.
+                In audio processing, the values of audio samples are typically 
+                represented as signed 16-bit integers, with a range from -32768 
+                to 32767.
+        """
+        self.width = width
+        self.normalization = normalization
+    
+    
+    def compute_loudness(self, data)->float:
         """
         Compute the rms level of the audio data.
+        Return the root-mean-square of the fragment, i.e. sqrt(sum(S_i^2)/n).
+        This is a measure of the power in an audio signal.
         
         Args:
             data (bytes): Audio data.
@@ -51,38 +41,18 @@ class AudioRecorder:
         """
         data = np.frombuffer(data, dtype=np.int16)
         data = np.amax(data)
-        return audioop.rms(data, width) / 32767
-
-
-    def record_audio(self)->None:
+        return audioop.rms(data, self.width) / self.normalization
+    
+    
+    def display_loudness(self, data)->None:
         """
-        Record audio from the microphone and print the rms level if it is
-        greater than 0.5.
+        Print the rms level of the audio data.
+        # NOTE! In the future this methodwill used to give a visual feedback
+        
+        Args:
+            data (bytes): Audio data.
         """
-        print('Recording...')
-        with wave.open(self.output_path, 'wb') as wf:
-            wf.setnchannels(self.channel)
-            wf.setsampwidth(self.audio.get_sample_size(self.py_format))
-            wf.setframerate(self.rate)
-            
-            try:
-                while True:
-                    data = self.stream.read(self.chunk)
-                    wf.writeframes(data)
-                    
-                    rms = self.compute_loudness(data)
-                    if rms >= 0.5:
-                        print('Attention!!! There is a lot of noise, the RMS value is %.3f' % rms)
-            except KeyboardInterrupt:
-                print('Done')
-            except Exception as e:
-                print(e)
-            finally:
-                self.stream.close()
-                self.audio.terminate()
-            
-
-
-if __name__ == '__main__':
-    recorder = AudioRecorder()
-    recorder.record_audio()
+        rms = self.compute_loudness(data)
+        if rms >= 0.5:
+            print('Attention!!! There is a lot of noise, the RMS value is %.3f' % rms)
+        pass
