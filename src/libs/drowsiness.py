@@ -11,7 +11,7 @@ from mediapipe.python.solutions.drawing_utils import _normalized_to_pixel_coordi
 from src.libs.utils.ear import EyeAspectRatio
 from src.libs.utils.colors import Colors
     
-class FaceLandmarks:
+class FaceLandmarks():
     """Class for face landmarks detection"""
     def __init__(
         self,
