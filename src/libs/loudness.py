@@ -56,3 +56,41 @@ class Loudness():
         if rms >= 0.5:
             print('Attention!!! There is a lot of noise, the RMS value is %.3f' % rms)
         pass
+
+
+if __name__ == "__main__":
+    # Instantiate the loudness class
+    loudness = Loudness()
+    
+    audio = pyaudio.PyAudio()
+    chunk = 1024
+    py_format = pyaudio.paInt16
+    rate = 44100
+    channel = 1 if sys.platform == 'darwin' else 2
+    rate = 44100
+    
+    stream = audio.open(format=py_format, 
+                        channels=channel, 
+                        rate=rate, 
+                        input=True)
+    
+    output_path = "src/data/audio/temp_audio.wav"
+    print('Recording...')
+    with wave.open(output_path, 'wb') as wf:
+        wf.setnchannels(channel)
+        wf.setsampwidth(audio.get_sample_size(py_format))
+        wf.setframerate(rate)
+
+        try:
+            while True:
+                data = stream.read(chunk)
+                wf.writeframes(data)
+
+                loudness.display_loudness(data)
+        except KeyboardInterrupt:
+            print('Done')
+        except Exception as e:
+            print(e)
+        finally:
+            stream.close()
+            audio.terminate()
