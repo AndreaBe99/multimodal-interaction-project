@@ -4,7 +4,12 @@ import time
 import sys
 sys.path.append("./")
 
-from src.libs.drowsiness import FaceLandmarks
+from src.libs.utils.face_mesh import FaceMesh
+from src.libs.drowsiness import Drowsiness
+
+# Only for testing, we need to use it in another class, not implemented yet 
+from src.libs.utils.gaze import Gaze
+
 
 class VideoRecorder():  
     # Video class based on openCV 
@@ -58,13 +63,42 @@ class VideoRecorder():
         
         cv2.namedWindow("video_frame", cv2.WINDOW_NORMAL)
         
-        fl = FaceLandmarks()
+        face_mesh = FaceMesh()
+        drw = Drowsiness()
+        
+        # We do not use the Gaze class here, but we can use it in the future in
+        # another class, like the Drowsiness class with EAR
+        gz = Gaze()
+
         while(self.open==True):
             ret, video_frame = self.video_cap.read()
             if (ret==True):
-                # NOTE: compute face landmarks, and detect drowsiness
-                video_frame = fl.detect_drowsiness(video_frame)
-                video_frame = fl.plot_text(video_frame)
+                
+                # NOTE: compute face landmarks
+                landmarks = face_mesh.compute_face_landmarks(video_frame)
+                # Comment the next line to not plot the face mesh
+                face_mesh.plot_face_mesh(video_frame, landmarks)
+                
+                landmarks = landmarks[0]
+                
+                if landmarks:
+                    # NOTE: compute face landmarks, and detect drowsiness
+                    video_frame = drw.detect_drowsiness(video_frame, landmarks)
+                    video_frame = drw.plot_text(video_frame)
+                    
+                    # NOTE! The Gazes class is not implemented to handle 
+                    # distraction detection, but it can only compute the gaze 
+                    # direction.
+                    # We need to implement a class to handle distraction 
+                    # detection, o we don't call it here, but we can use it in 
+                    # the future in another class, like the Drowsiness class 
+                    # with EAR
+                    gz.compute_gaze(video_frame, landmarks)
+                    
+                    
+                    # NOTE! Here we can add image processing with deep learning 
+                    # models to detect driver's distraction
+                video_frame = cv2.flip(video_frame, 1)
                 cv2.imshow('video_frame', video_frame)
                 
                 # Write the frame to the current video file
