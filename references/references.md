@@ -67,3 +67,11 @@ Sites References:
   - [HeartPy](https://python-heart-rate-analysis-toolkit.readthedocs.io/en/latest/)
   - [Real-driving-implementable drowsy driving detection method using heart rate variability based on long short-term memory and autoencoder](https://www.sciencedirect.com/science/article/pii/S2405896321017158) (Paper)
   - [Drowsiness detection using heart rate variability analysis based on microcontroller unit](https://iopscience.iop.org/article/10.1088/1742-6596/1153/1/012047/meta) (Paper)
+
+
+## Used References
+
+References used to write the code:
+- [Driver Drowsiness Detection Using Mediapipe In Python](https://learnopencv.com/driver-drowsiness-detection-using-mediapipe-in-python/)
+- [Capture a video (AND audio) in python, from a camera (or webcam)](https://stackoverflow.com/questions/14140495/how-to-capture-a-video-and-audio-in-python-from-a-camera-or-webcam)
+- [Eye gaze estimation using a webcam. 100 lines of code](https://medium.com/mlearning-ai/eye-gaze-estimation-using-a-webcam-in-100-lines-of-code-570d4683fe23) (Medium)
