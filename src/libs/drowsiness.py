@@ -11,37 +11,18 @@ from mediapipe.python.solutions.drawing_utils import _normalized_to_pixel_coordi
 from src.libs.utils.ear import EyeAspectRatio
 from src.libs.utils.colors import Colors
     
-class FaceLandmarks():
-    """Class for face landmarks detection"""
+class Drowsiness():
+    """Class to detect drowsiness"""
     def __init__(
         self,
         ear_treshold: float = 0.1,
         time_treshold: float = 0.2,
-        max_num_faces: int = 1,
-        refine_landmarks: bool = True,
-        min_detection_confidence: float = 0.5,
-        min_tracking_confidence: float = 0.5,
         ) -> None:
         """
         Args:
             ear_treshold (float, optional): EAR threshold. Defaults to 0.1.
             time_treshold (float, optional): Time threshold. Defaults to 0.2.
-            max_num_faces (int, optional): Maximum number of faces to detect. 
-                Defaults to 1.
-            refine_landmarks (bool, optional): Whether to refine landmarks. 
-                Defaults to True.
-            min_detection_confidence (float, optional): Minimum confidence 
-                value.  Defaults to 0.5.
-            min_tracking_confidence (float, optional): Minimum tracking 
-                confidence value. Defaults to 0.5.
         """        
-        # Initializing Mediapipe FaceMesh solution pipeline
-        self.facemesh_model = mp.solutions.face_mesh.FaceMesh(
-            max_num_faces=max_num_faces,
-            refine_landmarks=refine_landmarks,
-            min_detection_confidence=min_detection_confidence,
-            min_tracking_confidence=min_tracking_confidence,
-        )
         
         self.ear_treshold = ear_treshold
         self.time_treshold = time_treshold
@@ -57,50 +38,31 @@ class FaceLandmarks():
         }
     
     
-    def compute_face_landmarks(self, frame: np.ndarray) -> np.ndarray:
-        """
-        Compute face landmarks using Mediapipe FaceMesh solution pipeline.
-
-        Args:
-            frame (np.ndarray): Frame of the video
-        Returns:
-            np.ndarray: list of face landmarks
-        """
-        results = self.facemesh_model.process(frame)
-        # Extract landmarks from the results
-        if results.multi_face_landmarks:
-            return results.multi_face_landmarks[0].landmark
-        return None
-    
-    
-    def detect_drowsiness(self, frame:np.array) -> np.ndarray:
+    def detect_drowsiness(self, frame:np.array, landmarks) -> np.ndarray:
         """
         Detect drowsiness using EAR technique, plot landmarks on the frame, and 
         if drowsiness is detected, set a variable to play an alarm sound. 
         
         Args:
             frame (np.ndarray): Frame of the video
+            landmarks (np.ndarray): list of face landmarks, face mesh
         Returns:
             frame (np.ndarray): frame with landmarks
         """
         frame.flags.writeable = False
         frame_height, frame_width, _ = frame.shape
         
-        # Compute face landmarks
-        landmark = self.compute_face_landmarks(frame=frame)
         
-        if not landmark:
+        if not landmarks:
             self.state["start_time"] = time.perf_counter()
             self.state["drowsy_time"] = 0.0
             self.state["color"] = Colors.GREEN.value
             self.state["play_alarm"] = False
-            # Flip the frame horizontally for a selfie-view display.
-            frame = cv2.flip(frame, 1)
             return frame
         
         # Compute eye aspect ratio for left and right eye
-        EAR = EyeAspectRatio(landmark, frame_width, frame_height)
-        ear, eye_coordinates = EAR.calculate_avg_ear()
+        ear = EyeAspectRatio(landmarks.landmark, frame_width, frame_height)
+        ear_avg, eye_coordinates = ear.calculate_avg_ear()
         
         # NOTE: The EAR is a float value between 0.0 and 1.0, where 0.0 
         # indicates that the eye is completely closed and 1.0 indicates
@@ -110,7 +72,7 @@ class FaceLandmarks():
         
         # If the eye aspect ratio is below the blink threshold, increment the 
         # blink frame counter to detect if a person is drowsy.
-        if ear < self.ear_treshold:
+        if ear_avg < self.ear_treshold:
             # Increase DROWSY_TIME to track the time period with EAR less than 
             # the threshold and reset the start_time for the next iteration.
             end_time = time.perf_counter()
@@ -125,13 +87,13 @@ class FaceLandmarks():
             self.state["color"] = Colors.GREEN.value
             self.state["play_alarm"] = False
         
-        self.state["ear"] = ear
+        self.state["ear"] = ear_avg
         
         return frame
     
     
     def plot_landmarks(self, frame: np.ndarray, eye_coordinates, 
-                       color: typing.Tuple[int, int, int] = (0, 255, 0)) -> np.ndarray:
+                       color=Colors.BLUE.value ) -> np.ndarray:
         """
         Plot landmarks on the frame.
         
@@ -147,8 +109,6 @@ class FaceLandmarks():
             if lm_coordinates:
                 for coord in lm_coordinates:
                     cv2.circle(frame, coord, 2, color, -1)
-            
-        frame = cv2.flip(frame, 1)
         return frame
     
     
@@ -198,16 +158,22 @@ if __name__ == "__main__":
     # define a video capture object
     vid = cv2.VideoCapture(0)
     
-    fl = FaceLandmarks()
+    sys.path.append("./")
+    from src.libs.utils.face_mesh import FaceMesh
+    face_mesh = FaceMesh()
+    dwr = Drowsiness()
     
     while (True):
         
         # Capture the video frame by frame
         ret, frame = vid.read()
         
-        frame = fl.detect_drowsiness(frame)
+        landmarks = face_mesh.compute_face_landmarks(frame)
+        face_mesh.plot_landmarks(frame, landmarks)
         
-        frame = fl.plot_text(frame)
+        frame = dwr.detect_drowsiness(frame, landmarks[0])
+        
+        frame = dwr.plot_text(frame)
         
         # Display the resulting frame
         cv2.imshow('frame', frame)
