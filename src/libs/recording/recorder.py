@@ -8,8 +8,8 @@ import os
 import sys
 sys.path.append("./")
 
-from src.recorder_video import VideoRecorder
-from src.recorder_audio import AudioRecorder
+from src.libs.recording.recorder_video import VideoRecorder
+from src.libs.recording.recorder_audio import AudioRecorder
 
 class Recorder():
     # Class to manage the recording of audio and video

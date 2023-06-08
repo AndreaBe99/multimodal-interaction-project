@@ -6,7 +6,7 @@ import numpy as np
 import audioop
 
 sys.path.append('./')
-from src.libs.loudness import Loudness
+from src.libs.detection.loudness import Loudness
 
 
 class AudioRecorder():
