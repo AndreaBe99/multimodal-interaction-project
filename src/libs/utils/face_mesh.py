@@ -65,7 +65,8 @@ class FaceMesh():
         Returns:
             frame (np.ndarray): frame with landmarks
         """
-        drawing_spec = self.mp_drawing.DrawingSpec(thickness=2, circle_radius=2)
+        if face_landmarks is None:
+            return
         
         for face_landmarks in face_landmarks:
             # print('face_landmarks:', face_landmarks)
