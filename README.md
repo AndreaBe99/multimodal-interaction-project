@@ -32,3 +32,19 @@ python app.py -e GUI: to run the GUI
 ```
 
 - to use the graphical interface to record audio and video
+
+#### GUI Main
+
+![GUI Main](data/gui_main.png)
+
+#### GUI Video
+
+![GUI Video](data/gui_video_1.png)
+
+![GUI Video Execution](data/gui_video_2.png)
+
+#### GUI Audio
+
+![GUI Audio](data/gui_audio_1.png)
+
+![GUI Audio Execution](data/gui_audio_2.png)
