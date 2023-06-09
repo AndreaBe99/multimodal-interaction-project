@@ -16,7 +16,18 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.utils.data as data
-import torch.optim as optim
+import torchvision
+import pytorch_lightning as pl
+from pytorch_lightning import LightningModule, Trainer, seed_everything
+from pytorch_lightning.callbacks import LearningRateMonitor
+from pytorch_lightning.callbacks.progress import TQDMProgressBar
+from pytorch_lightning.loggers import CSVLogger
+from torch.optim.lr_scheduler import OneCycleLR
+from torch.optim.swa_utils import AveragedModel, update_bn
+from torchmetrics.functional import accuracy
+import albumentations as A
+from albumentations.pytorch import ToTensorV2
+
 # import albumentations as A
 # from albumentations.pytorch import ToTensorV2
 
@@ -70,4 +81,70 @@ for i, (key, value) in enumerate(ACTIVITY.items()):
     axs[i%2, i%5].set_title(value)
 
 # show fig
+plt.show()
+
+df['file_path'] = df.apply(lambda x: os.path.join(data_dir, 'imgs/train', x.classname, x.img), axis=1)
+
+df['class_num'] = df['classname'].map(lambda x: int(x[1]))
+print(df.head(5))
+
+class DataTransform():
+    def __init__(self, input_size, color_mean, color_std):
+        self.data_transform = {
+            'train': A.Compose([
+                A.HorizontalFlip(p=0.5),
+                A.Rotate(-10, 10),
+                A.Resize(input_size, input_size),
+                A.Normalize(color_mean, color_std), 
+                ToTensorV2()
+            ]),
+            'val': A.Compose([
+                A.Resize(input_size, input_size),
+                A.Normalize(color_mean, color_std),
+                ToTensorV2()
+            ])
+        }
+
+    def __call__(self, phase, image):
+        transformed = self.data_transform[phase](image=image)
+        return transformed['image']
+
+class Dataset(data.Dataset):
+
+    def __init__(self, df, phase, transform):
+        self.df = df
+        self.phase = phase
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.df)
+
+    def __getitem__(self, index):
+        image = self.pull_item(index)
+        return image, self.df.iloc[index]['class_num']
+
+    def pull_item(self, index):
+        image_path = self.df.iloc[index]['file_path']
+        image = cv2.imread(image_path)[:, :, (2, 1, 0)]
+
+        return self.transform(self.phase, image)
+
+color_mean = (0.485, 0.456, 0.406)
+color_std = (0.229, 0.224, 0.225)
+input_size = 256
+
+df_train, df_val = train_test_split(df, train_size=0.8, test_size=0.2, stratify=df['subject'], random_state=SEED)
+
+datamodule = pl.LightningDataModule.from_datasets(
+    train_dataset = Dataset(df_train, phase="train", transform=DataTransform(input_size=input_size, color_mean=color_mean, color_std=color_std)),
+    val_dataset = Dataset(df_val, phase="val", transform=DataTransform(input_size=input_size, color_mean=color_mean, color_std=color_std)),
+    batch_size=64 if torch.cuda.is_available() else 4,
+    num_workers=int(os.cpu_count()/2)
+)
+
+image = datamodule.train_dataloader().dataset[0]
+print(image[0].shape)
+
+plt.imshow(image[0].permute(1, 2, 0))
+plt.title(image[1])
 plt.show()
