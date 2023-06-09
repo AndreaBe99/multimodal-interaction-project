@@ -1,6 +1,6 @@
-import enum
+from enum import Enum
 
-class Colors(enum.Enum):
+class Colors(Enum):
     RED = (0, 0, 255)  # BGR
     GREEN = (0, 255, 0)  # BGR
     BLUE = (255, 0, 0)  # BGR
