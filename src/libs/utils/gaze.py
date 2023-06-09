@@ -5,6 +5,8 @@ import numpy as np
 
 sys.path.append("./")
 from src.libs.utils.colors import Colors
+from mediapipe.python.solutions.drawing_utils import _normalized_to_pixel_coordinates as denormalize_coordinates
+
 
 
 class Gaze:
@@ -19,6 +21,11 @@ class Gaze:
             int(landmark.y * shape[0]),
             0,
         )
+        
+        # NOTE! If we flip the image we need to invert the two lists
+        self.left_eye_idxs = [33, 160, 158, 133, 153, 144]
+        self.right_eye_idxs = [362, 385, 387, 263, 373, 380]
+        
         # 2D image points.
         self.face_coordinates_2D = {
             "nose_tip": 4,  # Nose tip
@@ -205,11 +212,66 @@ class Gaze:
         cv2.line(frame, p1, p2, Colors.RED.value, 2)
     
     
+    def compute_eye_six_points(self, landmarks, eye_landmarks: list) -> list:
+        """
+        Given the eye landmarks, compute the 6 points that are used for gaze
+
+        Args:
+            eye_landmarks (list): _description_
+
+        Returns:
+            list: _description_
+        """
+        coords = []
+        for i in eye_landmarks:
+            lm = landmarks[i]
+            coord = denormalize_coordinates(lm.x, 
+                                                lm.y, 
+                                                self.image_w, 
+                                                self.image_h)
+            coords.append(coord)
+        # 0: P1, 1: P2, 2: P3, 3: P4, 4: P5, 5: P6
+        return coords
+    
+    
+    def compute_eye_roi(self, eye_landmarks)-> tuple(float, float, float, float):
+        """
+        Compute eye ROI from eye landmarks, i.e. the minimun box that contains
+        the eye.
+
+        Args:
+            eye_landmarks (list): list of eye landmarks (x, y)
+
+        Returns:
+            roy_center (tuple): center of the eye ROI
+        """
+        x_coordinates = [landmark[0] for landmark in eye_landmarks]
+        y_coordinates = [landmark[1] for landmark in eye_landmarks]
+        x_min = min(x_coordinates)
+        x_max = max(x_coordinates)
+        y_min = min(y_coordinates)
+        y_max = max(y_coordinates)
+        roi = (x_min, y_min, x_max, y_max)
+        roi_center = np.mean(roi, axis=0, dtype=np.int)
+        return roi_center
+
+    # Function to compute Gaze score
+    def compute_gaze_score(self, roi_center, pupil_center) -> float:
+        """
+        Compute the gaze score from the eye ROI
+        """
+        # Calculate the distance between the eye center and the pupil point
+        distance = np.linalg.norm(np.array(pupil_center) - np.array(roi_center))
+        # Calculate the gaze score as the inverse of the distance
+        gaze_score = 1.0 / distance
+        return gaze_score
+
+
     def compute_gaze(
         self,
         frame: np.ndarray,
         points,
-    ) -> None:
+    ) -> float:
         """
         The gaze function gets an image and face landmarks from mediapipe 
         framework, and draws the gaze direction into the frame.
@@ -217,6 +279,9 @@ class Gaze:
         Args:
             frame: The frame to draw the gaze line into.
             points: The face landmarks.
+        
+        Returns:
+            gaze_score (float): gaze score
         """
         image_points = self.get_relative(frame, points, self.relative)
         image_points1 = self.get_relative(frame, points, self.relativeT)
@@ -304,8 +369,15 @@ class Gaze:
         self.plot_gaze(frame, left_pupil, left_gaze)
         # self.plot_gaze(frame, right_pupil, right_gaze)
         
-        return left_gaze, right_gaze
-
+        left_roi_center = self.compute_eye_six_points(points, self.left_eye_landmarks)
+        right_roi_center = self.compute_eye_six_points(points, self.right_eye_landmarks)
+        
+        left_gaze_score = self.compute_gaze_score(left_pupil, left_roi_center)
+        right_gaze_score = self.compute_gaze_score(right_pupil, right_roi_center)
+        
+        avg_gaze_score = (left_gaze_score + right_gaze_score) / 2
+        
+        return avg_gaze_score
 
 
 
