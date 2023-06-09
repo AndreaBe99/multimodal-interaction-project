@@ -3,6 +3,7 @@ import sys
 sys.path.append('./')
 
 from src.libs.gui.main_frame import MainFrame
+from src.libs.gui.av_frame import AudioVideoFrame
 from src.libs.gui.video_frame import VideoFrame
 from src.libs.gui.audio_frame import AudioFrame
 
@@ -20,7 +21,7 @@ class App(ctk.CTk):
         self.container.grid_columnconfigure(0, weight=1)
         
         self.frames = {}
-        for F in (MainFrame, VideoFrame, AudioFrame):
+        for F in (MainFrame, AudioVideoFrame, VideoFrame, AudioFrame):
             page_name = F.__name__
             frame = F(parent=self.container, controller=self)
             self.frames[page_name] = frame

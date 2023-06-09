@@ -51,17 +51,17 @@ class AudioFrame(ctk.CTkFrame):
         
         
         self.audio_button_start = ctk.CTkButton(self, text="Start", command=self.audio_start)
-        self.audio_button_start.pack(pady=12, padx=10)
-        self.audio_button_start.place(relx=0.5, rely=0.70, anchor='center')
+        self.audio_button_start.pack(side=ctk.LEFT, pady=12, padx=10)
+        self.audio_button_start.place(relx=0.35, rely=0.87, anchor='center')
         
         self.audio_button_stop = ctk.CTkButton(self, text="Stop", command=self.audio_stop)
-        self.audio_button_stop.pack(pady=12, padx=10)
-        self.audio_button_stop.place(relx=0.5, rely=0.80, anchor='center')
+        self.audio_button_stop.pack(side=ctk.LEFT, pady=12, padx=10)
+        self.audio_button_stop.place(relx=0.65, rely=0.87, anchor='center')
         self.audio_button_stop.configure(state=ctk.DISABLED)
         
         self.audio_button_back = ctk.CTkButton(self, text="Go Back to Main Page", command=self.audio_go_back)
-        self.audio_button_back.pack(pady=12, padx=10)
-        self.audio_button_back.place(relx=0.5, rely=0.90, anchor='center')
+        self.audio_button_back.pack(side=ctk.BOTTOM, pady=12, padx=10)
+        # self.audio_button_back.place(relx=0.5, rely=0.90, anchor='center')
     
     def audio_start(self):
         """
