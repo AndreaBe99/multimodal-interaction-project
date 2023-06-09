@@ -48,3 +48,11 @@ python app.py -e GUI: to run the GUI
 ![GUI Audio](data/gui_audio_1.png)
 
 ![GUI Audio Execution](data/gui_audio_2.png)
+
+## BugFixing
+
+If installation of requirements fail on PyAudio can'find portaudio.h do the following:
+
+```cli
+sudo apt install portaudio19-dev
+```
