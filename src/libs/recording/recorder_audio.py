@@ -7,6 +7,7 @@ import audioop
 
 sys.path.append('./')
 from src.libs.detection.loudness import Loudness
+from src.libs.utils.config import Path
 
 
 class AudioRecorder():
@@ -16,7 +17,7 @@ class AudioRecorder():
                  device_index=-1, 
                  frames_per_buffer=1024, 
                  py_format=pyaudio.paInt16,  
-                 audio_filename="temp_audio.wav",
+                 audio_filename=Path.AUDIO_FILE_NAME.value,
                  channel=1 if sys.platform == 'darwin' else 2):
         """
         Args:
@@ -33,7 +34,7 @@ class AudioRecorder():
         self.frames_per_buffer = frames_per_buffer
         self.format = py_format
         
-        self.path = "src/data/audio/"
+        self.path = Path.PATH_AUDIO_RECORDING.value
         self.audio_filename = self.path + audio_filename
         
         self.channels = channel

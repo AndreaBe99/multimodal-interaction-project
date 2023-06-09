@@ -6,6 +6,7 @@ sys.path.append('./')
 from src.libs.recording.recorder_video import VideoRecorder
 from src.libs.recording.recorder_audio import AudioRecorder
 from src.libs.detection.loudness import Loudness
+from src.libs.utils.config import Path
 from PIL import Image
 
 class AudioVideoFrame(ctk.CTkFrame):
@@ -22,12 +23,12 @@ class AudioVideoFrame(ctk.CTkFrame):
         self.controller = controller
         self.video_capture = None
 
-        video_label = ctk.CTkLabel(self, text="Recording Video")
+        video_label = ctk.CTkLabel(self, text=Path.TEXT_GUI_AV_1.value)
         video_label.pack(pady=20, padx=10)
 
         self.icon = ctk.CTkImage(
-            light_image=Image.open("src/data/images/static/video-conference.png"),
-            dark_image=Image.open("src/data/images/static/video-conference.png"),
+            light_image=Image.open(Path.IMAGE_GUI_VIDEO.value),
+            dark_image=Image.open(Path.IMAGE_GUI_VIDEO.value),
             size=(200, 200)
             )
         
@@ -37,26 +38,33 @@ class AudioVideoFrame(ctk.CTkFrame):
         ### Audio ###
         self.audio_loudness_label = ctk.CTkLabel(
             self,
-            text="No Volume Recorded", 
+            text=Path.TEXT_GUI_AUDIO_1.value, 
             font=("Helvetica", 16), 
             text_color="yellow")
         self.audio_loudness_label.pack(pady=15, padx=10)
         
-        self.audio_rcs_label = ctk.CTkLabel(self, text="Loudness: 0")
+        self.audio_rcs_label = ctk.CTkLabel(self, 
+                                            text=Path.TEXT_GUI_AUDIO_2.value + str(0))
         self.audio_rcs_label.pack(pady=15, padx=10)
         #############
         
         ### Video ###
-        self.video_button_start = ctk.CTkButton(self, text="Start", command=self.video_start)
+        self.video_button_start = ctk.CTkButton(self, 
+                                                text=Path.TEXT_GUI_1.value, 
+                                                command=self.video_start)
         self.video_button_start.pack(side=ctk.LEFT, pady=12, padx=10)
         self.video_button_start.place(relx=0.35, rely=0.87, anchor='center')
         
-        self.video_button_stop = ctk.CTkButton(self, text="Stop", command=self.video_stop)
+        self.video_button_stop = ctk.CTkButton(self, 
+                                               text=Path.TEXT_GUI_2.value, 
+                                               command=self.video_stop)
         self.video_button_stop.pack(side=ctk.LEFT, pady=12, padx=10)
         self.video_button_stop.place(relx=0.65, rely=0.87, anchor='center')
         self.video_button_stop.configure(state=ctk.DISABLED)
         
-        self.video_button = ctk.CTkButton(self, text="Go Back to Main Page", command=self.video_go_back)
+        self.video_button = ctk.CTkButton(self, 
+                                          text=Path.TEXT_GUI_3.value, 
+                                          command=self.video_go_back)
         self.video_button.pack(side=ctk.BOTTOM, pady=12, padx=10)
         #self.video_button.place(relx=0.5, rely=0.90, anchor='center')
         #############
@@ -115,7 +123,7 @@ class AudioVideoFrame(ctk.CTkFrame):
         
         self.audio_capture.stream.start_stream()
         self.audio_loudness_label.configure(
-            text="Normal Volume", 
+            text=Path.TEXT_GUI_AUDIO_3.value,
             font=("Helvetica", 16), 
             text_color="green")
         
@@ -128,10 +136,10 @@ class AudioVideoFrame(ctk.CTkFrame):
                 # Compute the loudness of the audio and display it if it is 
                 # greater than 0.5
                 rcs = loudness.compute_loudness(data)
-                self.audio_rcs_label.configure(text="RCS: " + str(rcs))
+                self.audio_rcs_label.configure(text=Path.TEXT_GUI_AUDIO_4.value + str(rcs))
                 if rcs > 0.5:
                     self.audio_loudness_label.configure(
-                        text="  Attention!!! Loud Noise:  " + str(rcs), 
+                        text=Path.TEXT_GUI_AUDIO_5.value + str(rcs), 
                         text_color="red")
                 
                 if self.video_capture is None:

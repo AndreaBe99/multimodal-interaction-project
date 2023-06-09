@@ -9,6 +9,7 @@ import sys
 sys.path.append('./')
 from src.libs.recording.recorder_audio import AudioRecorder
 from src.libs.detection.loudness import Loudness
+from src.libs.utils.config import Path
 
 class AudioFrame(ctk.CTkFrame):
     """Third Page of the GUI"""
@@ -25,12 +26,12 @@ class AudioFrame(ctk.CTkFrame):
         
         self.audio_capture = None
         
-        self.audio_label = ctk.CTkLabel(self, text="Recording Audio")
+        self.audio_label = ctk.CTkLabel(self, text=Path.TEXT_GUI_AUDIO_0.value)
         self.audio_label.pack(pady=20, padx=10)
         
         icon = ctk.CTkImage(
-            light_image=Image.open("src/data/images/static/microphone.png"),
-            dark_image=Image.open("src/data/images/static/microphone.png"),
+            light_image=Image.open(Path.IMAGE_GUI_AUDIO.value),
+            dark_image=Image.open(Path.IMAGE_GUI_AUDIO.value),
             size=(200, 200)
             )
         
@@ -40,26 +41,26 @@ class AudioFrame(ctk.CTkFrame):
         
         self.audio_loudness_label = ctk.CTkLabel(
             self,
-            text="No Volume Recorded", 
+            text=Path.TEXT_GUI_AUDIO_1.value, 
             font=("Helvetica", 16), 
             text_color="yellow")
         self.audio_loudness_label.pack(pady=15, padx=10)
         
-        self.audio_rcs_label = ctk.CTkLabel(self, text="Loudness: 0")
+        self.audio_rcs_label = ctk.CTkLabel(self, text=Path.TEXT_GUI_AUDIO_2.value + str(0))
         self.audio_rcs_label.pack(pady=15, padx=10)
         
         
         
-        self.audio_button_start = ctk.CTkButton(self, text="Start", command=self.audio_start)
+        self.audio_button_start = ctk.CTkButton(self, text=Path.TEXT_GUI_1.value, command=self.audio_start)
         self.audio_button_start.pack(side=ctk.LEFT, pady=12, padx=10)
         self.audio_button_start.place(relx=0.35, rely=0.87, anchor='center')
         
-        self.audio_button_stop = ctk.CTkButton(self, text="Stop", command=self.audio_stop)
+        self.audio_button_stop = ctk.CTkButton(self, text=Path.TEXT_GUI_2.value, command=self.audio_stop)
         self.audio_button_stop.pack(side=ctk.LEFT, pady=12, padx=10)
         self.audio_button_stop.place(relx=0.65, rely=0.87, anchor='center')
         self.audio_button_stop.configure(state=ctk.DISABLED)
         
-        self.audio_button_back = ctk.CTkButton(self, text="Go Back to Main Page", command=self.audio_go_back)
+        self.audio_button_back = ctk.CTkButton(self, text=Path.TEXT_GUI_3.value, command=self.audio_go_back)
         self.audio_button_back.pack(side=ctk.BOTTOM, pady=12, padx=10)
         # self.audio_button_back.place(relx=0.5, rely=0.90, anchor='center')
     
@@ -80,7 +81,7 @@ class AudioFrame(ctk.CTkFrame):
         
         self.audio_capture.stream.start_stream()
         self.audio_loudness_label.configure(
-            text="Normal Volume", 
+            text=Path.TEXT_GUI_AUDIO_3.value,
             font=("Helvetica", 16), 
             text_color="green")
         
@@ -93,10 +94,10 @@ class AudioFrame(ctk.CTkFrame):
                 # Compute the loudness of the audio and display it if it is 
                 # greater than 0.5
                 rcs = loudness.compute_loudness(data)
-                self.audio_rcs_label.configure(text="RCS: " + str(rcs))
+                self.audio_rcs_label.configure(text=Path.TEXT_GUI_AUDIO_4.value + str(rcs))
                 if rcs > 0.5:
                     self.audio_loudness_label.configure(
-                        text="  Attention!!! Loud Noise:  " + str(rcs), 
+                        text=Path.TEXT_GUI_AUDIO_5.value + str(rcs), 
                         text_color="red")
                 
                 if self.audio_capture.open==False:
@@ -110,7 +111,7 @@ class AudioFrame(ctk.CTkFrame):
         """
         Function called when the "Stop" button is pressed
         """
-        self.audio_loudness_label.configure(text="No Volume Recorded", 
+        self.audio_loudness_label.configure(text=Path.TEXT_GUI_AUDIO_1.value, 
                                             font=("Helvetica", 16), 
                                             text_color="yellow")
         self.audio_button_start.configure(state=ctk.NORMAL)

@@ -3,7 +3,7 @@ import threading
 import time
 import sys
 sys.path.append("./")
-
+from src.libs.utils.config import Path
 from src.libs.utils.face_mesh import FaceMesh
 from src.libs.detection.drowsiness import Drowsiness
 
@@ -19,7 +19,7 @@ class VideoRecorder():
                  device_index=-1,
                  frame_counts=1,
                  frameSize=(640,480),
-                 video_filename="temp_video.avi"):
+                 video_filename=Path.VIDEO_FILE_NAME.value):
         """
         Args:
             fps (int): Frames per second.
@@ -41,7 +41,7 @@ class VideoRecorder():
         # used    
         self.frameSize = frameSize 
         
-        self.path = "src/data/video/"
+        self.path = Path.PATH_VIDEO_RECORDING.value
         self.video_filename = self.path + video_filename
         
         self.video_cap = cv2.VideoCapture(self.device_index)

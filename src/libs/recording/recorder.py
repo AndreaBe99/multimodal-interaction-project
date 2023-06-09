@@ -7,7 +7,7 @@ import subprocess
 import os
 import sys
 sys.path.append("./")
-
+from src.libs.utils.config import Path
 from src.libs.recording.recorder_video import VideoRecorder
 from src.libs.recording.recorder_audio import AudioRecorder
 
@@ -19,10 +19,9 @@ class Recorder():
         self.video_args = video_args
         self.audio_args = audio_args
         
-        self.path = "src/data/"
-        self.path_video = self.path + "video/"
+        self.path_video = Path.PATH_VIDEO_RECORDING.value
         self.video_filename = self.path_video + self.video_args["video_filename"]
-        self.path_audio = self.path + "audio/"
+        self.path_audio = Path.PATH_AUDIO_RECORDING.value
         self.audio_filename = self.path_audio + self.audio_args["audio_filename"]
     
     
