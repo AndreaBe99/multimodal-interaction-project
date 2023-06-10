@@ -43,28 +43,32 @@ class AudioVideoFrame(ctk.CTkFrame):
             text_color="yellow")
         self.audio_loudness_label.pack(pady=15, padx=10)
         
-        self.audio_rcs_label = ctk.CTkLabel(self, 
-                                            text=Path.TEXT_GUI_AUDIO_2.value + str(0))
+        self.audio_rcs_label = ctk.CTkLabel(
+            self, 
+            text=Path.TEXT_GUI_AUDIO_2.value + str(0))
         self.audio_rcs_label.pack(pady=15, padx=10)
         #############
         
         ### Video ###
-        self.video_button_start = ctk.CTkButton(self, 
-                                                text=Path.TEXT_GUI_1.value, 
-                                                command=self.video_start)
+        self.video_button_start = ctk.CTkButton(
+            self, 
+            text=Path.TEXT_GUI_1.value, 
+            command=self.video_start)
         self.video_button_start.pack(side=ctk.LEFT, pady=12, padx=10)
         self.video_button_start.place(relx=0.35, rely=0.87, anchor='center')
         
-        self.video_button_stop = ctk.CTkButton(self, 
-                                               text=Path.TEXT_GUI_2.value, 
-                                               command=self.video_stop)
+        self.video_button_stop = ctk.CTkButton(
+            self, 
+            text=Path.TEXT_GUI_2.value, 
+            command=self.video_stop)
         self.video_button_stop.pack(side=ctk.LEFT, pady=12, padx=10)
         self.video_button_stop.place(relx=0.65, rely=0.87, anchor='center')
         self.video_button_stop.configure(state=ctk.DISABLED)
         
-        self.video_button = ctk.CTkButton(self, 
-                                          text=Path.TEXT_GUI_3.value, 
-                                          command=self.video_go_back)
+        self.video_button = ctk.CTkButton(
+            self, 
+            text=Path.TEXT_GUI_3.value, 
+            command=self.video_go_back)
         self.video_button.pack(side=ctk.BOTTOM, pady=12, padx=10)
         #self.video_button.place(relx=0.5, rely=0.90, anchor='center')
         #############
@@ -136,7 +140,8 @@ class AudioVideoFrame(ctk.CTkFrame):
                 # Compute the loudness of the audio and display it if it is 
                 # greater than 0.5
                 rcs = loudness.compute_loudness(data)
-                self.audio_rcs_label.configure(text=Path.TEXT_GUI_AUDIO_4.value + str(rcs))
+                self.audio_rcs_label.configure(
+                    text=Path.TEXT_GUI_AUDIO_4.value + str(rcs))
                 if rcs > 0.5:
                     self.audio_loudness_label.configure(
                         text=Path.TEXT_GUI_AUDIO_5.value + str(rcs), 

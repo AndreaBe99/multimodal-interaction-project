@@ -44,7 +44,7 @@ class Loudness():
         return audioop.rms(data, self.width) / self.normalization
     
     
-    def display_loudness(self, data)->None:
+    def display_loudness(self, rms)->None:
         """
         Print the rms level of the audio data.
         # NOTE! In the future this methodwill used to give a visual feedback
@@ -52,7 +52,6 @@ class Loudness():
         Args:
             data (bytes): Audio data.
         """
-        rms = self.compute_loudness(data)
         if rms >= 0.5:
             print('Attention!!! There is a lot of noise, the RMS value is %.3f' % rms)
         pass

@@ -12,13 +12,14 @@ from src.libs.utils.config import Path
 
 class AudioRecorder():
     # Audio class based on pyAudio and Wave
-    def __init__(self, 
-                 rate=44100,
-                 device_index=-1, 
-                 frames_per_buffer=1024, 
-                 py_format=pyaudio.paInt16,  
-                 audio_filename=Path.AUDIO_FILE_NAME.value,
-                 channel=1 if sys.platform == 'darwin' else 2):
+    def __init__(
+        self, 
+        rate=44100,
+        device_index=-1, 
+        frames_per_buffer=1024, 
+        py_format=pyaudio.paInt16,  
+        audio_filename=Path.AUDIO_FILE_NAME.value,
+        channel=1 if sys.platform == 'darwin' else 2):
         """
         Args:
             rate (int): Equivalent to Human Hearing at 40 kHz.
@@ -40,11 +41,12 @@ class AudioRecorder():
         self.channels = channel
         
         self.audio = pyaudio.PyAudio()
-        self.stream = self.audio.open(format=self.format,
-                                      channels=self.channels,
-                                      rate=self.rate,
-                                      input=True,
-                                      frames_per_buffer = self.frames_per_buffer)
+        self.stream = self.audio.open(
+            format=self.format,
+            channels=self.channels,
+            rate=self.rate,
+            input=True,
+            frames_per_buffer = self.frames_per_buffer)
         self.audio_frames = []
     
     
