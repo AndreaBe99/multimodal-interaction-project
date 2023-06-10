@@ -89,7 +89,7 @@ class Drowsiness():
         
         self.state["ear"] = ear_avg
         
-        return frame
+        return self.state
     
     
     def plot_landmarks(self, frame: np.ndarray, eye_coordinates, 
@@ -110,79 +110,3 @@ class Drowsiness():
                 for coord in lm_coordinates:
                     cv2.circle(frame, coord, 2, color, -1)
         return frame
-    
-    
-    def plot_text(self, frame, font=cv2.FONT_HERSHEY_SIMPLEX, fntScale=0.8, 
-                  thickness=2):
-        """
-        Plot text on the frame
-        
-        Args:
-            frame (np.ndarray): image frame
-            state (dict): dictionary with state variables
-            font (_type_, optional): Defaults to cv2.FONT_HERSHEY_SIMPLEX.
-            fntScale (float, optional): Defaults to 0.8.
-            thickness (int, optional): Defaults to 2.
-            
-        Returns:
-            frame: image with text
-        """
-        frame_height, _, _ = frame.shape
-        # Set the position of the displayed text
-        txt_origin_drowsy = (10, int(frame_height // 2 * 1.7))
-        txt_origin_alarm = (10, int(frame_height // 2 * 1.85))
-        txt_origin_ear = (10, 30)
-        
-        if self.state["play_alarm"]:
-            txt_alarm = "ALARM ON"
-        else:
-            txt_alarm = "ALARM OFF"
-        
-        txt_drowsy = "DROWSY TIME: {:.2f}".format(self.state["drowsy_time"])
-        txt_ear = "EAR: {:.2f}".format(self.state["ear"])
-        
-        # Function to get a smaller list of parameters for cv2.putText
-        def put_text(frame, txt, origin, color=self.state["color"], 
-                     font=font, fntScale=fntScale, thickness=thickness):
-            return cv2.putText(frame, txt, origin, 
-                               font, fntScale, color, thickness)
-        
-        put_text(frame, txt_drowsy, txt_origin_drowsy)
-        put_text(frame, txt_ear, txt_origin_ear)
-        put_text(frame, txt_alarm, txt_origin_alarm)
-        
-        return frame
-
-
-if __name__ == "__main__":
-    # define a video capture object
-    vid = cv2.VideoCapture(0)
-    
-    sys.path.append("./")
-    from src.libs.utils.face_mesh import FaceMesh
-    face_mesh = FaceMesh()
-    dwr = Drowsiness()
-    
-    while (True):
-        
-        # Capture the video frame by frame
-        ret, frame = vid.read()
-        
-        landmarks = face_mesh.compute_face_landmarks(frame)
-        face_mesh.plot_landmarks(frame, landmarks)
-        
-        frame = dwr.detect_drowsiness(frame, landmarks[0])
-        
-        frame = dwr.plot_text(frame)
-        
-        # Display the resulting frame
-        cv2.imshow('frame', frame)
-        
-        # the 'q' button is set as the quitting button
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-    
-    # After the loop release the cap object
-    vid.release()
-    # Destroy all the windows
-    cv2.destroyAllWindows()
