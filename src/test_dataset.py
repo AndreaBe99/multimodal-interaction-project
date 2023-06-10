@@ -28,6 +28,8 @@ from torchmetrics.functional import accuracy
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 
+import timm
+
 # import albumentations as A
 # from albumentations.pytorch import ToTensorV2
 
@@ -163,7 +165,7 @@ datamodule = pl.LightningDataModule.from_datasets(
             input_size=input_size, color_mean=color_mean, color_std=color_std
         ),
     ),
-    batch_size=64 if torch.cuda.is_available() else 4,
+    batch_size=16 if torch.cuda.is_available() else 4,
     num_workers=int(os.cpu_count() / 2),
 )
 
@@ -173,3 +175,69 @@ print(image[0].shape)
 plt.imshow(image[0].permute(1, 2, 0))
 plt.title(image[1])
 plt.show()
+
+efficient_model = timm.create_model(
+    "efficientnet_b0", pretrained=True, num_classes=len(ACTIVITY.items())
+)
+
+
+class LitEfficientNet(LightningModule):
+    def __init__(self, model, lr=0.05):
+        super().__init__()
+
+        self.save_hyperparameters()
+        self.model = model
+
+    def forward(self, x):
+        out = self.model(x)
+        return F.log_softmax(out, dim=1)
+
+    def training_step(self, batch, batch_idx):
+        x, y = batch
+        logits = self(x)
+        loss = F.nll_loss(logits, y)
+        self.log("train_loss", loss)
+        return loss
+
+    def evaluate(self, batch, stage=None):
+        x, y = batch
+        logits = self(x)
+        loss = F.nll_loss(logits, y)
+        preds = torch.argmax(logits, dim=1)
+        acc = accuracy(preds, y)
+
+        if stage:
+            self.log(f"{stage}_loss", loss, prog_bar=True)
+            self.log(f"{stage}_acc", acc, prog_bar=True)
+
+    def validation_step(self, batch, batch_idx):
+        self.evaluate(batch, "val")
+
+    def test_step(self, batch, batch_idx):
+        self.evaluate(batch, "test")
+
+    def configure_optimizers(self):
+        optimizer = torch.optim.SGD(
+            self.parameters(),
+            lr=self.hparams.lr,
+            momentum=0.9,
+            # weight_decay=5e-4,
+        )
+        # TODO scheduler
+        return {"optimizer": optimizer}
+
+
+model = LitEfficientNet(efficient_model, lr=0.05)
+
+trainer = Trainer(
+    max_epochs=1,
+    accelerator="auto",
+    devices=1 if torch.cuda.is_available() else None,
+    logger=CSVLogger(save_dir="logs/"),
+    callbacks=[
+        LearningRateMonitor(logging_interval="step"),
+        TQDMProgressBar(refresh_rate=10),
+    ],
+)
+
+trainer.fit(model, datamodule=datamodule)
