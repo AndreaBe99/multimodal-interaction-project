@@ -6,20 +6,21 @@ sys.path.append("./")
 from src.libs.utils.config import Path
 from src.libs.utils.face_mesh import FaceMesh
 from src.libs.detection.drowsiness import Drowsiness
-
+from src.libs.detection.detector import Detector
 # Only for testing, we need to use it in another class, not implemented yet 
 from src.libs.utils.gaze import Gaze
 
 
 class VideoRecorder():  
     # Video class based on openCV 
-    def __init__(self,
-                 fps=6,
-                 fourcc="MJPG",
-                 device_index=-1,
-                 frame_counts=1,
-                 frameSize=(640,480),
-                 video_filename=Path.VIDEO_FILE_NAME.value):
+    def __init__(
+        self,
+        fps=6,
+        fourcc="MJPG",
+        device_index=-1,
+        frame_counts=1,
+        frameSize=(640,480),
+        video_filename=Path.VIDEO_FILE_NAME.value):
         """
         Args:
             fps (int): Frames per second.
@@ -49,10 +50,11 @@ class VideoRecorder():
             raise ValueError("Unable to open video source", device_index)
         
         self.video_writer = cv2.VideoWriter_fourcc(*self.fourcc)
-        self.video_out = cv2.VideoWriter(self.video_filename, 
-                                         self.video_writer, 
-                                         self.fps, 
-                                         self.frameSize)
+        self.video_out = cv2.VideoWriter(
+            self.video_filename, 
+            self.video_writer, 
+            self.fps, 
+            self.frameSize)
         self.width = self.video_cap.get(cv2.CAP_PROP_FRAME_WIDTH)
         self.height = self.video_cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
         self.start_time = time.time()
@@ -63,49 +65,31 @@ class VideoRecorder():
         Video starts being recorded and saved to a video file.
         """
         # counter = 1
-        timer_start = time.time()
-        timer_current = 0
+        # timer_start = time.time()
+        # timer_current = 0
         
         cv2.namedWindow("video_frame", cv2.WINDOW_NORMAL)
         
         face_mesh = FaceMesh()
-        drw = Drowsiness()
+        detector = Detector(rec="video", width=self.width, height=self.height)
         
-        # We do not use the Gaze class here, but we can use it in the future in
-        # another class, like the Drowsiness class with EAR
-        gz = Gaze()
-
         while self.open:
             ret, video_frame = self.video_cap.read()
             if ret:
-                
-                # NOTE: compute face landmarks
+                # Compute face landmarks
                 landmarks = face_mesh.compute_face_landmarks(video_frame)
-                # Comment the next line to not plot the face mesh
-                face_mesh.plot_face_mesh(video_frame, landmarks)
-                
+                # NOTE: Comment the next line to not plot the face mesh
+                # face_mesh.plot_face_mesh(video_frame, landmarks)
                 
                 if landmarks:
                     landmarks = landmarks[0]
-                    # NOTE: compute face landmarks, and detect drowsiness
-                    video_frame = drw.detect_drowsiness(video_frame, landmarks)
-                    video_frame = drw.plot_text(video_frame)
-                    
-                    # NOTE! The Gazes class is not implemented to handle 
-                    # distraction detection, but it can only compute the gaze 
-                    # direction.
-                    # We need to implement a class to handle distraction 
-                    # detection, o we don't call it here, but we can use it in 
-                    # the future in another class, like the Drowsiness class 
-                    # with EAR
-                    gz.compute_gaze(video_frame, landmarks)
-                    
-                    
+                    # Function with all the detections
+                    video_frame = detector.detect(video_frame, landmarks)
                     # NOTE! Here we can add image processing with deep learning 
                     # models to detect driver's distraction
+                
                 # video_frame = cv2.flip(video_frame, 1)
                 cv2.imshow('video_frame', video_frame)
-                
                 # Write the frame to the current video file
                 self.video_out.write(video_frame)
                 # print str(counter) + " " + str(self.frame_counts) + " frames written " + str(timer_current)
@@ -143,46 +127,36 @@ class VideoRecorder():
     
     def get_frame(self):
         """
-        Alternative function of record to capture video using a gui with tkinter
+        Alternative function of `record` to capture video using the GUI
+        with tkinter.
+        In this case, we do not need to use a loop because this function is
+        called every time the GUI updates, with `self.after(---)` in 
+        `update_video`.
 
         Returns:
-            _type_: _description_
+            tuple: (ret, frame)
         """
         face_mesh = FaceMesh()
-        drw = Drowsiness()
+        detector = Detector(rec="video", width=self.width, height=self.height)
         
-        # We do not use the Gaze class here, but we can use it in the future in
-        # another class, like the Drowsiness class with EAR
-        gz = Gaze()
         if self.video_cap.isOpened():
             ret, video_frame = self.video_cap.read()
             if ret:
-                # NOTE: compute face landmarks
+                # Compute face landmarks
                 landmarks = face_mesh.compute_face_landmarks(video_frame)
-                # Comment the next line to not plot the face mesh
+                # NOTE: Comment the next line to not plot the face mesh
                 # face_mesh.plot_face_mesh(video_frame, landmarks)
                 
                 if landmarks:
                     landmarks = landmarks[0]
-                    # NOTE: compute face landmarks, and detect drowsiness
-                    video_frame = drw.detect_drowsiness(video_frame, landmarks)
-                    video_frame = drw.plot_text(video_frame)
                     
-                    # NOTE! The Gazes class is not implemented to handle 
-                    # distraction detection, but it can only compute the gaze 
-                    # direction.
-                    # We need to implement a class to handle distraction 
-                    # detection, o we don't call it here, but we can use it in 
-                    # the future in another class, like the Drowsiness class 
-                    # with EAR
-                    gz.compute_gaze(video_frame, landmarks)
-                    
+                    video_frame = detector.detect(video_frame, landmarks)
                     
                     # NOTE! Here we can add image processing with deep learning 
                     # models to detect driver's distraction
+                
                 # video_frame = cv2.flip(video_frame, 1)
                 #cv2.imshow('video_frame', video_frame)
-                
                 # Write the frame to the current video file
                 self.video_out.write(video_frame)
                 # print str(counter) + " " + str(self.frame_counts) + " frames written " + str(timer_current)
