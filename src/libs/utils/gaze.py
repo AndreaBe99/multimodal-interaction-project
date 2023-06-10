@@ -53,6 +53,9 @@ class Gaze:
         self.translation_vector = None
         self.transformation = None
         self.camera_matrix = None
+        
+        self.frame_width = None
+        self.frame_height = None
 
     
     def get_relative(
@@ -129,7 +132,10 @@ class Gaze:
         return camera_matrix
     
     
-    def get_gaze_3d(self, pupil: np.ndarray, eye_ball_center: np.ndarray) -> np.ndarray:
+    def get_gaze_3d(
+        self, 
+        pupil: np.ndarray, 
+        eye_ball_center: np.ndarray) -> np.ndarray:
         """
         Compute 3D gaze point, i.e. point in real world coordinates where user
         is looking at.
@@ -220,21 +226,21 @@ class Gaze:
             eye_landmarks (list): _description_
 
         Returns:
-            list: _description_
+            list: list of 6 points
         """
         coords = []
         for i in eye_landmarks:
             lm = landmarks[i]
             coord = denormalize_coordinates(lm.x, 
                                                 lm.y, 
-                                                self.image_w, 
-                                                self.image_h)
+                                                self.frame_width, 
+                                                self.frame_height)
             coords.append(coord)
         # 0: P1, 1: P2, 2: P3, 3: P4, 4: P5, 5: P6
         return coords
     
     
-    def compute_eye_roi(self, eye_landmarks)-> tuple(float, float, float, float):
+    def compute_eye_roi(self, frame, landmarks, eye_landmarks):
         """
         Compute eye ROI from eye landmarks, i.e. the minimun box that contains
         the eye.
@@ -245,20 +251,31 @@ class Gaze:
         Returns:
             roy_center (tuple): center of the eye ROI
         """
-        x_coordinates = [landmark[0] for landmark in eye_landmarks]
-        y_coordinates = [landmark[1] for landmark in eye_landmarks]
+        eye_points = self.compute_eye_six_points(landmarks.landmark, eye_landmarks)
+        x_coordinates = [landmark[0] for landmark in eye_points]
+        y_coordinates = [landmark[1] for landmark in eye_points]
         x_min = min(x_coordinates)
         x_max = max(x_coordinates)
         y_min = min(y_coordinates)
         y_max = max(y_coordinates)
-        roi = (x_min, y_min, x_max, y_max)
-        roi_center = np.mean(roi, axis=0, dtype=np.int)
-        return roi_center
+        
+        eye_roi = frame[y_min-2:y_max+2, x_min-2:x_max+2]
+        eye_center = np.array(
+                [(eye_roi.shape[1] // 2), (eye_roi.shape[0] // 2)])  # eye ROI center position
+        
+        return eye_center
 
     # Function to compute Gaze score
     def compute_gaze_score(self, roi_center, pupil_center) -> float:
         """
         Compute the gaze score from the eye ROI
+        
+        Args:
+            roi_center (tuple): center of the eye ROI
+            pupil_center (tuple): center of the pupil
+        
+        Returns:
+            gaze_score (float): gaze score between 0 and 1
         """
         # Calculate the distance between the eye center and the pupil point
         distance = np.linalg.norm(np.array(pupil_center) - np.array(roi_center))
@@ -283,6 +300,8 @@ class Gaze:
         Returns:
             gaze_score (float): gaze score
         """
+        self.frame_height, self.frame_width, _ = frame.shape
+        
         image_points = self.get_relative(frame, points, self.relative)
         image_points1 = self.get_relative(frame, points, self.relativeT)
         
@@ -369,14 +388,15 @@ class Gaze:
         self.plot_gaze(frame, left_pupil, left_gaze)
         # self.plot_gaze(frame, right_pupil, right_gaze)
         
-        left_roi_center = self.compute_eye_six_points(points, self.left_eye_landmarks)
-        right_roi_center = self.compute_eye_six_points(points, self.right_eye_landmarks)
+        # Compute gaze score, used to check if the user is looking away
+        
+        left_roi_center = self.compute_eye_roi(frame, points, self.left_eye_idxs)
+        right_roi_center = self.compute_eye_roi(frame, points, self.right_eye_idxs)
         
         left_gaze_score = self.compute_gaze_score(left_pupil, left_roi_center)
         right_gaze_score = self.compute_gaze_score(right_pupil, right_roi_center)
         
         avg_gaze_score = (left_gaze_score + right_gaze_score) / 2
-        
         return avg_gaze_score
 
 
