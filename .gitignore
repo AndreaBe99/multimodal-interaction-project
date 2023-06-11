@@ -161,4 +161,4 @@ cython_debug/
 
 src/data/dataset/*
 
-.dat
+*.dat
