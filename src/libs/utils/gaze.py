@@ -199,28 +199,11 @@ class Gaze:
         return gaze
 
     
-    def plot_gaze(
-        self,
-        frame: np.ndarray,
-        pupil: np.ndarray,
-        gaze: np.ndarray,
-    ) -> None:
-        """
-        Draw gaze line into screen.
-        
-        Args:
-            frame: The frame to draw the gaze line into.
-            pupil: The pupil location.
-            gaze: The gaze direction.
-        """
-        p1 = (int(pupil[0]), int(pupil[1]))
-        p2 = (int(gaze[0]), int(gaze[1]))
-        cv2.line(frame, p1, p2, Colors.RED.value, 2)
-    
-    
     def compute_eye_six_points(self, landmarks, eye_landmarks: list) -> list:
         """
-        Given the eye landmarks, compute the 6 points that are used for gaze
+        Given the eye landmarks, compute the 6 points that are used for gaze,
+        this six points are the "corners" of the eye, the same points used in
+        the EAR algorithm. 
 
         Args:
             eye_landmarks (list): _description_
@@ -239,19 +222,33 @@ class Gaze:
         # 0: P1, 1: P2, 2: P3, 3: P4, 4: P5, 5: P6
         return coords
     
-    
-    def compute_eye_roi(self, frame, landmarks, eye_landmarks):
+    def compute_gaze_score(
+        self,
+        landmarks: np.ndarray, 
+        eye_landmarks: list, 
+        pupil_center: np.ndarray) -> tuple:
         """
         Compute eye ROI from eye landmarks, i.e. the minimun box that contains
-        the eye.
+        the eye, than compute the gaze score as the distance between the pupil
+        and the center of the eye ROI, normalized by the eye ROI width.
 
         Args:
-            eye_landmarks (list): list of eye landmarks (x, y)
-
+            frame (np.ndarray): frame video
+            landmarks (np.ndarray): face landmarks
+            eye_landmarks (list): eye landmarks, i.e. the 6 points P1, P2, P3, 
+                P4, P5, P6.
+            pupil_center (np.ndarray): pupil center
+            
         Returns:
-            roy_center (tuple): center of the eye ROI
+            gaze_score (float): gaze score
+            roi (list): eye ROI coordinates, i.e. the box, we return this to
+                plot the box in the video
+            roi_center (np.ndarray): eye ROI center, i.e. the center of the box
         """
+        # Get the corresponding points P1, P2, P3, P4, P5, P6
         eye_points = self.compute_eye_six_points(landmarks.landmark, eye_landmarks)
+                
+        # Compute eye ROI coordinates, i.e. the box
         x_coordinates = [landmark[0] for landmark in eye_points]
         y_coordinates = [landmark[1] for landmark in eye_points]
         x_min = min(x_coordinates)
@@ -259,36 +256,61 @@ class Gaze:
         y_min = min(y_coordinates)
         y_max = max(y_coordinates)
         
-        eye_roi = frame[y_min-2:y_max+2, x_min-2:x_max+2]
-        eye_center = np.array(
-                [(eye_roi.shape[1] // 2), (eye_roi.shape[0] // 2)])  # eye ROI center position
+        # Get the frame that contains the eye ROI 
+        # eye_roi = frame[y_min-2:y_max+2, x_min-2:x_max+2]
         
-        return eye_center
+        # Compute eye ROI center
+        # eye_center = np.array([(eye_roi.shape[1] // 2), (eye_roi.shape[0] // 2)])  # eye ROI center position
+        
+        roi_center = np.array([int((x_min + x_max) / 2), int((y_min + y_max) / 2)])
+        
+        # Compute gaze score, i.e. the distance between the pupil center and 
+        # the eye center, divided by the eye ROI width
+        gaze_score = np.linalg.norm(
+            pupil_center - roi_center) / abs(x_max - x_min)
+        return gaze_score, (x_min, y_min, x_max, y_max), roi_center
 
-    # Function to compute Gaze score
-    def compute_gaze_score(self, roi_center, pupil_center) -> float:
+
+    def plot_gaze(
+        self,
+        frame: np.ndarray,
+        pupil: np.ndarray,
+        gaze: np.ndarray,
+        roi_box,
+        roi_center,
+    ) -> None:
         """
-        Compute the gaze score from the eye ROI
+        Draw gaze line into screen.
         
         Args:
-            roi_center (tuple): center of the eye ROI
-            pupil_center (tuple): center of the pupil
-        
-        Returns:
-            gaze_score (float): gaze score between 0 and 1
+            frame: The video frame to draw the gaze line into.
+            pupil: The pupil location.
+            gaze: The gaze direction.
+            roi_box: The eye ROI box.
+            roi_center: The eye ROI center, i.e. the center of the box.
         """
-        # Calculate the distance between the eye center and the pupil point
-        distance = np.linalg.norm(np.array(pupil_center) - np.array(roi_center))
-        # Calculate the gaze score as the inverse of the distance
-        gaze_score = 1.0 / distance
-        return gaze_score
+        p1 = (int(pupil[0]), int(pupil[1]))
+        p2 = (int(gaze[0]), int(gaze[1]))
+        cv2.line(frame, p1, p2, Colors.RED.value, 2)
 
+        # Draw pupil
+        cv2.circle(frame, pupil, 2, Colors.YELLOW.value, -1)
+
+        # Draw eye ROI rectangle
+        cv2.rectangle(
+            frame,
+            (roi_box[0], roi_box[1]),
+            (roi_box[2], roi_box[3]),
+            Colors.GREEN.value, 1)
+
+        # Draw eye ROI center
+        cv2.circle(frame, tuple(roi_center), 1, Colors.GREEN.value, 2)
+        
 
     def compute_gaze(
         self,
         frame: np.ndarray,
-        points,
-    ) -> float:
+        points: np.ndarray) -> float:
         """
         The gaze function gets an image and face landmarks from mediapipe 
         framework, and draws the gaze direction into the frame.
@@ -381,20 +403,19 @@ class Gaze:
         # for the right eye, and take the average of the two head poses.
         
         # correct gaze for head rotation
-        left_gaze = self.correct_gaze(left_pupil, left_eye_pupil2D, head_pose)
-        right_gaze = self.correct_gaze(right_pupil, right_eye_pupil2D, head_pose)
-        
-        # Draw gaze line into screen
-        self.plot_gaze(frame, left_pupil, left_gaze)
-        # self.plot_gaze(frame, right_pupil, right_gaze)
+        left_gaze_point = self.correct_gaze(left_pupil, left_eye_pupil2D, head_pose)
+        right_gaze_point = self.correct_gaze(right_pupil, right_eye_pupil2D, head_pose)
         
         # Compute gaze score, used to check if the user is looking away
+        left_gaze_score, left_roi_box, left_roi_center = self.compute_gaze_score(
+            points, self.left_eye_idxs, left_pupil)
+        right_gaze_score, right_roi_box, right_roi_center = self.compute_gaze_score(
+            points, self.right_eye_idxs, right_pupil)
         
-        left_roi_center = self.compute_eye_roi(frame, points, self.left_eye_idxs)
-        right_roi_center = self.compute_eye_roi(frame, points, self.right_eye_idxs)
-        
-        left_gaze_score = self.compute_gaze_score(left_pupil, left_roi_center)
-        right_gaze_score = self.compute_gaze_score(right_pupil, right_roi_center)
+        # Draw gaze line into screen
+        self.plot_gaze(frame, left_pupil, 
+            left_gaze_point, left_roi_box, left_roi_center)
+        # self.plot_gaze(frame, right_pupil, right_gaze_point, right_roi_box, right_roi_center)
         
         avg_gaze_score = (left_gaze_score + right_gaze_score) / 2
         return avg_gaze_score
