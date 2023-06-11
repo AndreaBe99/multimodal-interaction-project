@@ -60,7 +60,7 @@ class LookingAway():
         
         # If the eye aspect ratio is below the blink threshold, increment the 
         # blink frame counter to detect if a person is drowsy.
-        if gaze_score < self.gaze_treshold:
+        if gaze_score > self.gaze_treshold:
             # Increase DROWSY_TIME to track the time period with EAR less than 
             # the threshold and reset the start_time for the next iteration.
             end_time = time.perf_counter()
