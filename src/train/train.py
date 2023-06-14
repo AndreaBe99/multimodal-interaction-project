@@ -152,7 +152,7 @@ def train(
 
     # Create model
     efficient_model = timm.create_model(
-        "efficientnet_b0", 
+        slp.MODEL_NAME_0.value, 
         pretrained=True, 
         num_classes=len(class_names)
     )
