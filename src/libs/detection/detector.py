@@ -9,7 +9,7 @@ sys.path.append("./")
 from src.libs.detection.drowsiness import Drowsiness
 from src.libs.detection.looking_away import LookingAway
 from src.libs.detection.loudness import Loudness
-from src.libs.utils.colors import Colors
+from src.libs.utils.config import Colors
 
 class Detector():
     def __init__(self, rec="both", fps=6, height=480, width=640):

@@ -9,7 +9,7 @@ sys.path.append("./")
 
 from mediapipe.python.solutions.drawing_utils import _normalized_to_pixel_coordinates as denormalize_coordinates
 from src.libs.utils.ear import EyeAspectRatio
-from src.libs.utils.colors import Colors
+from src.libs.utils.config import Colors
     
 class Drowsiness():
     """Class to detect drowsiness"""
