@@ -4,9 +4,8 @@ import mediapipe as mp
 import numpy as np
 
 sys.path.append("./")
-from src.libs.utils.colors import Colors
+from src.libs.utils.config import Colors
 from mediapipe.python.solutions.drawing_utils import _normalized_to_pixel_coordinates as denormalize_coordinates
-
 
 
 class Gaze:
