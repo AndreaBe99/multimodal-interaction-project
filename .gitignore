@@ -159,6 +159,6 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-src/data/dataset/*
+src/data/dataset/state-farm-distracted-driver-detection/*
 
 *.dat
