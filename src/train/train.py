@@ -1,4 +1,5 @@
 import os
+import sys
 import random
 import numpy as np
 import pandas as pd
@@ -18,6 +19,7 @@ from pytorch_lightning.callbacks import LearningRateMonitor
 from pytorch_lightning.callbacks.progress import TQDMProgressBar
 from pytorch_lightning.loggers import CSVLogger
 
+sys.path.append('./')
 from src.train.config import StaticTrain as st
 from src.train.config import StaticDataset as sd
 from src.train.config import StaticLearningParameter as slp
@@ -151,6 +153,8 @@ def train(
     )
 
     # Create model
+    # NOTE: MODEL_NAME_0 = "efficientnet_b0"
+    # NOTE: MODEL_NAME_3 = "efficientnet_b3" this is used in the reference code
     efficient_model = timm.create_model(
         slp.MODEL_NAME_0.value, 
         pretrained=True, 

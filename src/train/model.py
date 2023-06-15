@@ -1,3 +1,5 @@
+import sys
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -10,6 +12,7 @@ from pytorch_lightning.callbacks.progress import TQDMProgressBar
 
 from torchmetrics.functional import accuracy
 
+sys.path.append('./')
 from src.train.config import StaticLearningParameter as slp
 
 
@@ -17,7 +20,6 @@ class LitEfficientNet(LightningModule):
     """LightningModule for EfficientNet."""
     def __init__(self, model, lr=slp.LR, gamma=slp.GAMMA):
         super().__init__()
-
         self.save_hyperparameters()
         self.model = model
         self.lr = lr
