@@ -1,11 +1,17 @@
 import cv2
+import sys
 
-import torch
-import torch.transforms as transforms
 import torch.utils.data as data
 
+import torchvision.transforms as transforms
+
 import albumentations as A
+
 from albumentations.pytorch import ToTensorV2
+
+sys.path.append('./')
+
+from src.train.config import StaticLearningParameter as slp
 
 class DataTransform():
     """
@@ -26,11 +32,11 @@ class DataTransform():
     """
 
     def __init__(
-        self, 
-        input_size, 
-        color_mean, 
-        color_std, 
-        use_albumentations=False):
+            self, 
+            input_size, 
+            color_mean, 
+            color_std, 
+            use_albumentations=slp.USE_ALBUMENTATIONS.value):
         if use_albumentations:
             # Albumentations Transformations
             self.data_transform = {
