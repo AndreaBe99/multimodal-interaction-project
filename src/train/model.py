@@ -10,20 +10,30 @@ from pytorch_lightning import LightningModule, Trainer, seed_everything
 from pytorch_lightning.callbacks import LearningRateMonitor
 from pytorch_lightning.callbacks.progress import TQDMProgressBar
 
+import torchmetrics
 from torchmetrics.functional import accuracy
 
 sys.path.append('./')
 from src.train.config import StaticLearningParameter as slp
+from src.train.config import StaticDataset as sd
 
 
 class LitEfficientNet(LightningModule):
     """LightningModule for EfficientNet."""
-    def __init__(self, model, lr=slp.LR, gamma=slp.GAMMA):
+
+    def __init__(
+            self,
+            model,
+            lr=slp.LR.value,
+            gamma=slp.GAMMA.value):
         super().__init__()
         self.save_hyperparameters()
         self.model = model
         self.lr = lr
         self.gamma = gamma
+        num_classes = len(sd.ACTIVITY_MAP.value.items())
+        self.accuracy = torchmetrics.Accuracy(
+            task='multiclass', num_classes=num_classes)
 
     def forward(self, x):
         """Forward propagation."""
@@ -56,7 +66,7 @@ class LitEfficientNet(LightningModule):
         logits = self(x)
         loss = F.nll_loss(logits, y)
         preds = torch.argmax(logits, dim=1)
-        acc = accuracy(preds, y)
+        acc = self.accuracy(preds, y)
 
         if stage:
             self.log(f"{stage}_loss", loss, prog_bar=True)
@@ -84,7 +94,7 @@ class LitEfficientNet(LightningModule):
 
     def configure_optimizers(self):
         """Configure optimizers."""
-        
+
         """
         optimizer = torch.optim.SGD(
             self.parameters(),
@@ -94,15 +104,15 @@ class LitEfficientNet(LightningModule):
         )
         """
         optimizer = torch.optim.Adam(
-            self.parameters(), 
+            self.parameters(),
             lr=self.lr
-            )
-        
-        scheduler = torch.optim.lr_scheduler.ExponentialLR(
-            optimizer, 
-            gamma=self.gamma
-            ) 
+        )
 
-        criterion = nn.CrossEntropyLoss()  # loss function
-        
-        return {"optimizer": optimizer, "lr_scheduler": scheduler, "criterion": criterion}
+        scheduler = torch.optim.lr_scheduler.ExponentialLR(
+            optimizer,
+            gamma=self.gamma
+        )
+
+        # criterion = nn.CrossEntropyLoss()  # loss function
+
+        return {"optimizer": optimizer, "lr_scheduler": scheduler}
