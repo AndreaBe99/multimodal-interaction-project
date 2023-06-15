@@ -21,8 +21,8 @@ class StaticDataset(Enum):
 
 
 class StaticLearningParameter(Enum):
-    MODEL_NAME_0 = 'efficientnet-b0'
-    MODEL_NAME_3 = 'efficientnet-b3'
+    MODEL_NAME_0 = 'efficientnet_b0'
+    MODEL_NAME_3 = 'efficientnet_b3'
     COLOR_MEAN = (0.485, 0.456, 0.406)
     COLOR_STD = (0.229, 0.224, 0.225)
     INPUT_SIZE = 256
@@ -35,3 +35,4 @@ class StaticLearningParameter(Enum):
     DEBUG = True
     TRAIN = False
     SEED = 42
+    USE_ALBUMENTATIONS=True
