@@ -20,7 +20,6 @@ from pytorch_lightning.callbacks.progress import TQDMProgressBar
 from pytorch_lightning.loggers import CSVLogger
 
 sys.path.append('./')
-from src.train.config import StaticTrain as st
 from src.train.config import StaticDataset as sd
 from src.train.config import StaticLearningParameter as slp
 from src.train.dataset import Dataset, DataTransform
@@ -41,13 +40,15 @@ def fix_seed(seed):
 
 
 def create_dataset(
-        seed=sd.SEED.value,
-        input_size=sd.INPUT_SIZE.value,
-        color_mean=sd.COLOR_MEAN.value,
-        color_std=sd.COLOR_STD.value):
+    df,
+    seed=sd.SEED.value,
+    input_size=sd.INPUT_SIZE.value,
+    color_mean=sd.COLOR_MEAN.value,
+    color_std=sd.COLOR_STD.value):
     """Create dataset for training and validation.
 
     Args:
+        df: Dataframe containing image file paths and labels.
         seed (int, optional): Random seed. 
             Defaults to StaticTrain.SEED.value.
         input_size (int, optional): Input size. 
@@ -98,60 +99,41 @@ def create_dataset(
     return train_dataset, val_dataset
 
 
-def create_dataloader(
-        batch_size=sd.BATCH_SIZE.value):
+def create_datamodule(
+    train_dataset,
+    val_dataset,
+    batch_size=sd.BATCH_SIZE.value):
     """
     Create dataloader for training and validation.
 
     Args:
+        train_dataset: Dataset for training.
+        val_dataset: Dataset for validation.
         batch_size (int, optional): Batch size. 
             Defaults to StaticDataLoader.BATCH_SIZE.value.
     
     Returns:
-        dataloaders_dict: Dictionary object containing dataloader for training 
-            and validation.
-    """
-    train_dataloader = data.DataLoader(
-        train_dataset,
-        batch_size=batch_size,
-        shuffle=True
-    )
-
-    val_dataloader = data.DataLoader(
-        val_dataset,
-        batch_size=batch_size,
-        shuffle=False)
-
-    # group into a dictionary object
-    dataloaders_dict = {"train": train_dataloader, "val": val_dataloader}
-
-    # Operation confirmation
-    if PLOT:
-        batch_iterator = iter(dataloaders_dict["val"])  # convert to iterator
-        images, labels = next(batch_iterator)  # get the first element
-        print(images.size())  # torch.Size([8, 3, 256, 256])
-        print(labels.size())  # torch.Size([8])
-    
-    return dataloaders_dict
-
-
-def train(
-    train_dataset, 
-    val_dataset, 
-    class_names=st.ACTIVITY_MAP.items()):
-    """Train the model with Pytorch Lightning.
-    
-    Args:
-        train_dataset: Dataset for training.
-        val_dataset: Dataset for validation.
+        datamodule: Dataloader for training and validation.
     """
     datamodule = pl.LightningDataModule.from_datasets(
         train_dataset=train_dataset,
         val_dataset=val_dataset,
-        batch_size=16 if torch.cuda.is_available() else 4,
+        batch_size=batch_size if torch.cuda.is_available() else 4,
         num_workers=int(os.cpu_count() / 2),
     )
+    return datamodule
 
+
+def train(
+    datamodule, 
+    class_names=sd.ACTIVITY_MAP.value.items()):
+    """Train the model with Pytorch Lightning.
+    
+    Args:
+        datamodule: Dataloader for training and validation.
+        class_names (list, optional): List of class names.
+        
+    """
     # Create model
     # NOTE: MODEL_NAME_0 = "efficientnet_b0"
     # NOTE: MODEL_NAME_3 = "efficientnet_b3" this is used in the reference code
@@ -184,11 +166,11 @@ if __name__ == "__main__":
     df = pd.read_csv(sd.CSV_FILE_PATH.value)
     
     ### Operation check ###
-    train_dataset, val_dataset = create_dataset()
+    train_dataset, val_dataset = create_dataset(df)
     
     ### Create DataLoader ###
-    dataloaders_dict = create_dataloader()
+    datamodule = create_datamodule(train_dataset, val_dataset)
     
     ### Train the model ###    
-    train(train_dataset=train_dataset, val_dataset=val_dataset)
+    train(datamodule)
 
