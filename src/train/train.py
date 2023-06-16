@@ -25,6 +25,7 @@ from src.train.config import StaticLearningParameter as slp
 from src.train.dataset import Dataset, DataTransform
 from src.train.model import LitEfficientNet
 
+VERBOSE = True  # Set True if you want to see some logs
 PLOT = False  # Set True if you want to plot the image
 
 
@@ -64,8 +65,10 @@ def create_dataset(
         train_dataset, val_dataset: Dataset for training and validation.
     """
     # data division
-    df_train, df_val = train_test_split(
-        df, stratify=df["subject"], random_state=seed)
+    df_train, df_val = train_test_split(df, stratify=df["subject"], random_state=seed)
+    if VERBOSE:
+        print("train num:", len(df_train))
+        print("val num:", len(df_val))
 
     # dataset creation
     train_dataset = Dataset(
@@ -82,6 +85,10 @@ def create_dataset(
             input_size=input_size, color_mean=color_mean, color_std=color_std
         ),
     )
+
+    if VERBOSE:
+        print("train dataset size:", len(train_dataset))
+        print("val dataset size:", len(val_dataset))
 
     if PLOT:
         # Data retrieval example
@@ -112,6 +119,10 @@ def create_datamodule(train_dataset, val_dataset, batch_size=slp.BATCH_SIZE.valu
         batch_size=batch_size if torch.cuda.is_available() else 4,
         num_workers=int(os.cpu_count()),
     )
+
+    if VERBOSE:
+        print("data module created")
+
     return datamodule
 
 
@@ -132,8 +143,7 @@ def train(datamodule, class_names=sd.ACTIVITY_MAP.value.items()):
         num_classes=len(class_names),
     )
 
-    model = LitEfficientNet(
-        efficient_model, lr=slp.LR.value)
+    model = LitEfficientNet(efficient_model, lr=slp.LR.value)
 
     trainer = Trainer(
         max_epochs=slp.EPOCHS.value,
@@ -153,23 +163,25 @@ if __name__ == "__main__":
 
     # Read csv file
     df = pd.read_csv(sd.CSV_FILE_PATH.value)
-    
+
     ### Preprocessing ###
     # Add file path column
     df["file_path"] = df.apply(
-        lambda x: os.path.join(
-            sd.DATA_DIR.value, "imgs/train", x.classname, x.img
-        ),
+        lambda x: os.path.join(sd.DATA_DIR.value, "imgs/train", x.classname, x.img),
         axis=1,
     )
     # Add Column by Converting Correct Answer Labels to Numbers
     df["class_num"] = df["classname"].map(lambda x: int(x[1]))
-    
+
     ### Operation check ###
     train_dataset, val_dataset = create_dataset(df)
 
     ### Create DataLoader ###
     datamodule = create_datamodule(train_dataset, val_dataset)
+
+    if VERBOSE:
+        image = datamodule.train_dataloader().dataset[0]
+        print(image[0].shape)
 
     ### Train the model ###
     train(datamodule)
