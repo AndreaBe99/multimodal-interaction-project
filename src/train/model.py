@@ -27,13 +27,13 @@ class LitEfficientNet(LightningModule):
             lr=slp.LR.value,
             gamma=slp.GAMMA.value):
         super().__init__()
-        self.save_hyperparameters()
+        self.save_hyperparameters(ignore=["model"])
         self.model = model
         self.lr = lr
         self.gamma = gamma
-        num_classes = len(sd.ACTIVITY_MAP.value.items())
+        self.num_classes = len(sd.ACTIVITY_MAP.value.items())
         self.accuracy = torchmetrics.Accuracy(
-            task='multiclass', num_classes=num_classes)
+            task='multiclass', num_classes=self.num_classes)
 
     def forward(self, x):
         """Forward propagation."""
@@ -48,9 +48,9 @@ class LitEfficientNet(LightningModule):
             batch: batch data
             batch_idx: batch index
         """
-        x, y = batch
-        logits = self(x)
-        loss = F.nll_loss(logits, y)
+        inputs, labels = batch
+        logits = self(inputs)
+        loss = F.nll_loss(logits, labels)
         self.log("train_loss", loss)
         return loss
 
@@ -62,11 +62,11 @@ class LitEfficientNet(LightningModule):
             batch: batch data
             stage: stage name
         """
-        x, y = batch
-        logits = self(x)
-        loss = F.nll_loss(logits, y)
+        inputs, labels = batch
+        logits = self(inputs)
+        loss = F.nll_loss(logits, labels)
         preds = torch.argmax(logits, dim=1)
-        acc = self.accuracy(preds, y)
+        acc = self.accuracy(preds, labels)
 
         if stage:
             self.log(f"{stage}_loss", loss, prog_bar=True)
