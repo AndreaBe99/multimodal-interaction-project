@@ -42,10 +42,10 @@ def fix_seed(seed):
 
 def create_dataset(
     df,
-    seed=sd.SEED.value,
-    input_size=sd.INPUT_SIZE.value,
-    color_mean=sd.COLOR_MEAN.value,
-    color_std=sd.COLOR_STD.value,
+    seed=slp.SEED.value,
+    input_size=slp.INPUT_SIZE.value,
+    color_mean=slp.COLOR_MEAN.value,
+    color_std=slp.COLOR_STD.value,
 ):
     """Create dataset for training and validation.
 
@@ -93,7 +93,7 @@ def create_dataset(
     return train_dataset, val_dataset
 
 
-def create_datamodule(train_dataset, val_dataset, batch_size=sd.BATCH_SIZE.value):
+def create_datamodule(train_dataset, val_dataset, batch_size=slp.BATCH_SIZE.value):
     """
     Create dataloader for training and validation.
 
@@ -158,7 +158,7 @@ if __name__ == "__main__":
     # Add file path column
     df["file_path"] = df.apply(
         lambda x: os.path.join(
-            "../" + sd.DATA_DIR.value, "imgs/train", x.classname, x.img
+            sd.DATA_DIR.value, "imgs/train", x.classname, x.img
         ),
         axis=1,
     )
