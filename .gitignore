@@ -162,3 +162,9 @@ cython_debug/
 src/data/dataset/state-farm-distracted-driver-detection/*
 
 *.dat
+*.zip
+
+models/lightning_logs/version_0/
+models/lightning_logs/version_1/
+models/lightning_logs/version_2/
+
