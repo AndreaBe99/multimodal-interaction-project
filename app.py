@@ -1,11 +1,11 @@
 import argparse
 import pyaudio
 import time
-from src.libs.recording.recorder import Recorder
-from src.libs.recording.recorder_video import VideoRecorder
-from src.libs.recording.recorder_audio import AudioRecorder
+from src.app.recording.recorder import Recorder
+from src.app.recording.recorder_video import VideoRecorder
+from src.app.recording.recorder_audio import AudioRecorder
 
-from src.libs.gui.controller import App
+from src.app.gui.controller import App
 
 
 """
