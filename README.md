@@ -57,9 +57,15 @@ If installation of requirements fail on PyAudio can'find portaudio.h do the foll
 sudo apt install portaudio19-dev
 ```
 
+If you use MacOS and you have problems with mediapipe, try to install the following version:
+
+```cli
+mediapipe==0.9.1.0
+```
+
 ## Folder Structure
 
-```bash
+```text
 .
 ├── data                        # Folder containing images for README.md
 │  └── ...
@@ -68,26 +74,18 @@ sudo apt install portaudio19-dev
 ├── models                      # Folder containing models
 │  └── ...
 ├── notebooks                   # Folder containing experiments and tests (not used in the project)
-│  └── ...
+│  └── train.ipynb              # Notebook for training the model, it is the same code of folder train
 ├── references                  # Folder containing references documents
-│  ├── images                  # Folder containing images referenced in the documents
-│  │  └── ...
-│  └── ...
+│  ├── images                   # Folder containing images referenced in the documents
+│  │  └── canonical_face_model_uv_visualization.png # Points for face landmarks
+│  └── test                     # Folder containing test scripts
+│     └── ...
 ├── reports                     # Folder containing reports document and images
 │  ├── figures                  # Folder containing images referenced in the documents
 │  │  └── ...
 │  └── ...
 ├── src                         # Folder containing source code
-│  ├── data                     # Folder containing data for the project
-│  │  ├── audio                 # Folder containing audio data, as audio recordings.
-│  │  │  └── ...
-│  │  ├── video                 # Folder containing video data, as video recordings.  
-│  │  │  └── ...
-│  │  ├── images                # Folder containing images data, as images used fot the GUI of the project.
-│  │  │  └── ...
-│  │  └── dataframes            # Folder containing dataframes.
-│  │     └── ...
-│  ├── libs                     # Folder containing libraries for the project
+│  ├── app                      # Folder containing libraries for the project
 │  │  ├── detection             # Folder containing detection libraries for the project
 │  │  │  ├── detector.py        # Class for managing detection
 │  │  │  ├── drowsiness.py      # Class for managing drowsiness detection
@@ -108,9 +106,23 @@ sudo apt install portaudio19-dev
 │  │     ├── ear.py             # Class for managing EAR value calculation
 │  │     ├── face_mesh.py       # Class for managing face landmarks calculation
 │  │     └── gaze.py            # Class for managing gaze direction calculation
-│  └── test_dataset.py          # File for testing dataset
+│  ├── data                     # Folder containing data for the project
+│  │  ├── audio                 # Folder containing audio data, as audio recordings.
+│  │  │  └── ...
+│  │  ├── dataset               # Folder containing dataframes.  
+│  │  │  └── state-farm-distracted-driver-detection
+│  │  │     └── ...
+│  │  ├── images                # Folder containing images data, as images used fot the GUI of the project.
+│  │  │  └── ...
+│  │  └── video                 # Folder containing video data, as video recordings.            
+│  │     └── ...
+│  └── train                    # Folder containing training libraries for the project
+│     ├── config.py             # Class for managing configuration, as path and learning parameters.
+│     ├── dataset.py            # Class for managing dataset creation
+│     ├── model.py              # Class for managing model creation
+│     └── train.py              # Class for managing training
 ├── app.py                      # Main file for the project
+├── README.md                   # This file
 ├── requirements.txt            # File containing requirements for the project
-├── setup.py                    # File for setup the project
-└── README.md                   # This file
+└── setup.py                    # File for setup the project
 ```
