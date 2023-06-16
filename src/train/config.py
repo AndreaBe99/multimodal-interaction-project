@@ -16,7 +16,7 @@ class StaticDataset(Enum):
         'c8': 'Hair and makeup',
         'c9': 'Talking to passenger'
     }
-    DATA_DIR = 'src/data/dataset/state-farm-distracted-driver-detection/'
+    DATA_DIR = 'src/data/dataset/state-farm-distracted-driver-detection'
     CSV_FILE_PATH = osp.join(DATA_DIR, 'driver_imgs_list.csv')
 
 
