@@ -3,12 +3,10 @@ import threading
 import time
 import sys
 sys.path.append("./")
-from src.libs.utils.config import Path
-from src.libs.utils.face_mesh import FaceMesh
-from src.libs.detection.drowsiness import Drowsiness
-from src.libs.detection.detector import Detector
-# Only for testing, we need to use it in another class, not implemented yet 
-from src.libs.utils.gaze import Gaze
+
+from src.app.utils.config import Path
+from src.app.utils.face_mesh import FaceMesh
+from src.app.detection.detector import Detector
 
 
 class VideoRecorder():  

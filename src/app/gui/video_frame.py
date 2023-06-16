@@ -2,8 +2,8 @@ import customtkinter as ctk
 import sys 
 
 sys.path.append('./')
-from src.libs.recording.recorder_video import VideoRecorder
-from src.libs.utils.config import Path
+from src.app.recording.recorder_video import VideoRecorder
+from src.app.utils.config import Path
 from PIL import Image
 
 class VideoFrame(ctk.CTkFrame):

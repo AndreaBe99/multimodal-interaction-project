@@ -1,15 +1,15 @@
-import cv2
 import pyaudio
-import wave
 import threading
 import time
 import subprocess
 import os
 import sys
+
 sys.path.append("./")
-from src.libs.utils.config import Path
-from src.libs.recording.recorder_video import VideoRecorder
-from src.libs.recording.recorder_audio import AudioRecorder
+from src.app.utils.config import Path
+from src.app.recording.recorder_video import VideoRecorder
+from src.app.recording.recorder_audio import AudioRecorder
+
 
 class Recorder():
     # Class to manage the recording of audio and video

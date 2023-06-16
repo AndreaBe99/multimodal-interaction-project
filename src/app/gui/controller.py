@@ -2,10 +2,11 @@ import customtkinter as ctk
 import sys 
 sys.path.append('./')
 
-from src.libs.gui.main_frame import MainFrame
-from src.libs.gui.av_frame import AudioVideoFrame
-from src.libs.gui.video_frame import VideoFrame
-from src.libs.gui.audio_frame import AudioFrame
+from src.app.gui.main_frame import MainFrame
+from src.app.gui.av_frame import AudioVideoFrame
+from src.app.gui.video_frame import VideoFrame
+from src.app.gui.audio_frame import AudioFrame
+
 
 class App(ctk.CTk):
     """Controller class for the GUI"""

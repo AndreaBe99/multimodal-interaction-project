@@ -3,10 +3,11 @@ from PIL import Image
 
 import sys 
 sys.path.append('./')
-from src.libs.gui.av_frame import AudioVideoFrame
-from src.libs.gui.video_frame import VideoFrame
-from src.libs.gui.audio_frame import AudioFrame
-from src.libs.utils.config import Path
+from src.app.gui.av_frame import AudioVideoFrame
+from src.app.gui.video_frame import VideoFrame
+from src.app.gui.audio_frame import AudioFrame
+from src.app.utils.config import Path
+
 
 class MainFrame(ctk.CTkFrame):
     """Main Page of the GUI"""

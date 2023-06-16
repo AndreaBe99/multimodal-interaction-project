@@ -2,14 +2,12 @@ import cv2
 import time
 import typing
 import numpy as np
-import mediapipe as mp
-
 import sys
 sys.path.append("./")
 
-from mediapipe.python.solutions.drawing_utils import _normalized_to_pixel_coordinates as denormalize_coordinates
-from src.libs.utils.ear import EyeAspectRatio
-from src.libs.utils.config import Colors
+from src.app.utils.config import Colors
+from src.app.utils.ear import EyeAspectRatio
+
     
 class Drowsiness():
     """Class to detect drowsiness"""

@@ -1,15 +1,14 @@
 import cv2
-import time
 import typing
 import numpy as np
-import mediapipe as mp
 
 import sys
 sys.path.append("./")
-from src.libs.detection.drowsiness import Drowsiness
-from src.libs.detection.looking_away import LookingAway
-from src.libs.detection.loudness import Loudness
-from src.libs.utils.config import Colors
+from src.app.utils.config import Colors
+from src.app.detection.drowsiness import Drowsiness
+from src.app.detection.looking_away import LookingAway
+from src.app.detection.loudness import Loudness
+
 
 class Detector():
     def __init__(self, rec="both", fps=6, height=480, width=640):

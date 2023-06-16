@@ -1,15 +1,14 @@
 import customtkinter as ctk
 import sys 
 import threading
-
-sys.path.append('./')
-from PIL import Image
-
 import sys 
 sys.path.append('./')
-from src.libs.recording.recorder_audio import AudioRecorder
-from src.libs.detection.loudness import Loudness
-from src.libs.utils.config import Path
+
+from src.app.recording.recorder_audio import AudioRecorder
+from src.app.detection.loudness import Loudness
+from src.app.utils.config import Path
+from PIL import Image
+
 
 class AudioFrame(ctk.CTkFrame):
     """Third Page of the GUI"""
