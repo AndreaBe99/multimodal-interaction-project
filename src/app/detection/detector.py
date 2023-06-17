@@ -8,6 +8,7 @@ from src.app.utils.config import Colors
 from src.app.detection.drowsiness import Drowsiness
 from src.app.detection.looking_away import LookingAway
 from src.app.detection.loudness import Loudness
+from src.app.utils.tts import TextToSpeech
 
 
 class Detector():
@@ -15,6 +16,7 @@ class Detector():
         self.drowsiness = Drowsiness()
         self.looking_away = LookingAway(fps=fps)
         self.loudness = Loudness()
+        self.tts = TextToSpeech()
         self.rec = rec # video, audio, both
         
         # Plot text
@@ -81,11 +83,13 @@ class Detector():
         """
         alarm_color = Colors.GREEN.value
         if state_drowness["play_alarm"]:
-            txt_alarm = "WAKE UP!"
-            alarm_color = Colors.RED.value
+            #txt_alarm = "WAKE UP!"
+            #alarm_color = Colors.RED.value
+            tts_alarm = self.tts.speak("WAKE UP!")
         if state_looking_away["play_alarm"]:
-            txt_alarm = "LOOK STRAIGHT!"
-            alarm_color = Colors.RED.value
+            #txt_alarm = "LOOK STRAIGHT!"
+            #alarm_color = Colors.RED.value
+            tts_alarm = self.tts.speak("LOOK STRAIGHT!")
         else:
             txt_alarm = "ALARM OFF"
             
