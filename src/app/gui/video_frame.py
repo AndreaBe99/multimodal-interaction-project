@@ -1,5 +1,6 @@
 import customtkinter as ctk
 import sys 
+import threading
 
 sys.path.append('./')
 from src.app.recording.recorder_video import VideoRecorder
@@ -55,6 +56,7 @@ class VideoFrame(ctk.CTkFrame):
         self.video_button.pack(side=ctk.BOTTOM, pady=12, padx=10)
         # self.video_button.place(relx=0.5, rely=0.90, anchor='center')
         
+        
     
     def video_start(self):
         """
@@ -84,7 +86,7 @@ class VideoFrame(ctk.CTkFrame):
         """
         if self.video_capture is None:
             return
-        ret, frame = self.video_capture.get_frame()
+        ret, frame, blink = self.video_capture.get_frame()
         if frame is not None:
             image = Image.fromarray(frame)
             image = image.resize((400, 300))
@@ -92,6 +94,12 @@ class VideoFrame(ctk.CTkFrame):
             photo = ctk.CTkImage(image, size=(400, 300))
             self.video_label.configure(image=photo)
             self.video_label.image = photo
+            
+            # if the alarm is activated, flash the background color
+            if blink == True:
+                threading.Thread(target=self.change_frame_color).start()
+                # self.change_frame_color()
+                
         self.after(15, self.update_video)
     
     def video_go_back(self):
@@ -99,5 +107,23 @@ class VideoFrame(ctk.CTkFrame):
         Function called when the "Go Back to Main Page" button is pressed
         """
         if self.video_capture is not None:
-            self.stop()
+            self.video_stop()
         self.controller.show_frame("MainFrame")
+    
+    
+    def change_frame_color(self, i=0):
+        """
+        Flashing the background color of the frame to indicate the activation
+        of the alarm.
+        """
+        # Counter to stop the flashing after 10 iterations
+        if i < 20:
+            # default is 'gray17'
+            current_color = self.cget("fg_color")
+            next_color = "red" if current_color != "red" else "gray17"
+            self.configure(fg_color=next_color)
+            self.after(500, self.change_frame_color, i+1)
+        else:
+            self.configure(fg_color="gray17")
+            # Stop the alarm
+            return

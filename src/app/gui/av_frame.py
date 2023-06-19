@@ -20,8 +20,10 @@ class AudioVideoFrame(ctk.CTkFrame):
             controller (App): Controller class for the GUI
         """
         ctk.CTkFrame.__init__(self, parent)
+        self.parent = parent   
         self.controller = controller
         self.video_capture = None
+        
 
         video_label = ctk.CTkLabel(self, text=Path.TEXT_GUI_AV_1.value)
         video_label.pack(pady=20, padx=10)
@@ -110,7 +112,7 @@ class AudioVideoFrame(ctk.CTkFrame):
         """
         if self.video_capture is None:
             return
-        ret, frame = self.video_capture.get_frame()
+        ret, frame, blink = self.video_capture.get_frame()
         if frame is not None:
             image = Image.fromarray(frame)
             image = image.resize((400, 300))
@@ -118,6 +120,12 @@ class AudioVideoFrame(ctk.CTkFrame):
             photo = ctk.CTkImage(image, size=(400, 300))
             self.video_label.configure(image=photo)
             self.video_label.image = photo
+            
+            # if the alarm is activated, flash the background color
+            if blink:
+                threading.Thread(target=self.change_frame_color).start()
+                # self.change_frame_color()
+                
         self.after(15, self.update_video)
         
     
@@ -163,3 +171,19 @@ class AudioVideoFrame(ctk.CTkFrame):
         if self.video_capture is not None:
             self.stop()
         self.controller.show_frame("MainFrame")
+    
+    def change_frame_color(self, i=0):
+        """
+        Flashing the background color of the frame to indicate the activation
+        of the alarm.
+        """
+        # Counter to stop the flashing after 10 iterations
+        if i < 20:
+            # default is 'gray17'
+            current_color = self.cget("fg_color")
+            next_color = "red" if current_color != "red" else "gray17"
+            self.configure(fg_color=next_color)
+            self.after(500, self.change_frame_color, i+1)
+        else:
+            self.configure(fg_color="gray17")
+            return
