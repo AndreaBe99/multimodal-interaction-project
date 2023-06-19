@@ -46,36 +46,43 @@ class Detector():
             frame (np.array): frame with landmarks and text
         """
         if (self.rec == "video" or self.rec == "both") and landmarks is not None:
+            state_distraction = None  
+            state_drowness = None
+            state_looking_away = None
+            
             # Detect distraction
-            state_distraction = self.distracted.detect_distraction(frame)
+            # state_distraction = self.distracted.detect_distraction(frame)
             
             # Detect drowsiness
-            state_drowness = self.drowsiness.detect_drowsiness(frame, landmarks)
+            state_drownsiness = self.drowsiness.detect_drowsiness(frame, landmarks)
         
             # Detect looking away
             state_looking_away = self.looking_away.detect_looking_away(frame, landmarks)
             
             # Plot text on the frame
-            self.plot_text_on_frame(frame, state_distraction, state_drowness, state_looking_away)
+            # frame, blink = self.plot_text_on_frame(frame, state_distraction, state_drowness, state_looking_away)
             
             # NOTE: TO TEST ONLY THE MODEL
-            # self.plot_text_on_frame(frame, state_distraction)
+            # frame, blink = self.plot_text_on_frame(frame, state_distraction)
             # NOTE: TO TEST ONLY THE OPENCV FUNCTIONALITY
-            # self.plot_text_on_frame(frame, state_drowness=state_drowness, state_looking_away=state_looking_away)
+            frame, blink = self.plot_text_on_frame(
+                frame, 
+                state_drownsiness=state_drownsiness, 
+                state_looking_away=state_looking_away)
             
         if (self.rec == "audio" or self.rec == "both") and audio_data is not None:
             # Detect loudness
             rms = self.loudness.compute_loudness(audio_data)
             self.loudness.display_loudness(rms)
-        
-        return frame
+
+        return frame, blink
     
     
     def plot_text_on_frame(
         self, 
         frame:np.array, 
         state_distraction: str=None,
-        state_drowness: typing.Dict[str, typing.Any]=None,
+        state_drownsiness: typing.Dict[str, typing.Any] = None,
         state_looking_away: typing.Dict[str, typing.Any]=None,
         font=cv2.FONT_HERSHEY_SIMPLEX, 
         fntScale=0.8, 
@@ -96,8 +103,8 @@ class Detector():
         """
         # NOTE! The following check is a placeholder.
         # Check if the state are None, then put placeholder
-        if state_drowness is None:
-            state_drowness = {
+        if state_drownsiness is None:
+            state_drownsiness = {
                 "color": Colors.GREEN.value,
                 "drowsy_time": 0,
                 "ear": 0,
@@ -113,25 +120,29 @@ class Detector():
         if state_distraction is None:
             state_distraction = "c0"
         #################################################
-        
+        blink = False
         alarm_color = Colors.GREEN.value
         if state_distraction != "c0":
             txt_alarm = sd.ACTIVITY_MAP.value[state_distraction]
             alarm_color = Colors.RED.value
             tts_alarm = self.tts.speak("Detected: " + sd.ACTIVITY_MAP.value[state_distraction])
-        if state_drowness["play_alarm"]:
+            blink = True
+        if state_drownsiness["play_alarm"]:
             txt_alarm = "WAKE UP!"
             alarm_color = Colors.RED.value
             tts_alarm = self.tts.speak("WAKE UP!")
+            blink = True
         if state_looking_away["play_alarm"]:
             txt_alarm = "LOOK STRAIGHT!"
             alarm_color = Colors.RED.value
             tts_alarm = self.tts.speak("LOOK STRAIGHT!")
+            blink = True
         else:
             txt_alarm = sd.ACTIVITY_MAP.value["c0"]
             
-        txt_drowsy = "DROWSY TIME: {:.2f}".format(state_drowness["drowsy_time"])
-        txt_ear = "EAR: {:.2f}".format(state_drowness["ear"])
+        txt_drowsy = "DROWSY TIME: {:.2f}".format(
+            state_drownsiness["drowsy_time"])
+        txt_ear = "EAR: {:.2f}".format(state_drownsiness["ear"])
         
         txt_looking = "GAZE TIME: {:.2f}".format(state_looking_away["gaze_time"])
         txt_gaze = "GAZE: {:.2f}".format(state_looking_away["gaze"])
@@ -149,10 +160,10 @@ class Detector():
             state_looking_away["color"])
         
         put_text(frame, txt_drowsy, self.txt_origin_drowsy,
-            state_drowness["color"])
+                 state_drownsiness["color"])
         put_text(frame, txt_ear, self.txt_origin_ear,
-            state_drowness["color"])
+                 state_drownsiness["color"])
         
         put_text(frame, txt_alarm, self.txt_origin_alarm, alarm_color)
         
-        return frame
+        return frame, blink
