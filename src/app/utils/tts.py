@@ -6,13 +6,13 @@ import pyttsx3
 
 
 class ComplexTextToSpeech:
-    from TTS.api import TTS
     """
     This class uses the TTS library to generate a wav file from a text.
     It produces a better quality than the SimpleTextToSpeech class, but it is 
     not in real time, instead it generates a file that can be played later.
     """
     def __init__(self):
+        from TTS.api import TTS
         self.model_name = TTS.list_models()[0]
         # Init TTS
         self.tts = TTS(self.model_name)
