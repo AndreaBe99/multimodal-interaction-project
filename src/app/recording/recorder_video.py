@@ -56,8 +56,12 @@ class VideoRecorder():
         self.width = self.video_cap.get(cv2.CAP_PROP_FRAME_WIDTH)
         self.height = self.video_cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
         self.start_time = time.time()
-    
-    
+        
+        self.face_mesh = FaceMesh()
+        self.detector = Detector(rec="video", width=self.width, height=self.height)
+
+        self.blink_alarm = False
+
     def record(self)->None:
         """
         Video starts being recorded and saved to a video file.
@@ -82,7 +86,7 @@ class VideoRecorder():
                 if landmarks:
                     landmarks = landmarks[0]
                     # Function with all the detections
-                    video_frame = detector.detect(video_frame, landmarks)
+                    video_frame, _ = detector.detect(video_frame, landmarks)
                     # NOTE! Here we can add image processing with deep learning 
                     # models to detect driver's distraction
                 
@@ -130,26 +134,24 @@ class VideoRecorder():
         In this case, we do not need to use a loop because this function is
         called every time the GUI updates, with `self.after(---)` in 
         `update_video`.
-
+        
         Returns:
             tuple: (ret, frame)
         """
-        face_mesh = FaceMesh()
-        detector = Detector(rec="video", width=self.width, height=self.height)
         
         if self.video_cap.isOpened():
             ret, video_frame = self.video_cap.read()
             if ret:
                 # Compute face landmarks
-                landmarks = face_mesh.compute_face_landmarks(video_frame)
+                landmarks = self.face_mesh.compute_face_landmarks(video_frame)
                 # NOTE: Comment the next line to not plot the face mesh
                 # face_mesh.plot_face_mesh(video_frame, landmarks)
                 
                 if landmarks:
                     landmarks = landmarks[0]
                     
-                    video_frame = detector.detect(video_frame, landmarks)
-                    
+                    video_frame, blink_alarm = self.detector.detect(video_frame, landmarks)
+                    self.blink_alarm = blink_alarm
                     # NOTE! Here we can add image processing with deep learning 
                     # models to detect driver's distraction
                 
@@ -166,8 +168,8 @@ class VideoRecorder():
                 # cv2.imshow('video_frame', gray)
                 cv2.waitKey(1)
                 # Return a boolean success flag and the current frame converted to BGR
-                return (ret, cv2.cvtColor(video_frame, cv2.COLOR_BGR2RGB))
+                return (ret, cv2.cvtColor(video_frame, cv2.COLOR_BGR2RGB), self.blink_alarm)
             else:
-                return (ret, None)
+                return (ret, None, self.blink_alarm)
         else:
-            return (None, None)
+            return (None, None, self.blink_alarm)
