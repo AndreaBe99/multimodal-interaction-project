@@ -5,18 +5,20 @@ import numpy as np
 import sys
 sys.path.append("./")
 from src.app.utils.config import Colors
+from src.app.detection.distracted import Distracted
 from src.app.detection.drowsiness import Drowsiness
 from src.app.detection.looking_away import LookingAway
 from src.app.detection.loudness import Loudness
-from src.app.utils.tts import TextToSpeech
-
+from src.app.utils.tts import SimpleTextToSpeech
+from src.train.config import StaticDataset as sd
 
 class Detector():
     def __init__(self, rec="both", fps=6, height=480, width=640):
         self.drowsiness = Drowsiness()
         self.looking_away = LookingAway(fps=fps)
         self.loudness = Loudness()
-        self.tts = TextToSpeech()
+        self.tts = SimpleTextToSpeech()
+        self.distracted = Distracted()
         self.rec = rec # video, audio, both
         
         # Plot text
@@ -44,13 +46,23 @@ class Detector():
             frame (np.array): frame with landmarks and text
         """
         if (self.rec == "video" or self.rec == "both") and landmarks is not None:
+            # Detect distraction
+            state_distraction = self.distracted.detect_distraction(frame)
+            
             # Detect drowsiness
             state_drowness = self.drowsiness.detect_drowsiness(frame, landmarks)
+        
             # Detect looking away
             state_looking_away = self.looking_away.detect_looking_away(frame, landmarks)
+            
             # Plot text on the frame
-            self.plot_text_on_frame(frame, state_drowness, state_looking_away)
-        
+            self.plot_text_on_frame(frame, state_distraction, state_drowness, state_looking_away)
+            
+            # NOTE: TO TEST ONLY THE MODEL
+            # self.plot_text_on_frame(frame, state_distraction)
+            # NOTE: TO TEST ONLY THE OPENCV FUNCTIONALITY
+            # self.plot_text_on_frame(frame, state_drowness=state_drowness, state_looking_away=state_looking_away)
+            
         if (self.rec == "audio" or self.rec == "both") and audio_data is not None:
             # Detect loudness
             rms = self.loudness.compute_loudness(audio_data)
@@ -62,8 +74,9 @@ class Detector():
     def plot_text_on_frame(
         self, 
         frame:np.array, 
-        state_drowness: typing.Dict[str, typing.Any],
-        state_looking_away: typing.Dict[str, typing.Any],
+        state_distraction: str=None,
+        state_drowness: typing.Dict[str, typing.Any]=None,
+        state_looking_away: typing.Dict[str, typing.Any]=None,
         font=cv2.FONT_HERSHEY_SIMPLEX, 
         fntScale=0.8, 
         thickness=2) -> np.ndarray:
@@ -81,17 +94,41 @@ class Detector():
         Returns:
             frame (np.array): Frame with the text
         """
+        # NOTE! The following check is a placeholder.
+        # Check if the state are None, then put placeholder
+        if state_drowness is None:
+            state_drowness = {
+                "color": Colors.GREEN.value,
+                "drowsy_time": 0,
+                "ear": 0,
+                "play_alarm": False
+            }
+        if state_looking_away is None:
+            state_looking_away = {
+                "color": Colors.GREEN.value,
+                "gaze_time": 0,
+                "gaze": 0,
+                "play_alarm": False
+            }
+        if state_distraction is None:
+            state_distraction = "c0"
+        #################################################
+        
         alarm_color = Colors.GREEN.value
+        if state_distraction != "c0":
+            txt_alarm = sd.ACTIVITY_MAP.value[state_distraction]
+            alarm_color = Colors.RED.value
+            tts_alarm = self.tts.speak("Detected: " + sd.ACTIVITY_MAP.value[state_distraction])
         if state_drowness["play_alarm"]:
-            #txt_alarm = "WAKE UP!"
-            #alarm_color = Colors.RED.value
+            txt_alarm = "WAKE UP!"
+            alarm_color = Colors.RED.value
             tts_alarm = self.tts.speak("WAKE UP!")
         if state_looking_away["play_alarm"]:
-            #txt_alarm = "LOOK STRAIGHT!"
-            #alarm_color = Colors.RED.value
+            txt_alarm = "LOOK STRAIGHT!"
+            alarm_color = Colors.RED.value
             tts_alarm = self.tts.speak("LOOK STRAIGHT!")
         else:
-            txt_alarm = "ALARM OFF"
+            txt_alarm = sd.ACTIVITY_MAP.value["c0"]
             
         txt_drowsy = "DROWSY TIME: {:.2f}".format(state_drowness["drowsy_time"])
         txt_ear = "EAR: {:.2f}".format(state_drowness["ear"])
