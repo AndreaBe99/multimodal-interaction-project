@@ -72,21 +72,19 @@ class VideoRecorder():
         
         cv2.namedWindow("video_frame", cv2.WINDOW_NORMAL)
         
-        face_mesh = FaceMesh()
-        detector = Detector(rec="video", width=self.width, height=self.height)
-        
         while self.open:
             ret, video_frame = self.video_cap.read()
             if ret:
                 # Compute face landmarks
-                landmarks = face_mesh.compute_face_landmarks(video_frame)
+                landmarks = self.face_mesh.compute_face_landmarks(video_frame)
                 # NOTE: Comment the next line to not plot the face mesh
                 # face_mesh.plot_face_mesh(video_frame, landmarks)
                 
                 if landmarks:
                     landmarks = landmarks[0]
                     # Function with all the detections
-                    video_frame, _ = detector.detect(video_frame, landmarks)
+                    video_frame, _ = self.detector.detect(
+                        video_frame, landmarks)
                     # NOTE! Here we can add image processing with deep learning 
                     # models to detect driver's distraction
                 
