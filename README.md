@@ -1,6 +1,28 @@
 # multimodal-interaction-project
 Project for the Multimodal Interaction course, for the master's degree program at the Sapienza University of Rome.
 
+## Requirements
+
+To use the real-time TTS (Text To Speech) feature, you need to install the following packages if you are using Linux:
+
+```cli
+ sudo apt update && sudo apt install espeak ffmpeg libespeak1
+```
+
+### BugFixing
+
+If installation of requirements fail on PyAudio can'find portaudio.h do the following:
+
+```cli
+sudo apt install portaudio19-dev
+```
+
+If you use MacOS and you have problems with mediapipe, try to install the following version:
+
+```cli
+mediapipe==0.9.1.0
+```
+
 ## How to use
 
 From the terminal, run the following command:
@@ -49,19 +71,7 @@ python app.py -e GUI: to run the GUI
 
 ![GUI Audio Execution](data/gui_audio_2.png)
 
-## BugFixing
 
-If installation of requirements fail on PyAudio can'find portaudio.h do the following:
-
-```cli
-sudo apt install portaudio19-dev
-```
-
-If you use MacOS and you have problems with mediapipe, try to install the following version:
-
-```cli
-mediapipe==0.9.1.0
-```
 
 ## Folder Structure
 
