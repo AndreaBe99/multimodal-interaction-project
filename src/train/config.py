@@ -18,6 +18,8 @@ class StaticDataset(Enum):
     }
     DATA_DIR = 'src/data/dataset/state-farm-distracted-driver-detection'
     CSV_FILE_PATH = osp.join(DATA_DIR, 'driver_imgs_list.csv')
+    # The following is the path to the model checkpoint, it is Temporary
+    MODEL_PATH = 'models/lightning_logs/version_3/checkpoints/epoch=2-step=789.ckpt'
 
 
 class StaticLearningParameter(Enum):
