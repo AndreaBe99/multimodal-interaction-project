@@ -13,7 +13,7 @@ class VideoRecorder():
     # Video class based on openCV 
     def __init__(
         self,
-        fps=6,
+        fps=15,
         fourcc="MJPG",
         device_index=-1,
         frame_counts=1,
@@ -85,8 +85,6 @@ class VideoRecorder():
                     # Function with all the detections
                     video_frame, _ = self.detector.detect(
                         video_frame, landmarks)
-                    # NOTE! Here we can add image processing with deep learning 
-                    # models to detect driver's distraction
                 
                 # video_frame = cv2.flip(video_frame, 1)
                 cv2.imshow('video_frame', video_frame)
@@ -147,23 +145,11 @@ class VideoRecorder():
                 
                 if landmarks:
                     landmarks = landmarks[0]
-                    
                     video_frame, blink_alarm = self.detector.detect(video_frame, landmarks)
                     self.blink_alarm = blink_alarm
-                    # NOTE! Here we can add image processing with deep learning 
-                    # models to detect driver's distraction
                 
-                # video_frame = cv2.flip(video_frame, 1)
-                #cv2.imshow('video_frame', video_frame)
-                # Write the frame to the current video file
                 self.video_out.write(video_frame)
-                # print str(counter) + " " + str(self.frame_counts) + " frames written " + str(timer_current)
                 self.frame_counts += 1
-                # counter += 1
-                # timer_current = time.time() - timer_start
-                # time.sleep(0.16)
-                # gray = cv2.cvtColor(video_frame, cv2.COLOR_BGR2GRAY)
-                # cv2.imshow('video_frame', gray)
                 cv2.waitKey(1)
                 # Return a boolean success flag and the current frame converted to BGR
                 return (ret, cv2.cvtColor(video_frame, cv2.COLOR_BGR2RGB), self.blink_alarm)
