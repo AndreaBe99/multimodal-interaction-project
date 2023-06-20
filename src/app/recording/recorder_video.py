@@ -83,7 +83,7 @@ class VideoRecorder():
                 if landmarks:
                     landmarks = landmarks[0]
                     # Function with all the detections
-                    video_frame, _ = self.detector.detect(
+                    video_frame, _, _ = self.detector.detect(
                         video_frame, landmarks)
                 
                 # video_frame = cv2.flip(video_frame, 1)
@@ -145,7 +145,7 @@ class VideoRecorder():
                 
                 if landmarks:
                     landmarks = landmarks[0]
-                    video_frame, blink_alarm = self.detector.detect(video_frame, landmarks)
+                    video_frame, blink_alarm, _ = self.detector.detect(video_frame, landmarks)
                     self.blink_alarm = blink_alarm
                 
                 self.video_out.write(video_frame)

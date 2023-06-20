@@ -8,6 +8,7 @@ import audioop
 sys.path.append('./')
 from src.app.detection.loudness import Loudness
 from src.app.utils.config import Path
+from src.app.detection.detector import Detector
 
 
 class AudioRecorder():
@@ -19,7 +20,9 @@ class AudioRecorder():
         frames_per_buffer=1024, 
         py_format=pyaudio.paInt16,  
         audio_filename=Path.AUDIO_FILE_NAME.value,
-        channel=1 if sys.platform == 'darwin' else 2):
+        channel=1 if sys.platform == 'darwin' else 2,
+        audio_loudness_label=None,
+        audio_rcs_label=None):
         """
         Args:
             rate (int): Equivalent to Human Hearing at 40 kHz.
@@ -48,6 +51,10 @@ class AudioRecorder():
             input=True,
             frames_per_buffer = self.frames_per_buffer)
         self.audio_frames = []
+        self.detector = Detector(rec="audio")
+        self.audio_loudness_label = audio_loudness_label
+        self.audio_rcs_label = audio_rcs_label
+
     
     
     def record(self)->None:
@@ -56,39 +63,49 @@ class AudioRecorder():
         if it is greater than 0.5.
         """
         self.stream.start_stream()
-        
-        # Instantiate the loudness class
-        loudness = Loudness()
-        while(self.open == True):
-            data = self.stream.read(self.frames_per_buffer) 
-            self.audio_frames.append(data)
-            
-            # Compute the loudness of the audio and display it if it is greater 
-            # than 0.5
-            loudness.display_loudness(data)
-            
-            if self.open==False:
-                break
+        try:
+            while(self.open == True):
+                data = self.stream.read(self.frames_per_buffer) 
+                self.audio_frames.append(data)
+                _, _, rms = self.detector.detect(audio_data=data)
+                
+                if self.audio_loudness_label is not None:
+                    self.audio_rcs_label.configure(
+                        text=Path.TEXT_GUI_AUDIO_4.value + str(rms))
+                if rms > 0.5 and self.audio_loudness_label is not None:
+                    self.audio_loudness_label.configure(
+                        text=Path.TEXT_GUI_AUDIO_5.value + str(rms),
+                        text_color="red")
+                
+                if self.open==False:
+                    break
+        except Exception as e:
+            print(e)
+            pass
     
     
     def stop(self)->None:
         """
         Finishes the audio recording therefore the thread too  
         """
-        if self.open==True:
-            self.open = False
-            self.stream.stop_stream()
-            self.stream.close()
-            self.audio.terminate()
+        try:
+            if self.open==True:
+                self.open = False
+                self.stream.stop_stream()
+                self.stream.close()
+                self.audio.terminate()
 
-            waveFile = wave.open(self.audio_filename, 'wb')
-            waveFile.setnchannels(self.channels)
-            waveFile.setsampwidth(self.audio.get_sample_size(self.format))
-            waveFile.setframerate(self.rate)
-            waveFile.writeframes(b''.join(self.audio_frames))
-            waveFile.close()
-        pass
-    
+                waveFile = wave.open(self.audio_filename, 'wb')
+                waveFile.setnchannels(self.channels)
+                waveFile.setsampwidth(self.audio.get_sample_size(self.format))
+                waveFile.setframerate(self.rate)
+                waveFile.writeframes(b''.join(self.audio_frames))
+                waveFile.close()
+            pass
+        except Exception as e:
+            print(e)
+            pass
+        
     
     def start(self)->None:
         """
