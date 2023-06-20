@@ -1,0 +1,6460 @@
+{
+  "name": "classes",
+  "directed": true,
+  "strict": false,
+  "_draw_": 
+  [
+    {
+      "op": "c",
+      "grad": "none",
+      "color": "#fffffe00"
+    },
+    {
+      "op": "C",
+      "grad": "none",
+      "color": "#ffffff"
+    },
+    {
+      "op": "P",
+      "points": [[0.000,0.000],[0.000,1408.000],[3507.000,1408.000],[3507.000,0.000]]
+    }
+  ],
+  "bb": "0,0,3507,1408",
+  "charset": "utf-8",
+  "rankdir": "BT",
+  "xdotversion": "1.7",
+  "_subgraph_cnt": 0,
+  "objects": [
+    {
+      "_gvid": 0,
+      "name": "src.app.gui.controller.App",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[0.000,143.000],[0.000,227.000],[155.000,227.000],[155.000,143.000]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[0.000,204.000],[155.000,204.000]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[0.000,166.000],[155.000,166.000]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [65.500,211.800],
+          "align": "l",
+          "width": 24.000,
+          "text": "App"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [42.500,188.800],
+          "align": "l",
+          "width": 51.000,
+          "text": "container"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [42.500,173.800],
+          "align": "l",
+          "width": 70.000,
+          "text": "frames : dict"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [8.000,150.800],
+          "align": "l",
+          "width": 139.000,
+          "text": "show_frame(page_name)"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "1.1806",
+      "label": "{App|container<br ALIGN=\"LEFT\"\/>frames : dict<br ALIGN=\"LEFT\"\/>|show_frame(page_name)<br ALIGN=\"LEFT\"\/>}",
+      "pos": "77.5,185",
+      "rects": "0,204,155,227 0,166,155,204 0,143,155,166",
+      "shape": "record",
+      "style": "solid",
+      "width": "2.1528"
+    },
+    {
+      "_gvid": 1,
+      "name": "src.app.gui.audio_frame.AudioFrame",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[889.500,1143.500],[889.500,1377.500],[1049.500,1377.500],[1049.500,1143.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[889.500,1354.500],[1049.500,1354.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[889.500,1211.500],[1049.500,1211.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [934.500,1362.300],
+          "align": "l",
+          "width": 70.000,
+          "text": "AudioFrame"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [897.500,1339.300],
+          "align": "l",
+          "width": 104.000,
+          "text": "audio_button_back"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [897.500,1324.300],
+          "align": "l",
+          "width": 103.000,
+          "text": "audio_button_start"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [897.500,1309.300],
+          "align": "l",
+          "width": 101.000,
+          "text": "audio_button_stop"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [897.500,1294.300],
+          "align": "l",
+          "width": 144.000,
+          "text": "audio_capture : NoneType"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [897.500,1279.300],
+          "align": "l",
+          "width": 71.000,
+          "text": "audio_image"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [897.500,1264.300],
+          "align": "l",
+          "width": 64.000,
+          "text": "audio_label"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [897.500,1249.300],
+          "align": "l",
+          "width": 118.000,
+          "text": "audio_loudness_label"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [897.500,1234.300],
+          "align": "l",
+          "width": 86.000,
+          "text": "audio_rcs_label"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [897.500,1219.300],
+          "align": "l",
+          "width": 53.000,
+          "text": "controller"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [923.500,1196.300],
+          "align": "l",
+          "width": 92.000,
+          "text": "audio_go_back()"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [923.500,1181.300],
+          "align": "l",
+          "width": 70.000,
+          "text": "audio_start()"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [923.500,1166.300],
+          "align": "l",
+          "width": 69.000,
+          "text": "audio_stop()"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [923.500,1151.300],
+          "align": "l",
+          "width": 44.000,
+          "text": "record()"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "3.2639",
+      "label": "{AudioFrame|audio_button_back<br ALIGN=\"LEFT\"\/>audio_button_start<br ALIGN=\"LEFT\"\/>audio_button_stop<br ALIGN=\"LEFT\"\/>audio_capture : NoneType<br ALIGN=\"LEFT\"\/>audio_image<br ALIGN=\"LEFT\"\/>audio_label<br ALIGN=\"LEFT\"\/>audio_loudness_label<br ALIGN=\"LEFT\"\/>audio_rcs_label<br ALIGN=\"LEFT\"\/>controller<br ALIGN=\"LEFT\"\/>|audio_go_back()<br ALIGN=\"LEFT\"\/>audio_start()<br ALIGN=\"LEFT\"\/>audio_stop()<br ALIGN=\"LEFT\"\/>record()<br ALIGN=\"LEFT\"\/>}",
+      "pos": "969.5,1260.5",
+      "rects": "889.5,1354.5,1049.5,1377.5 889.5,1211.5,1049.5,1354.5 889.5,1143.5,1049.5,1211.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "2.2222"
+    },
+    {
+      "_gvid": 2,
+      "name": "src.app.recording.recorder_audio.AudioRecorder",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[1048.000,760.000],[1048.000,1009.000],[1191.000,1009.000],[1191.000,760.000]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1048.000,986.000],[1191.000,986.000]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1048.000,813.000],[1191.000,813.000]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1077.500,993.800],
+          "align": "l",
+          "width": 84.000,
+          "text": "AudioRecorder"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1056.000,970.800],
+          "align": "l",
+          "width": 31.000,
+          "text": "audio"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1056.000,955.800],
+          "align": "l",
+          "width": 109.000,
+          "text": "audio_filename : str"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1056.000,940.800],
+          "align": "l",
+          "width": 103.000,
+          "text": "audio_frames : list"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1056.000,925.800],
+          "align": "l",
+          "width": 73.000,
+          "text": "channels : int"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1056.000,910.800],
+          "align": "l",
+          "width": 98.000,
+          "text": "device_index : int"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1056.000,895.800],
+          "align": "l",
+          "width": 38.000,
+          "text": "format"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1056.000,880.800],
+          "align": "l",
+          "width": 127.000,
+          "text": "frames_per_buffer : int"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1056.000,865.800],
+          "align": "l",
+          "width": 62.000,
+          "text": "open : bool"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1056.000,850.800],
+          "align": "l",
+          "width": 49.000,
+          "text": "path : str"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1056.000,835.800],
+          "align": "l",
+          "width": 46.000,
+          "text": "rate : int"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1056.000,820.800],
+          "align": "l",
+          "width": 37.000,
+          "text": "stream"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1079.000,797.800],
+          "align": "l",
+          "width": 81.000,
+          "text": "record(): None"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1079.000,782.800],
+          "align": "l",
+          "width": 70.000,
+          "text": "start(): None"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1079.000,767.800],
+          "align": "l",
+          "width": 69.000,
+          "text": "stop(): None"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "3.4722",
+      "label": "{AudioRecorder|audio<br ALIGN=\"LEFT\"\/>audio_filename : str<br ALIGN=\"LEFT\"\/>audio_frames : list<br ALIGN=\"LEFT\"\/>channels : int<br ALIGN=\"LEFT\"\/>device_index : int<br ALIGN=\"LEFT\"\/>format<br ALIGN=\"LEFT\"\/>frames_per_buffer : int<br ALIGN=\"LEFT\"\/>open : bool<br ALIGN=\"LEFT\"\/>path : str<br ALIGN=\"LEFT\"\/>rate : int<br ALIGN=\"LEFT\"\/>stream<br ALIGN=\"LEFT\"\/>|record(): None<br ALIGN=\"LEFT\"\/>start(): None<br ALIGN=\"LEFT\"\/>stop(): None<br ALIGN=\"LEFT\"\/>}",
+      "pos": "1119.5,884.5",
+      "rects": "1048,986,1191,1009 1048,813,1191,986 1048,760,1191,813",
+      "shape": "record",
+      "style": "solid",
+      "width": "1.9861"
+    },
+    {
+      "_gvid": 3,
+      "name": "src.app.gui.av_frame.AudioVideoFrame",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[1091.500,1113.500],[1091.500,1407.500],[1251.500,1407.500],[1251.500,1113.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1091.500,1384.500],[1251.500,1384.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1091.500,1211.500],[1251.500,1211.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1120.000,1392.300],
+          "align": "l",
+          "width": 103.000,
+          "text": "AudioVideoFrame"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1099.500,1369.300],
+          "align": "l",
+          "width": 144.000,
+          "text": "audio_capture : NoneType"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1099.500,1354.300],
+          "align": "l",
+          "width": 118.000,
+          "text": "audio_loudness_label"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1099.500,1339.300],
+          "align": "l",
+          "width": 86.000,
+          "text": "audio_rcs_label"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1099.500,1324.300],
+          "align": "l",
+          "width": 53.000,
+          "text": "controller"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1099.500,1309.300],
+          "align": "l",
+          "width": 24.000,
+          "text": "icon"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1099.500,1294.300],
+          "align": "l",
+          "width": 34.000,
+          "text": "parent"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1099.500,1279.300],
+          "align": "l",
+          "width": 72.000,
+          "text": "video_button"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1099.500,1264.300],
+          "align": "l",
+          "width": 103.000,
+          "text": "video_button_start"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1099.500,1249.300],
+          "align": "l",
+          "width": 101.000,
+          "text": "video_button_stop"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1099.500,1234.300],
+          "align": "l",
+          "width": 144.000,
+          "text": "video_capture : NoneType"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1099.500,1219.300],
+          "align": "l",
+          "width": 64.000,
+          "text": "video_label"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1109.000,1196.300],
+          "align": "l",
+          "width": 125.000,
+          "text": "change_frame_color(i)"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1109.000,1181.300],
+          "align": "l",
+          "width": 81.000,
+          "text": "record_audio()"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1109.000,1166.300],
+          "align": "l",
+          "width": 82.000,
+          "text": "update_video()"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1109.000,1151.300],
+          "align": "l",
+          "width": 92.000,
+          "text": "video_go_back()"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1109.000,1136.300],
+          "align": "l",
+          "width": 70.000,
+          "text": "video_start()"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1109.000,1121.300],
+          "align": "l",
+          "width": 69.000,
+          "text": "video_stop()"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "4.0972",
+      "label": "{AudioVideoFrame|audio_capture : NoneType<br ALIGN=\"LEFT\"\/>audio_loudness_label<br ALIGN=\"LEFT\"\/>audio_rcs_label<br ALIGN=\"LEFT\"\/>controller<br ALIGN=\"LEFT\"\/>icon<br ALIGN=\"LEFT\"\/>parent<br ALIGN=\"LEFT\"\/>video_button<br ALIGN=\"LEFT\"\/>video_button_start<br ALIGN=\"LEFT\"\/>video_button_stop<br ALIGN=\"LEFT\"\/>video_capture : NoneType<br ALIGN=\"LEFT\"\/>video_label<br ALIGN=\"LEFT\"\/>|change_frame_color(i)<br ALIGN=\"LEFT\"\/>record_audio()<br ALIGN=\"LEFT\"\/>update_video()<br ALIGN=\"LEFT\"\/>video_go_back()<br ALIGN=\"LEFT\"\/>video_start()<br ALIGN=\"LEFT\"\/>video_stop()<br ALIGN=\"LEFT\"\/>}",
+      "pos": "1171.5,1260.5",
+      "rects": "1091.5,1384.5,1251.5,1407.5 1091.5,1211.5,1251.5,1384.5 1091.5,1113.5,1251.5,1211.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "2.2222"
+    },
+    {
+      "_gvid": 4,
+      "name": "src.app.utils.config.Colors",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[1494.500,150.500],[1494.500,219.500],[1548.500,219.500],[1548.500,150.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1494.500,196.500],[1548.500,196.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1494.500,173.500],[1548.500,173.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1503.000,204.300],
+          "align": "l",
+          "width": 37.000,
+          "text": "Colors"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1506.000,181.300],
+          "align": "l",
+          "width": 31.000,
+          "text": "name"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1519.500,158.300],
+          "align": "l",
+          "width": 4.000,
+          "text": " "
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "0.97222",
+      "label": "{Colors|name<br ALIGN=\"LEFT\"\/>|}",
+      "pos": "1521.5,185",
+      "rects": "1494.5,196.5,1548.5,219.5 1494.5,173.5,1548.5,196.5 1494.5,150.5,1548.5,173.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "0.75"
+    },
+    {
+      "_gvid": 5,
+      "name": "src.app.utils.tts.ComplexTextToSpeech",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[1567.000,105.500],[1567.000,264.500],[1710.000,264.500],[1710.000,105.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1567.000,241.500],[1710.000,241.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1567.000,143.500],[1710.000,143.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1575.000,249.300],
+          "align": "l",
+          "width": 127.000,
+          "text": "ComplexTextToSpeech"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1593.000,226.300],
+          "align": "l",
+          "width": 91.000,
+          "text": "alarm_dict : dict"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1593.000,211.300],
+          "align": "l",
+          "width": 55.000,
+          "text": "languages"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1593.000,196.300],
+          "align": "l",
+          "width": 72.000,
+          "text": "model_name"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1593.000,181.300],
+          "align": "l",
+          "width": 49.000,
+          "text": "path : str"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1593.000,166.300],
+          "align": "l",
+          "width": 47.000,
+          "text": "speakers"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1593.000,151.300],
+          "align": "l",
+          "width": 13.000,
+          "text": "tts"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1602.000,128.300],
+          "align": "l",
+          "width": 66.000,
+          "text": "create_file()"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1602.000,113.300],
+          "align": "l",
+          "width": 73.000,
+          "text": "speak(alarm)"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "2.2222",
+      "label": "{ComplexTextToSpeech|alarm_dict : dict<br ALIGN=\"LEFT\"\/>languages<br ALIGN=\"LEFT\"\/>model_name<br ALIGN=\"LEFT\"\/>path : str<br ALIGN=\"LEFT\"\/>speakers<br ALIGN=\"LEFT\"\/>tts<br ALIGN=\"LEFT\"\/>|create_file()<br ALIGN=\"LEFT\"\/>speak(alarm)<br ALIGN=\"LEFT\"\/>}",
+      "pos": "1638.5,185",
+      "rects": "1567,241.5,1710,264.5 1567,143.5,1710,241.5 1567,105.5,1710,143.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "1.9861"
+    },
+    {
+      "_gvid": 6,
+      "name": "src.train.dataset.DataTransform",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[1728.000,150.500],[1728.000,219.500],[1859.000,219.500],[1859.000,150.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1728.000,196.500],[1859.000,196.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1728.000,173.500],[1859.000,173.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1751.500,204.300],
+          "align": "l",
+          "width": 84.000,
+          "text": "DataTransform"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1736.000,181.300],
+          "align": "l",
+          "width": 115.000,
+          "text": "data_transform : dict"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1791.500,158.300],
+          "align": "l",
+          "width": 4.000,
+          "text": " "
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "0.97222",
+      "label": "{DataTransform|data_transform : dict<br ALIGN=\"LEFT\"\/>|}",
+      "pos": "1793.5,185",
+      "rects": "1728,196.5,1859,219.5 1728,173.5,1859,196.5 1728,150.5,1859,173.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "1.8194"
+    },
+    {
+      "_gvid": 7,
+      "name": "src.train.dataset.Dataset",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[1877.500,135.500],[1877.500,234.500],[1985.500,234.500],[1985.500,135.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1877.500,211.500],[1985.500,211.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1877.500,158.500],[1985.500,158.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1911.000,219.300],
+          "align": "l",
+          "width": 41.000,
+          "text": "Dataset"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1904.000,196.300],
+          "align": "l",
+          "width": 12.000,
+          "text": "df"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1904.000,181.300],
+          "align": "l",
+          "width": 31.000,
+          "text": "phase"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1904.000,166.300],
+          "align": "l",
+          "width": 55.000,
+          "text": "transform"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1885.500,143.300],
+          "align": "l",
+          "width": 92.000,
+          "text": "pull_item(index)"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "1.3889",
+      "label": "{Dataset|df<br ALIGN=\"LEFT\"\/>phase<br ALIGN=\"LEFT\"\/>transform<br ALIGN=\"LEFT\"\/>|pull_item(index)<br ALIGN=\"LEFT\"\/>}",
+      "pos": "1931.5,185",
+      "rects": "1877.5,211.5,1985.5,234.5 1877.5,158.5,1985.5,211.5 1877.5,135.5,1985.5,158.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "1.5"
+    },
+    {
+      "_gvid": 8,
+      "name": "src.app.detection.detector.Detector",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[408.500,421.500],[408.500,655.500],[1490.500,655.500],[1490.500,421.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[408.500,632.500],[1490.500,632.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[408.500,459.500],[1490.500,459.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [925.500,640.300],
+          "align": "l",
+          "width": 48.000,
+          "text": "Detector"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [871.500,617.300],
+          "align": "l",
+          "width": 53.000,
+          "text": "distracted"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [871.500,602.300],
+          "align": "l",
+          "width": 61.000,
+          "text": "drowsiness"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [871.500,587.300],
+          "align": "l",
+          "width": 78.000,
+          "text": "looking_away"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [871.500,572.300],
+          "align": "l",
+          "width": 48.000,
+          "text": "loudness"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [871.500,557.300],
+          "align": "l",
+          "width": 42.000,
+          "text": "rec : str"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [871.500,542.300],
+          "align": "l",
+          "width": 13.000,
+          "text": "tts"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [871.500,527.300],
+          "align": "l",
+          "width": 132.000,
+          "text": "txt_origin_alarm : tuple"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [871.500,512.300],
+          "align": "l",
+          "width": 139.000,
+          "text": "txt_origin_drowsy : tuple"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [871.500,497.300],
+          "align": "l",
+          "width": 116.000,
+          "text": "txt_origin_ear : tuple"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [871.500,482.300],
+          "align": "l",
+          "width": 124.000,
+          "text": "txt_origin_gaze : tuple"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [871.500,467.300],
+          "align": "l",
+          "width": 156.000,
+          "text": "txt_origin_gaze_time : tuple"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [416.500,444.300],
+          "align": "l",
+          "width": 430.000,
+          "text": "detect(frame: np.array, landmarks: np.array, audio_data: np.array): np.ndarray"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [416.500,429.300],
+          "align": "l",
+          "width": 1066.000,
+          "text": "plot_text_on_frame(frame: np.array, state_distraction: str, state_drownsiness: typing.Dict[str, typing.Any], state_looking_away: typing.Dict[str, typing.Any], font, fntScale, thickness): np.ndarray"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "3.2639",
+      "label": "{Detector|distracted<br ALIGN=\"LEFT\"\/>drowsiness<br ALIGN=\"LEFT\"\/>looking_away<br ALIGN=\"LEFT\"\/>loudness<br ALIGN=\"LEFT\"\/>rec : str<br ALIGN=\"LEFT\"\/>tts<br ALIGN=\"LEFT\"\/>txt_origin_alarm : tuple<br ALIGN=\"LEFT\"\/>txt_origin_drowsy : tuple<br ALIGN=\"LEFT\"\/>txt_origin_ear : tuple<br ALIGN=\"LEFT\"\/>txt_origin_gaze : tuple<br ALIGN=\"LEFT\"\/>txt_origin_gaze_time : tuple<br ALIGN=\"LEFT\"\/>|detect(frame: np.array, landmarks: np.array, audio_data: np.array): np.ndarray<br ALIGN=\"LEFT\"\/>plot_text_on_frame(frame: np.array, state_distraction: str, state_drownsiness: typing.Dict[str, typing.Any], state_looking_away: typing.Dict[str, typing.Any], font, fntScale, thickness): np.ndarray<br ALIGN=\"LEFT\"\/>}",
+      "pos": "949.5,538.5",
+      "rects": "408.5,632.5,1490.5,655.5 408.5,459.5,1490.5,632.5 408.5,421.5,1490.5,459.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "15.028"
+    },
+    {
+      "_gvid": 9,
+      "name": "src.app.detection.distracted.Distracted",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[173.000,143.000],[173.000,227.000],[328.000,227.000],[328.000,143.000]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[173.000,204.000],[328.000,204.000]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[173.000,166.000],[328.000,166.000]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [222.500,211.800],
+          "align": "l",
+          "width": 56.000,
+          "text": "Distracted"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [232.500,188.800],
+          "align": "l",
+          "width": 36.000,
+          "text": "device"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [232.500,173.800],
+          "align": "l",
+          "width": 35.000,
+          "text": "model"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [181.000,150.800],
+          "align": "l",
+          "width": 139.000,
+          "text": "detect_distraction(image)"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "1.1806",
+      "label": "{Distracted|device<br ALIGN=\"LEFT\"\/>model<br ALIGN=\"LEFT\"\/>|detect_distraction(image)<br ALIGN=\"LEFT\"\/>}",
+      "pos": "250.5,185",
+      "rects": "173,204,328,227 173,166,328,204 173,143,328,166",
+      "shape": "record",
+      "style": "solid",
+      "width": "2.1528"
+    },
+    {
+      "_gvid": 10,
+      "name": "src.app.detection.drowsiness.Drowsiness",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[346.500,128.000],[346.500,242.000],[752.500,242.000],[752.500,128.000]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[346.500,219.000],[752.500,219.000]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[346.500,166.000],[752.500,166.000]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [517.500,226.800],
+          "align": "l",
+          "width": 64.000,
+          "text": "Drowsiness"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [494.000,203.800],
+          "align": "l",
+          "width": 103.000,
+          "text": "ear_treshold : float"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [494.000,188.800],
+          "align": "l",
+          "width": 57.000,
+          "text": "state : dict"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [494.000,173.800],
+          "align": "l",
+          "width": 111.000,
+          "text": "time_treshold : float"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [354.500,150.800],
+          "align": "l",
+          "width": 325.000,
+          "text": "detect_drowsiness(frame: np.array, landmarks): np.ndarray"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [354.500,135.800],
+          "align": "l",
+          "width": 390.000,
+          "text": "plot_landmarks(frame: np.ndarray, eye_coordinates, color): np.ndarray"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "1.5972",
+      "label": "{Drowsiness|ear_treshold : float<br ALIGN=\"LEFT\"\/>state : dict<br ALIGN=\"LEFT\"\/>time_treshold : float<br ALIGN=\"LEFT\"\/>|detect_drowsiness(frame: np.array, landmarks): np.ndarray<br ALIGN=\"LEFT\"\/>plot_landmarks(frame: np.ndarray, eye_coordinates, color): np.ndarray<br ALIGN=\"LEFT\"\/>}",
+      "pos": "549.5,185",
+      "rects": "346.5,219,752.5,242 346.5,166,752.5,219 346.5,128,752.5,166",
+      "shape": "record",
+      "style": "solid",
+      "width": "5.6389"
+    },
+    {
+      "_gvid": 11,
+      "name": "src.app.utils.ear.EyeAspectRatio",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[2004.000,105.500],[2004.000,264.500],[2271.000,264.500],[2271.000,105.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[2004.000,241.500],[2271.000,241.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[2004.000,158.500],[2271.000,158.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2093.500,249.300],
+          "align": "l",
+          "width": 88.000,
+          "text": "EyeAspectRatio"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2083.000,226.300],
+          "align": "l",
+          "width": 48.000,
+          "text": "image_h"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2083.000,211.300],
+          "align": "l",
+          "width": 51.000,
+          "text": "image_w"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2083.000,196.300],
+          "align": "l",
+          "width": 58.000,
+          "text": "landmarks"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2083.000,181.300],
+          "align": "l",
+          "width": 101.000,
+          "text": "left_eye_idxs : list"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2083.000,166.300],
+          "align": "l",
+          "width": 109.000,
+          "text": "right_eye_idxs : list"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2012.000,143.300],
+          "align": "l",
+          "width": 251.000,
+          "text": "calculate_avg_ear(): typing.Tuple[float, tuple]"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2012.000,128.300],
+          "align": "l",
+          "width": 175.000,
+          "text": "distance(point_1, point_2): float"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2012.000,113.300],
+          "align": "l",
+          "width": 238.000,
+          "text": "get_ear(refer_idxs): typing.Tuple[float, list]"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "2.2222",
+      "label": "{EyeAspectRatio|image_h<br ALIGN=\"LEFT\"\/>image_w<br ALIGN=\"LEFT\"\/>landmarks<br ALIGN=\"LEFT\"\/>left_eye_idxs : list<br ALIGN=\"LEFT\"\/>right_eye_idxs : list<br ALIGN=\"LEFT\"\/>|calculate_avg_ear(): typing.Tuple[float, tuple]<br ALIGN=\"LEFT\"\/>distance(point_1, point_2): float<br ALIGN=\"LEFT\"\/>get_ear(refer_idxs): typing.Tuple[float, list]<br ALIGN=\"LEFT\"\/>}",
+      "pos": "2137.5,185",
+      "rects": "2004,241.5,2271,264.5 2004,158.5,2271,241.5 2004,105.5,2271,158.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "3.7083"
+    },
+    {
+      "_gvid": 12,
+      "name": "src.app.utils.face_mesh.FaceMesh",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[1509.000,474.000],[1509.000,603.000],[1916.000,603.000],[1916.000,474.000]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1509.000,580.000],[1916.000,580.000]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1509.000,512.000],[1916.000,512.000]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1684.000,587.800],
+          "align": "l",
+          "width": 57.000,
+          "text": "FaceMesh"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1632.000,564.800],
+          "align": "l",
+          "width": 161.000,
+          "text": "facemesh_model : FaceMesh"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1632.000,549.800],
+          "align": "l",
+          "width": 69.000,
+          "text": "mp_drawing"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1632.000,534.800],
+          "align": "l",
+          "width": 106.000,
+          "text": "mp_drawing_styles"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1632.000,519.800],
+          "align": "l",
+          "width": 83.000,
+          "text": "mp_face_mesh"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1517.000,496.800],
+          "align": "l",
+          "width": 315.000,
+          "text": "compute_face_landmarks(frame: np.ndarray): np.ndarray"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1517.000,481.800],
+          "align": "l",
+          "width": 391.000,
+          "text": "plot_face_mesh(frame: np.ndarray, face_landmarks: np.ndarray): None"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "1.8056",
+      "label": "{FaceMesh|facemesh_model : FaceMesh<br ALIGN=\"LEFT\"\/>mp_drawing<br ALIGN=\"LEFT\"\/>mp_drawing_styles<br ALIGN=\"LEFT\"\/>mp_face_mesh<br ALIGN=\"LEFT\"\/>|compute_face_landmarks(frame: np.ndarray): np.ndarray<br ALIGN=\"LEFT\"\/>plot_face_mesh(frame: np.ndarray, face_landmarks: np.ndarray): None<br ALIGN=\"LEFT\"\/>}",
+      "pos": "1712.5,538.5",
+      "rects": "1509,580,1916,603 1509,512,1916,580 1509,474,1916,512",
+      "shape": "record",
+      "style": "solid",
+      "width": "5.6528"
+    },
+    {
+      "_gvid": 13,
+      "name": "src.app.utils.gaze.Gaze",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[2289.500,0.500],[2289.500,369.500],[2841.500,369.500],[2841.500,0.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[2289.500,346.500],[2841.500,346.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[2289.500,143.500],[2841.500,143.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2551.500,354.300],
+          "align": "l",
+          "width": 28.000,
+          "text": "Gaze"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2466.000,331.300],
+          "align": "l",
+          "width": 199.000,
+          "text": "camera_matrix : ndarray, NoneType"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2466.000,316.300],
+          "align": "l",
+          "width": 112.000,
+          "text": "dist_coeffs : ndarray"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2466.000,301.300],
+          "align": "l",
+          "width": 147.000,
+          "text": "face_coordinates_2D : dict"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2466.000,286.300],
+          "align": "l",
+          "width": 147.000,
+          "text": "face_coordinates_3D : dict"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2466.000,271.300],
+          "align": "l",
+          "width": 140.000,
+          "text": "frame_height : NoneType"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2466.000,256.300],
+          "align": "l",
+          "width": 137.000,
+          "text": "frame_width : NoneType"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2466.000,241.300],
+          "align": "l",
+          "width": 101.000,
+          "text": "left_eye_idxs : list"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2466.000,226.300],
+          "align": "l",
+          "width": 41.000,
+          "text": "relative"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2466.000,211.300],
+          "align": "l",
+          "width": 49.000,
+          "text": "relativeT"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2466.000,196.300],
+          "align": "l",
+          "width": 109.000,
+          "text": "right_eye_idxs : list"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2466.000,181.300],
+          "align": "l",
+          "width": 150.000,
+          "text": "rotation_vector : NoneType"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2466.000,166.300],
+          "align": "l",
+          "width": 148.000,
+          "text": "transformation : NoneType"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2466.000,151.300],
+          "align": "l",
+          "width": 165.000,
+          "text": "translation_vector : NoneType"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2297.500,128.300],
+          "align": "l",
+          "width": 339.000,
+          "text": "compute_eye_six_points(landmarks, eye_landmarks: list): list"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2297.500,113.300],
+          "align": "l",
+          "width": 325.000,
+          "text": "compute_gaze(frame: np.ndarray, points: np.ndarray): float"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2297.500,98.300],
+          "align": "l",
+          "width": 536.000,
+          "text": "compute_gaze_score(landmarks: np.ndarray, eye_landmarks: list, pupil_center: np.ndarray): tuple"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2297.500,83.300],
+          "align": "l",
+          "width": 514.000,
+          "text": "correct_gaze(pupil: np.ndarray, eye_pupil2D: np.ndarray, head_pose: np.ndarray): np.ndarray"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2297.500,68.300],
+          "align": "l",
+          "width": 282.000,
+          "text": "get_camera_matrix(frame: np.ndarray): np.ndarray"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2297.500,53.300],
+          "align": "l",
+          "width": 398.000,
+          "text": "get_gaze_3d(pupil: np.ndarray, eye_ball_center: np.ndarray): np.ndarray"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2297.500,38.300],
+          "align": "l",
+          "width": 331.000,
+          "text": "get_relative(frame: np.ndarray, points, function): np.ndarray"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2297.500,23.300],
+          "align": "l",
+          "width": 508.000,
+          "text": "plot_gaze(frame: np.ndarray, pupil: np.ndarray, gaze: np.ndarray, roi_box, roi_center): None"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2297.500,8.300],
+          "align": "l",
+          "width": 190.000,
+          "text": "project_points(coords): np.ndarray"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "5.1389",
+      "label": "{Gaze|camera_matrix : ndarray, NoneType<br ALIGN=\"LEFT\"\/>dist_coeffs : ndarray<br ALIGN=\"LEFT\"\/>face_coordinates_2D : dict<br ALIGN=\"LEFT\"\/>face_coordinates_3D : dict<br ALIGN=\"LEFT\"\/>frame_height : NoneType<br ALIGN=\"LEFT\"\/>frame_width : NoneType<br ALIGN=\"LEFT\"\/>left_eye_idxs : list<br ALIGN=\"LEFT\"\/>relative<br ALIGN=\"LEFT\"\/>relativeT<br ALIGN=\"LEFT\"\/>right_eye_idxs : list<br ALIGN=\"LEFT\"\/>rotation_vector : NoneType<br ALIGN=\"LEFT\"\/>transformation : NoneType<br ALIGN=\"LEFT\"\/>translation_vector : NoneType<br ALIGN=\"LEFT\"\/>|compute_eye_six_points(landmarks, eye_landmarks: list): list<br ALIGN=\"LEFT\"\/>compute_gaze(frame: np.ndarray, points: np.ndarray): float<br ALIGN=\"LEFT\"\/>compute_gaze_score(landmarks: np.ndarray, eye_landmarks: list, pupil_center: np.ndarray): tuple<br ALIGN=\"LEFT\"\/>correct_gaze(pupil: np.ndarray, eye_pupil2D: np.ndarray, head_pose: np.ndarray): np.ndarray<br ALIGN=\"LEFT\"\/>get_camera_matrix(frame: np.ndarray): np.ndarray<br ALIGN=\"LEFT\"\/>get_gaze_3d(pupil: np.ndarray, eye_ball_center: np.ndarray): np.ndarray<br ALIGN=\"LEFT\"\/>get_relative(frame: np.ndarray, points, function): np.ndarray<br ALIGN=\"LEFT\"\/>plot_gaze(frame: np.ndarray, pupil: np.ndarray, gaze: np.ndarray, roi_box, roi_center): None<br ALIGN=\"LEFT\"\/>project_points(coords): np.ndarray<br ALIGN=\"LEFT\"\/>}",
+      "pos": "2565.5,185",
+      "rects": "2289.5,346.5,2841.5,369.5 2289.5,143.5,2841.5,346.5 2289.5,0.5,2841.5,143.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "7.6667"
+    },
+    {
+      "_gvid": 14,
+      "name": "src.train.model.LitEfficientNet",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[2859.500,90.500],[2859.500,279.500],[3057.500,279.500],[3057.500,90.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[2859.500,256.500],[3057.500,256.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[2859.500,188.500],[3057.500,188.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2917.500,264.300],
+          "align": "l",
+          "width": 82.000,
+          "text": "LitEfficientNet"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2920.000,241.300],
+          "align": "l",
+          "width": 77.000,
+          "text": "gamma : float"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2920.000,226.300],
+          "align": "l",
+          "width": 44.000,
+          "text": "lr : float"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2920.000,211.300],
+          "align": "l",
+          "width": 35.000,
+          "text": "model"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2920.000,196.300],
+          "align": "l",
+          "width": 70.000,
+          "text": "num_classes"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2867.500,173.300],
+          "align": "l",
+          "width": 125.000,
+          "text": "configure_optimizers()"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2867.500,158.300],
+          "align": "l",
+          "width": 119.000,
+          "text": "evaluate(batch, stage)"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2867.500,143.300],
+          "align": "l",
+          "width": 60.000,
+          "text": "forward(x)"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2867.500,128.300],
+          "align": "l",
+          "width": 147.000,
+          "text": "test_step(batch, batch_idx)"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2867.500,113.300],
+          "align": "l",
+          "width": 170.000,
+          "text": "training_step(batch, batch_idx)"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [2867.500,98.300],
+          "align": "l",
+          "width": 182.000,
+          "text": "validation_step(batch, batch_idx)"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "2.6389",
+      "label": "{LitEfficientNet|gamma : float<br ALIGN=\"LEFT\"\/>lr : float<br ALIGN=\"LEFT\"\/>model<br ALIGN=\"LEFT\"\/>num_classes<br ALIGN=\"LEFT\"\/>|configure_optimizers()<br ALIGN=\"LEFT\"\/>evaluate(batch, stage)<br ALIGN=\"LEFT\"\/>forward(x)<br ALIGN=\"LEFT\"\/>test_step(batch, batch_idx)<br ALIGN=\"LEFT\"\/>training_step(batch, batch_idx)<br ALIGN=\"LEFT\"\/>validation_step(batch, batch_idx)<br ALIGN=\"LEFT\"\/>}",
+      "pos": "2958.5,185",
+      "rects": "2859.5,256.5,3057.5,279.5 2859.5,188.5,3057.5,256.5 2859.5,90.5,3057.5,188.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "2.75"
+    },
+    {
+      "_gvid": 15,
+      "name": "src.app.detection.looking_away.LookingAway",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[770.500,105.500],[770.500,264.500],[1128.500,264.500],[1128.500,105.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[770.500,241.500],[1128.500,241.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[770.500,128.500],[1128.500,128.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [910.000,249.300],
+          "align": "l",
+          "width": 79.000,
+          "text": "LookingAway"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [894.000,226.300],
+          "align": "l",
+          "width": 97.000,
+          "text": "delta_time_frame"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [894.000,211.300],
+          "align": "l",
+          "width": 17.000,
+          "text": "fps"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [894.000,196.300],
+          "align": "l",
+          "width": 81.000,
+          "text": "gaze_act_tresh"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [894.000,181.300],
+          "align": "l",
+          "width": 98.000,
+          "text": "gaze_counter : int"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [894.000,166.300],
+          "align": "l",
+          "width": 111.000,
+          "text": "gaze_treshold : float"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [894.000,151.300],
+          "align": "l",
+          "width": 57.000,
+          "text": "state : dict"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [894.000,136.300],
+          "align": "l",
+          "width": 101.000,
+          "text": "time_treshold : int"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [778.500,113.300],
+          "align": "l",
+          "width": 342.000,
+          "text": "detect_looking_away(frame: np.array, landmarks): np.ndarray"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "2.2222",
+      "label": "{LookingAway|delta_time_frame<br ALIGN=\"LEFT\"\/>fps<br ALIGN=\"LEFT\"\/>gaze_act_tresh<br ALIGN=\"LEFT\"\/>gaze_counter : int<br ALIGN=\"LEFT\"\/>gaze_treshold : float<br ALIGN=\"LEFT\"\/>state : dict<br ALIGN=\"LEFT\"\/>time_treshold : int<br ALIGN=\"LEFT\"\/>|detect_looking_away(frame: np.array, landmarks): np.ndarray<br ALIGN=\"LEFT\"\/>}",
+      "pos": "949.5,185",
+      "rects": "770.5,241.5,1128.5,264.5 770.5,128.5,1128.5,241.5 770.5,105.5,1128.5,128.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "4.9722"
+    },
+    {
+      "_gvid": 16,
+      "name": "src.app.detection.loudness.Loudness",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[1146.500,135.500],[1146.500,234.500],[1326.500,234.500],[1326.500,135.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1146.500,211.500],[1326.500,211.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1146.500,173.500],[1326.500,173.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1210.000,219.300],
+          "align": "l",
+          "width": 53.000,
+          "text": "Loudness"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1185.000,196.300],
+          "align": "l",
+          "width": 103.000,
+          "text": "normalization : int"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1185.000,181.300],
+          "align": "l",
+          "width": 57.000,
+          "text": "width : int"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1154.500,158.300],
+          "align": "l",
+          "width": 164.000,
+          "text": "compute_loudness(data): float"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1154.500,143.300],
+          "align": "l",
+          "width": 161.000,
+          "text": "display_loudness(rms): None"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "1.3889",
+      "label": "{Loudness|normalization : int<br ALIGN=\"LEFT\"\/>width : int<br ALIGN=\"LEFT\"\/>|compute_loudness(data): float<br ALIGN=\"LEFT\"\/>display_loudness(rms): None<br ALIGN=\"LEFT\"\/>}",
+      "pos": "1236.5,185",
+      "rects": "1146.5,211.5,1326.5,234.5 1146.5,173.5,1326.5,211.5 1146.5,135.5,1326.5,173.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "2.5"
+    },
+    {
+      "_gvid": 17,
+      "name": "src.app.gui.main_frame.MainFrame",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[3076.000,105.500],[3076.000,264.500],[3157.000,264.500],[3157.000,105.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[3076.000,241.500],[3157.000,241.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[3076.000,128.500],[3157.000,128.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3084.000,249.300],
+          "align": "l",
+          "width": 65.000,
+          "text": "MainFrame"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3090.000,226.300],
+          "align": "l",
+          "width": 35.000,
+          "text": "button"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3090.000,211.300],
+          "align": "l",
+          "width": 42.000,
+          "text": "button1"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3090.000,196.300],
+          "align": "l",
+          "width": 42.000,
+          "text": "button2"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3090.000,181.300],
+          "align": "l",
+          "width": 53.000,
+          "text": "controller"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3090.000,166.300],
+          "align": "l",
+          "width": 24.000,
+          "text": "icon"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3090.000,151.300],
+          "align": "l",
+          "width": 34.000,
+          "text": "image"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3090.000,136.300],
+          "align": "l",
+          "width": 34.000,
+          "text": "label2"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3114.500,113.300],
+          "align": "l",
+          "width": 4.000,
+          "text": " "
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "2.2222",
+      "label": "{MainFrame|button<br ALIGN=\"LEFT\"\/>button1<br ALIGN=\"LEFT\"\/>button2<br ALIGN=\"LEFT\"\/>controller<br ALIGN=\"LEFT\"\/>icon<br ALIGN=\"LEFT\"\/>image<br ALIGN=\"LEFT\"\/>label2<br ALIGN=\"LEFT\"\/>|}",
+      "pos": "3116.5,185",
+      "rects": "3076,241.5,3157,264.5 3076,128.5,3157,241.5 3076,105.5,3157,128.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "1.125"
+    },
+    {
+      "_gvid": 18,
+      "name": "src.app.utils.config.Path",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[3175.500,150.500],[3175.500,219.500],[3229.500,219.500],[3229.500,150.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[3175.500,196.500],[3229.500,196.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[3175.500,173.500],[3229.500,173.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3190.000,204.300],
+          "align": "l",
+          "width": 25.000,
+          "text": "Path"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3187.000,181.300],
+          "align": "l",
+          "width": 31.000,
+          "text": "name"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3200.500,158.300],
+          "align": "l",
+          "width": 4.000,
+          "text": " "
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "0.97222",
+      "label": "{Path|name<br ALIGN=\"LEFT\"\/>|}",
+      "pos": "3202.5,185",
+      "rects": "3175.5,196.5,3229.5,219.5 3175.5,173.5,3229.5,196.5 3175.5,150.5,3229.5,173.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "0.75"
+    },
+    {
+      "_gvid": 19,
+      "name": "src.app.recording.recorder.Recorder",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[1316.500,1128.500],[1316.500,1392.500],[1524.500,1392.500],[1524.500,1128.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1316.500,1369.500],[1524.500,1369.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1316.500,1241.500],[1524.500,1241.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1395.500,1377.300],
+          "align": "l",
+          "width": 50.000,
+          "text": "Recorder"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1351.500,1354.300],
+          "align": "l",
+          "width": 60.000,
+          "text": "audio_args"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1351.500,1339.300],
+          "align": "l",
+          "width": 85.000,
+          "text": "audio_filename"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1351.500,1324.300],
+          "align": "l",
+          "width": 138.000,
+          "text": "audio_thread : NoneType"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1351.500,1309.300],
+          "align": "l",
+          "width": 85.000,
+          "text": "path_audio : str"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1351.500,1294.300],
+          "align": "l",
+          "width": 85.000,
+          "text": "path_video : str"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1351.500,1279.300],
+          "align": "l",
+          "width": 60.000,
+          "text": "video_args"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1351.500,1264.300],
+          "align": "l",
+          "width": 85.000,
+          "text": "video_filename"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1351.500,1249.300],
+          "align": "l",
+          "width": 138.000,
+          "text": "video_thread : NoneType"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1324.500,1226.300],
+          "align": "l",
+          "width": 165.000,
+          "text": "file_manager(filename): None"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1324.500,1211.300],
+          "align": "l",
+          "width": 146.000,
+          "text": "start_AVrecording(): None"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1324.500,1196.300],
+          "align": "l",
+          "width": 166.000,
+          "text": "start_audio_recording(): None"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1324.500,1181.300],
+          "align": "l",
+          "width": 166.000,
+          "text": "start_video_recording(): None"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1324.500,1166.300],
+          "align": "l",
+          "width": 192.000,
+          "text": "stop_AVrecording(filename): None"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1324.500,1151.300],
+          "align": "l",
+          "width": 164.000,
+          "text": "stop_audio_recording(): None"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1324.500,1136.300],
+          "align": "l",
+          "width": 164.000,
+          "text": "stop_video_recording(): None"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "3.6806",
+      "label": "{Recorder|audio_args<br ALIGN=\"LEFT\"\/>audio_filename<br ALIGN=\"LEFT\"\/>audio_thread : NoneType<br ALIGN=\"LEFT\"\/>path_audio : str<br ALIGN=\"LEFT\"\/>path_video : str<br ALIGN=\"LEFT\"\/>video_args<br ALIGN=\"LEFT\"\/>video_filename<br ALIGN=\"LEFT\"\/>video_thread : NoneType<br ALIGN=\"LEFT\"\/>|file_manager(filename): None<br ALIGN=\"LEFT\"\/>start_AVrecording(): None<br ALIGN=\"LEFT\"\/>start_audio_recording(): None<br ALIGN=\"LEFT\"\/>start_video_recording(): None<br ALIGN=\"LEFT\"\/>stop_AVrecording(filename): None<br ALIGN=\"LEFT\"\/>stop_audio_recording(): None<br ALIGN=\"LEFT\"\/>stop_video_recording(): None<br ALIGN=\"LEFT\"\/>}",
+      "pos": "1420.5,1260.5",
+      "rects": "1316.5,1369.5,1524.5,1392.5 1316.5,1241.5,1524.5,1369.5 1316.5,1128.5,1524.5,1241.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "2.8889"
+    },
+    {
+      "_gvid": 20,
+      "name": "src.app.utils.tts.SimpleTextToSpeech",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[1344.500,143.000],[1344.500,227.000],[1476.500,227.000],[1476.500,143.000]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1344.500,204.000],[1476.500,204.000]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1344.500,166.000],[1476.500,166.000]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1352.500,211.800],
+          "align": "l",
+          "width": 116.000,
+          "text": "SimpleTextToSpeech"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1392.000,188.800],
+          "align": "l",
+          "width": 37.000,
+          "text": "engine"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1392.000,173.800],
+          "align": "l",
+          "width": 35.000,
+          "text": "voices"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1380.000,150.800],
+          "align": "l",
+          "width": 61.000,
+          "text": "speak(text)"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "1.1806",
+      "label": "{SimpleTextToSpeech|engine<br ALIGN=\"LEFT\"\/>voices<br ALIGN=\"LEFT\"\/>|speak(text)<br ALIGN=\"LEFT\"\/>}",
+      "pos": "1410.5,185",
+      "rects": "1344.5,204,1476.5,227 1344.5,166,1476.5,204 1344.5,143,1476.5,166",
+      "shape": "record",
+      "style": "solid",
+      "width": "1.8333"
+    },
+    {
+      "_gvid": 21,
+      "name": "src.train.config.StaticDataset",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[3247.500,150.500],[3247.500,219.500],[3335.500,219.500],[3335.500,150.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[3247.500,196.500],[3335.500,196.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[3247.500,173.500],[3335.500,173.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3255.500,204.300],
+          "align": "l",
+          "width": 72.000,
+          "text": "StaticDataset"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3276.000,181.300],
+          "align": "l",
+          "width": 31.000,
+          "text": "name"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3289.500,158.300],
+          "align": "l",
+          "width": 4.000,
+          "text": " "
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "0.97222",
+      "label": "{StaticDataset|name<br ALIGN=\"LEFT\"\/>|}",
+      "pos": "3291.5,185",
+      "rects": "3247.5,196.5,3335.5,219.5 3247.5,173.5,3335.5,196.5 3247.5,150.5,3335.5,173.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "1.2222"
+    },
+    {
+      "_gvid": 22,
+      "name": "src.train.config.StaticLearningParameter",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[3354.000,150.500],[3354.000,219.500],[3507.000,219.500],[3507.000,150.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[3354.000,196.500],[3507.000,196.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[3354.000,173.500],[3507.000,173.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3362.000,204.300],
+          "align": "l",
+          "width": 137.000,
+          "text": "StaticLearningParameter"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3415.000,181.300],
+          "align": "l",
+          "width": 31.000,
+          "text": "name"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [3428.500,158.300],
+          "align": "l",
+          "width": 4.000,
+          "text": " "
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "0.97222",
+      "label": "{StaticLearningParameter|name<br ALIGN=\"LEFT\"\/>|}",
+      "pos": "3430.5,185",
+      "rects": "3354,196.5,3507,219.5 3354,173.5,3507,196.5 3354,150.5,3507,173.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "2.125"
+    },
+    {
+      "_gvid": 23,
+      "name": "src.app.gui.video_frame.VideoFrame",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[1565.500,1151.000],[1565.500,1370.000],[1725.500,1370.000],[1725.500,1151.000]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1565.500,1347.000],[1725.500,1347.000]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1565.500,1234.000],[1725.500,1234.000]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1611.000,1354.800],
+          "align": "l",
+          "width": 69.000,
+          "text": "VideoFrame"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1573.500,1331.800],
+          "align": "l",
+          "width": 53.000,
+          "text": "controller"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1573.500,1316.800],
+          "align": "l",
+          "width": 24.000,
+          "text": "icon"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1573.500,1301.800],
+          "align": "l",
+          "width": 72.000,
+          "text": "video_button"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1573.500,1286.800],
+          "align": "l",
+          "width": 103.000,
+          "text": "video_button_start"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1573.500,1271.800],
+          "align": "l",
+          "width": 101.000,
+          "text": "video_button_stop"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1573.500,1256.800],
+          "align": "l",
+          "width": 144.000,
+          "text": "video_capture : NoneType"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1573.500,1241.800],
+          "align": "l",
+          "width": 64.000,
+          "text": "video_label"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1583.000,1218.800],
+          "align": "l",
+          "width": 125.000,
+          "text": "change_frame_color(i)"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1583.000,1203.800],
+          "align": "l",
+          "width": 82.000,
+          "text": "update_video()"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1583.000,1188.800],
+          "align": "l",
+          "width": 92.000,
+          "text": "video_go_back()"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1583.000,1173.800],
+          "align": "l",
+          "width": 70.000,
+          "text": "video_start()"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1583.000,1158.800],
+          "align": "l",
+          "width": 69.000,
+          "text": "video_stop()"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "3.0556",
+      "label": "{VideoFrame|controller<br ALIGN=\"LEFT\"\/>icon<br ALIGN=\"LEFT\"\/>video_button<br ALIGN=\"LEFT\"\/>video_button_start<br ALIGN=\"LEFT\"\/>video_button_stop<br ALIGN=\"LEFT\"\/>video_capture : NoneType<br ALIGN=\"LEFT\"\/>video_label<br ALIGN=\"LEFT\"\/>|change_frame_color(i)<br ALIGN=\"LEFT\"\/>update_video()<br ALIGN=\"LEFT\"\/>video_go_back()<br ALIGN=\"LEFT\"\/>video_start()<br ALIGN=\"LEFT\"\/>video_stop()<br ALIGN=\"LEFT\"\/>}",
+      "pos": "1645.5,1260.5",
+      "rects": "1565.5,1347,1725.5,1370 1565.5,1234,1725.5,1347 1565.5,1151,1725.5,1234",
+      "shape": "record",
+      "style": "solid",
+      "width": "2.2222"
+    },
+    {
+      "_gvid": 24,
+      "name": "src.app.recording.recorder_video.VideoRecorder",
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "p",
+          "points": [[1442.000,707.500],[1442.000,1061.500],[1567.000,1061.500],[1567.000,707.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1442.000,1038.500],[1567.000,1038.500]]
+        },
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "L",
+          "points": [[1442.000,775.500],[1567.000,775.500]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1463.000,1046.300],
+          "align": "l",
+          "width": 83.000,
+          "text": "VideoRecorder"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,1023.300],
+          "align": "l",
+          "width": 103.000,
+          "text": "blink_alarm : bool"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,1008.300],
+          "align": "l",
+          "width": 44.000,
+          "text": "detector"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,993.300],
+          "align": "l",
+          "width": 98.000,
+          "text": "device_index : int"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,978.300],
+          "align": "l",
+          "width": 59.000,
+          "text": "face_mesh"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,963.300],
+          "align": "l",
+          "width": 60.000,
+          "text": "fourcc : str"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,948.300],
+          "align": "l",
+          "width": 43.000,
+          "text": "fps : int"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,933.300],
+          "align": "l",
+          "width": 94.000,
+          "text": "frameSize : tuple"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,918.300],
+          "align": "l",
+          "width": 100.000,
+          "text": "frame_counts : int"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,903.300],
+          "align": "l",
+          "width": 34.000,
+          "text": "height"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,888.300],
+          "align": "l",
+          "width": 62.000,
+          "text": "open : bool"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,873.300],
+          "align": "l",
+          "width": 49.000,
+          "text": "path : str"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,858.300],
+          "align": "l",
+          "width": 56.000,
+          "text": "start_time"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,843.300],
+          "align": "l",
+          "width": 56.000,
+          "text": "video_cap"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,828.300],
+          "align": "l",
+          "width": 109.000,
+          "text": "video_filename : str"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,813.300],
+          "align": "l",
+          "width": 55.000,
+          "text": "video_out"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,798.300],
+          "align": "l",
+          "width": 71.000,
+          "text": "video_writer"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1450.000,783.300],
+          "align": "l",
+          "width": 31.000,
+          "text": "width"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1464.000,760.300],
+          "align": "l",
+          "width": 65.000,
+          "text": "get_frame()"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1464.000,745.300],
+          "align": "l",
+          "width": 81.000,
+          "text": "record(): None"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1464.000,730.300],
+          "align": "l",
+          "width": 70.000,
+          "text": "start(): None"
+        },
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "T",
+          "pt": [1464.000,715.300],
+          "align": "l",
+          "width": 69.000,
+          "text": "stop(): None"
+        }
+      ],
+      "color": "black",
+      "fontcolor": "black",
+      "height": "4.9306",
+      "label": "{VideoRecorder|blink_alarm : bool<br ALIGN=\"LEFT\"\/>detector<br ALIGN=\"LEFT\"\/>device_index : int<br ALIGN=\"LEFT\"\/>face_mesh<br ALIGN=\"LEFT\"\/>fourcc : str<br ALIGN=\"LEFT\"\/>fps : int<br ALIGN=\"LEFT\"\/>frameSize : tuple<br ALIGN=\"LEFT\"\/>frame_counts : int<br ALIGN=\"LEFT\"\/>height<br ALIGN=\"LEFT\"\/>open : bool<br ALIGN=\"LEFT\"\/>path : str<br ALIGN=\"LEFT\"\/>start_time<br ALIGN=\"LEFT\"\/>video_cap<br ALIGN=\"LEFT\"\/>video_filename : str<br ALIGN=\"LEFT\"\/>video_out<br ALIGN=\"LEFT\"\/>video_writer<br ALIGN=\"LEFT\"\/>width<br ALIGN=\"LEFT\"\/>|get_frame()<br ALIGN=\"LEFT\"\/>record(): None<br ALIGN=\"LEFT\"\/>start(): None<br ALIGN=\"LEFT\"\/>stop(): None<br ALIGN=\"LEFT\"\/>}",
+      "pos": "1504.5,884.5",
+      "rects": "1442,1038.5,1567,1061.5 1442,775.5,1567,1038.5 1442,707.5,1567,775.5",
+      "shape": "record",
+      "style": "solid",
+      "width": "1.7361"
+    }
+  ],
+  "edges": [
+    {
+      "_gvid": 0,
+      "tail": 2,
+      "head": 1,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[1047.700,971.420],[1024.610,1003.570],[1001.420,1041.640],[987.500,1080.000],[981.640,1096.150],[977.470,1113.610],[974.520,1131.090]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[974.490,1131.320],[977.540,1137.850],[972.680,1143.180],[969.630,1136.650]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [1026.000,1083.800],
+          "align": "c",
+          "width": 77.000,
+          "text": "audio_capture"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "audio_capture",
+      "lp": "1026,1087.5",
+      "pos": "e,972.68,1143.2 1047.7,971.42 1024.6,1003.6 1001.4,1041.6 987.5,1080 981.64,1096.1 977.47,1113.6 974.52,1131.1",
+      "style": "solid"
+    },
+    {
+      "_gvid": 1,
+      "tail": 2,
+      "head": 3,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[1069.610,1009.220],[1063.990,1037.530],[1062.710,1067.410],[1070.500,1095.000],[1074.340,1108.610],[1079.660,1122.190],[1085.870,1135.400]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[1085.980,1135.630],[1092.220,1139.250],[1091.280,1146.400],[1085.040,1142.780]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [1109.000,1083.800],
+          "align": "c",
+          "width": 77.000,
+          "text": "audio_capture"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "audio_capture",
+      "lp": "1109,1087.5",
+      "pos": "e,1091.3,1146.4 1069.6,1009.2 1064,1037.5 1062.7,1067.4 1070.5,1095 1074.3,1108.6 1079.7,1122.2 1085.9,1135.4",
+      "style": "solid"
+    },
+    {
+      "_gvid": 2,
+      "tail": 2,
+      "head": 19,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[1191.120,995.740],[1213.610,1028.450],[1239.190,1063.840],[1264.500,1095.000],[1278.110,1111.760],[1293.050,1128.880],[1308.120,1145.450]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[1308.390,1145.750],[1315.390,1147.470],[1316.500,1154.590],[1309.500,1152.870]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [1300.000,1083.800],
+          "align": "c",
+          "width": 71.000,
+          "text": "audio_thread"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "audio_thread",
+      "lp": "1300,1087.5",
+      "pos": "e,1316.5,1154.6 1191.1,995.74 1213.6,1028.4 1239.2,1063.8 1264.5,1095 1278.1,1111.8 1293,1128.9 1308.1,1145.5",
+      "style": "solid"
+    },
+    {
+      "_gvid": 3,
+      "tail": 2,
+      "head": 19,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[1133.340,1009.060],[1142.480,1040.810],[1157.370,1072.360],[1181.500,1095.000],[1207.760,1119.640],[1228.600,1096.280],[1260.500,1113.000],[1276.370,1121.320],[1291.870,1131.600],[1306.590,1142.840]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[1306.710,1142.930],[1313.900,1143.500],[1316.140,1150.350],[1308.950,1149.790]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [1217.000,1083.800],
+          "align": "c",
+          "width": 71.000,
+          "text": "audio_thread"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "audio_thread",
+      "lp": "1217,1087.5",
+      "pos": "e,1316.1,1150.3 1133.3,1009.1 1142.5,1040.8 1157.4,1072.4 1181.5,1095 1207.8,1119.6 1228.6,1096.3 1260.5,1113 1276.4,1121.3 1291.9,1131.6 1306.6,1142.8",
+      "style": "solid"
+    },
+    {
+      "_gvid": 4,
+      "tail": 8,
+      "head": 24,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[1137.010,655.720],[1238.110,718.390],[1357.090,792.130],[1431.660,838.350]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[1431.680,838.360],[1438.890,838.130],[1441.880,844.690],[1434.670,844.930]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [1199.500,677.800],
+          "align": "c",
+          "width": 44.000,
+          "text": "detector"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "detector",
+      "lp": "1199.5,681.5",
+      "pos": "e,1441.9,844.69 1137,655.72 1238.1,718.39 1357.1,792.13 1431.7,838.35",
+      "style": "solid"
+    },
+    {
+      "_gvid": 5,
+      "tail": 9,
+      "head": 8,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[259.340,227.320],[270.460,269.300],[293.650,333.200],[337.500,370.000],[357.350,386.660],[378.720,401.670],[401.160,415.190]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[401.200,415.210],[408.400,414.810],[411.540,421.300],[404.340,421.700]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [405.000,391.800],
+          "align": "c",
+          "width": 53.000,
+          "text": "distracted"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "distracted",
+      "lp": "405,395.5",
+      "pos": "e,411.54,421.3 259.34,227.32 270.46,269.3 293.65,333.2 337.5,370 357.35,386.66 378.72,401.67 401.16,415.19",
+      "style": "solid"
+    },
+    {
+      "_gvid": 6,
+      "tail": 10,
+      "head": 8,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[613.320,242.080],[665.570,287.990],[741.420,354.650],[807.860,413.030]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[808.150,413.290],[815.300,414.250],[817.170,421.210],[810.020,420.250]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [816.000,391.800],
+          "align": "c",
+          "width": 61.000,
+          "text": "drowsiness"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "drowsiness",
+      "lp": "816,395.5",
+      "pos": "e,817.17,421.21 613.32,242.08 665.57,287.99 741.42,354.65 807.86,413.03",
+      "style": "solid"
+    },
+    {
+      "_gvid": 7,
+      "tail": 12,
+      "head": 24,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[1673.860,603.400],[1645.720,649.940],[1606.830,714.250],[1573.420,769.510]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[1573.240,769.810],[1573.560,777.010],[1567.030,780.080],[1566.720,772.880]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [1657.000,677.800],
+          "align": "c",
+          "width": 59.000,
+          "text": "face_mesh"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "face_mesh",
+      "lp": "1657,681.5",
+      "pos": "e,1567,780.08 1673.9,603.4 1645.7,649.94 1606.8,714.25 1573.4,769.51",
+      "style": "solid"
+    },
+    {
+      "_gvid": 8,
+      "tail": 15,
+      "head": 8,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[949.500,264.880],[949.500,307.330],[949.500,360.750],[949.500,409.020]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[949.500,409.180],[953.500,415.180],[949.500,421.180],[945.500,415.180]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [988.500,391.800],
+          "align": "c",
+          "width": 78.000,
+          "text": "looking_away"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "looking_away",
+      "lp": "988.5,395.5",
+      "pos": "e,949.5,421.18 949.5,264.88 949.5,307.33 949.5,360.75 949.5,409.02",
+      "style": "solid"
+    },
+    {
+      "_gvid": 9,
+      "tail": 16,
+      "head": 8,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[1216.090,234.510],[1198.470,273.320],[1170.660,328.010],[1137.500,370.000],[1125.950,384.630],[1113.030,399.040],[1099.510,412.890]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[1099.480,412.920],[1098.100,419.990],[1091.030,421.440],[1092.420,414.360]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [1144.500,391.800],
+          "align": "c",
+          "width": 48.000,
+          "text": "loudness"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "loudness",
+      "lp": "1144.5,395.5",
+      "pos": "e,1091,421.44 1216.1,234.51 1198.5,273.32 1170.7,328.01 1137.5,370 1125.9,384.63 1113,399.04 1099.5,412.89",
+      "style": "solid"
+    },
+    {
+      "_gvid": 10,
+      "tail": 20,
+      "head": 8,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[1403.140,227.190],[1393.860,268.140],[1374.210,330.410],[1335.500,370.000],[1319.630,386.230],[1301.910,401.000],[1283.050,414.400]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[1282.950,414.470],[1280.290,421.170],[1273.080,421.290],[1275.740,414.590]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [1318.000,391.800],
+          "align": "c",
+          "width": 13.000,
+          "text": "tts"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "tts",
+      "lp": "1318,395.5",
+      "pos": "e,1273.1,421.29 1403.1,227.19 1393.9,268.14 1374.2,330.41 1335.5,370 1319.6,386.23 1301.9,401 1283,414.4",
+      "style": "solid"
+    },
+    {
+      "_gvid": 11,
+      "tail": 24,
+      "head": 3,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[1441.990,975.550],[1412.320,1014.770],[1374.790,1059.720],[1335.500,1095.000],[1324.490,1104.880],[1318.840,1103.500],[1307.500,1113.000],[1291.330,1126.530],[1275.180,1141.890],[1259.950,1157.450]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[1259.920,1157.470],[1258.630,1164.570],[1251.580,1166.100],[1252.880,1159.010]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [1390.000,1083.800],
+          "align": "c",
+          "width": 77.000,
+          "text": "video_capture"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "video_capture",
+      "lp": "1390,1087.5",
+      "pos": "e,1251.6,1166.1 1442,975.55 1412.3,1014.8 1374.8,1059.7 1335.5,1095 1324.5,1104.9 1318.8,1103.5 1307.5,1113 1291.3,1126.5 1275.2,1141.9 1259.9,1157.5",
+      "style": "solid"
+    },
+    {
+      "_gvid": 12,
+      "tail": 24,
+      "head": 19,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[1462.630,1061.710],[1461.230,1067.880],[1459.850,1073.990],[1458.500,1080.000],[1455.860,1091.780],[1453.170,1104.000],[1450.500,1116.280]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[1450.490,1116.330],[1453.130,1123.040],[1447.950,1128.060],[1445.310,1121.350]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [1494.000,1083.800],
+          "align": "c",
+          "width": 71.000,
+          "text": "video_thread"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "video_thread",
+      "lp": "1494,1087.5",
+      "pos": "e,1448,1128.1 1462.6,1061.7 1461.2,1067.9 1459.8,1074 1458.5,1080 1455.9,1091.8 1453.2,1104 1450.5,1116.3",
+      "style": "solid"
+    },
+    {
+      "_gvid": 13,
+      "tail": 24,
+      "head": 19,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[1536.050,1061.610],[1534.860,1073.000],[1532.750,1084.220],[1529.500,1095.000],[1527.270,1102.410],[1524.580,1109.790],[1521.540,1117.090]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[1521.520,1117.120],[1522.750,1124.230],[1516.660,1128.100],[1515.440,1120.990]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [1568.000,1083.800],
+          "align": "c",
+          "width": 71.000,
+          "text": "video_thread"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "video_thread",
+      "lp": "1568,1087.5",
+      "pos": "e,1516.7,1128.1 1536.1,1061.6 1534.9,1073 1532.7,1084.2 1529.5,1095 1527.3,1102.4 1524.6,1109.8 1521.5,1117.1",
+      "style": "solid"
+    },
+    {
+      "_gvid": 14,
+      "tail": 24,
+      "head": 23,
+      "_draw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "b",
+          "points": [[1567.100,990.820],[1581.970,1019.070],[1596.660,1050.100],[1607.500,1080.000],[1614.310,1098.770],[1620.060,1119.120],[1624.860,1139.140]]
+        }
+      ],
+      "_hdraw_": 
+      [
+        {
+          "op": "S",
+          "style": "solid"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "C",
+          "grad": "none",
+          "color": "#000000"
+        },
+        {
+          "op": "P",
+          "points": [[1624.880,1139.190],[1630.130,1144.130],[1627.590,1150.880],[1622.330,1145.930]]
+        }
+      ],
+      "_ldraw_": 
+      [
+        {
+          "op": "F",
+          "size": 14.000,
+          "face": "Times-Roman"
+        },
+        {
+          "op": "c",
+          "grad": "none",
+          "color": "#00ff00"
+        },
+        {
+          "op": "T",
+          "pt": [1651.000,1083.800],
+          "align": "c",
+          "width": 77.000,
+          "text": "video_capture"
+        }
+      ],
+      "arrowhead": "diamond",
+      "arrowtail": "none",
+      "fontcolor": "green",
+      "label": "video_capture",
+      "lp": "1651,1087.5",
+      "pos": "e,1627.6,1150.9 1567.1,990.82 1582,1019.1 1596.7,1050.1 1607.5,1080 1614.3,1098.8 1620.1,1119.1 1624.9,1139.1",
+      "style": "solid"
+    }
+  ]
+}
