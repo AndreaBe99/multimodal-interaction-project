@@ -24,72 +24,81 @@ From the terminal, run the following command:
         - to use the graphical interface to record audio and video
 """
 
+class ArgParser():
+    
+    def __init__(self, video_args, audio_args):
+        # Initialize parser
+        self.parser = argparse.ArgumentParser()
+        # Adding optional argument
+        self.parser.add_argument("-e",
+                            "--execution_type",
+                            choices=['CLI', 'GUI'],
+                            help="GUI or CLI",
+                            default="GUI")
+        self.parser.add_argument("-w",
+                            "--what_to_record",
+                            choices=['video', 'audio', 'both'],
+                            help="video, audio or both",
+                            default="both")
+        self.parser.add_argument("-t",
+                            "--time",
+                            type=int,
+                            help="Time in seconds to record",
+                            default=5)
+        
+        self.video_args = video_args
+        self.audio_args = audio_args
+        
+        self.app = App()
+        self.recorder = Recorder(video_args=self.video_args, audio_args=self.audio_args)
+
+
+    def parse_args(self):
+        self.parser.parse_args()
+        
+        if self.parser.parse_args().execution_type == "GUI":
+            self.app.mainloop()
+
+        elif self.parser.parse_args().execution_type == "CLI":
+            if self.parser.parse_args().what_to_record not in ['video', 'audio', 'both']:
+                print("Invalid type. Valid types are: video, audio or both")
+
+            elif self.parser.parse_args().what_to_record == "video":
+                # VIDEO RECORDING
+                self.recorder.start_video_recording()
+                # Video recording for 5 seconds  by default
+                time.sleep(parser.parse_args().time)
+                self.recorder.stop_video_recording()
+
+            elif self.parser.parse_args().what_to_record == "audio":
+                # AUDIO RECORDING
+                self.recorder.start_audio_recording()
+                # Audio recording for 5 seconds  by default
+                time.sleep(parser.parse_args().time)
+                self.recorder.stop_audio_recording()
+
+            elif parser.parse_args().what_to_record == "both":
+                # VIDEO AND AUDIO RECORDING
+                self.recorder.start_AVrecording()
+                # Video recording for 5 seconds by default
+                time.sleep(parser.parse_args().time)
+                self.recorder.stop_AVrecording(filename="test")
+
 if __name__ == "__main__":
-    # Initialize parser
-    parser = argparse.ArgumentParser()
     
-    # Adding optional argument
-    parser.add_argument("-e", 
-                        "--execution_type", 
-                        choices=['CLI', 'GUI'], 
-                        help = "GUI or CLI", 
-                        default="GUI")
-    
-    parser.add_argument("-w", 
-                        "--what_to_record", 
-                        choices=['video', 'audio', 'both'], 
-                        help = "video, audio or both", 
-                        default="both")
-    
-    parser.add_argument("-t",
-                        "--time",
-                        type=int,
-                        help="Time in seconds to record",
-                        default=5)
-    
-    parser.parse_args()  
-    
-    if parser.parse_args().execution_type == "GUI":
-        app = App()
-        app.mainloop()
+    video_args = {"fps": 6,
+                "fourcc": "MJPG",
+                "device_index": 0,
+                "frame_counts": 1,
+                "frameSize": (640, 480),
+                "video_filename": "temp_video.avi"}
+
+    audio_args = {"rate": 44100,
+                    "device_index": -1,
+                    "frames_per_buffer": 1024,
+                    "py_format": pyaudio.paInt16,
+                    "audio_filename": "temp_audio.wav",
+                    "channel": 2}
         
-    elif parser.parse_args().execution_type == "CLI":
-        video_args = {"fps":6,
-                "fourcc":"MJPG",
-                "device_index":0,
-                "frame_counts":1,
-                "frameSize":(640,480),
-                "video_filename":"temp_video.avi"}
-    
-        audio_args = {"rate":44100,
-                    "device_index":-1,
-                    "frames_per_buffer":1024,
-                    "py_format":pyaudio.paInt16,
-                    "audio_filename":"temp_audio.wav",
-                    "channel":2}
-        
-        recorder = Recorder(video_args=video_args, audio_args=audio_args)
-        
-        if parser.parse_args().what_to_record not in ['video', 'audio', 'both']:
-            print("Invalid type. Valid types are: video, audio or both")
-            
-        elif parser.parse_args().what_to_record == "video":
-            # VIDEO RECORDING
-            recorder.start_video_recording()
-            # Video recording for 5 seconds  by default
-            time.sleep(parser.parse_args().time)
-            recorder.stop_video_recording()
-            
-        elif parser.parse_args().what_to_record == "audio":
-            # AUDIO RECORDING
-            recorder.start_audio_recording()
-            # Audio recording for 5 seconds  by default
-            time.sleep(parser.parse_args().time)
-            recorder.stop_audio_recording()
-        
-        elif parser.parse_args().what_to_record == "both":
-            # VIDEO AND AUDIO RECORDING
-            recorder.start_AVrecording()
-            # Video recording for 5 seconds by default
-            time.sleep(parser.parse_args().time)
-            recorder.stop_AVrecording(filename="test")
+    parser = ArgParser(video_args=video_args, audio_args=audio_args)
+    parser.parse_args()

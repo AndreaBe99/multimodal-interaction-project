@@ -32,6 +32,7 @@ class LookingAway():
             "play_alarm": False,
             "gaze": 0.0,
         }
+        self.gaze = Gaze()
     
     def detect_looking_away(self, frame:np.array, landmarks) -> np.ndarray:
         """
@@ -51,8 +52,7 @@ class LookingAway():
             self.state["play_alarm"] = False
             return self.state
         
-        gaze = Gaze()
-        gaze_score = gaze.compute_gaze(frame, landmarks)
+        gaze_score = self.gaze.compute_gaze(frame, landmarks)
         
         if gaze_score is None:
             return self.state

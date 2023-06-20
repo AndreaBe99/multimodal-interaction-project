@@ -15,11 +15,15 @@ class Drowsiness():
         self,
         ear_treshold: float = 0.1,
         time_treshold: float = 0.2,
+        width=640, 
+        height=480
         ) -> None:
         """
         Args:
             ear_treshold (float, optional): EAR threshold. Defaults to 0.1.
             time_treshold (float, optional): Time threshold. Defaults to 0.2.
+            width (int, optional): Width of the frame. Defaults to 640.
+            height (int, optional): Height of the frame. Defaults to 480.
         """        
         
         self.ear_treshold = ear_treshold
@@ -34,6 +38,10 @@ class Drowsiness():
             "play_alarm": False,
             "ear": 0.0,
         }
+        
+        self.width = width
+        self.height = height
+        self.ear = EyeAspectRatio(self.width, self.height)
     
     
     def detect_drowsiness(self, frame:np.array, landmarks) -> np.ndarray:
@@ -59,8 +67,8 @@ class Drowsiness():
             return frame
         
         # Compute eye aspect ratio for left and right eye
-        ear = EyeAspectRatio(landmarks.landmark, frame_width, frame_height)
-        ear_avg, eye_coordinates = ear.calculate_avg_ear()
+        # ear = EyeAspectRatio(landmarks.landmark, frame_width, frame_height)
+        ear_avg, eye_coordinates = self.ear.calculate_avg_ear(landmarks.landmark)
         
         # NOTE: The EAR is a float value between 0.0 and 1.0, where 0.0 
         # indicates that the eye is completely closed and 1.0 indicates

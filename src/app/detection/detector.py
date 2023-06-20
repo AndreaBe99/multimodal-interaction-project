@@ -14,7 +14,10 @@ from src.train.config import StaticDataset as sd
 
 class Detector():
     def __init__(self, rec="both", fps=6, height=480, width=640):
-        self.drowsiness = Drowsiness()
+        self.width = width
+        self.height = height
+        
+        self.drowsiness = Drowsiness(width=width, height=height)
         self.looking_away = LookingAway(fps=fps)
         self.loudness = Loudness()
         self.tts = SimpleTextToSpeech()
