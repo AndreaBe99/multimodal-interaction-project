@@ -8,6 +8,7 @@ from src.app.recording.recorder_audio import AudioRecorder
 from src.app.detection.loudness import Loudness
 from src.app.utils.config import Path
 from PIL import Image
+from src.app.detection.detector import Detector
 
 
 class AudioFrame(ctk.CTkFrame):
@@ -70,40 +71,18 @@ class AudioFrame(ctk.CTkFrame):
         self.audio_button_start.configure(state=ctk.DISABLED)
         self.audio_button_stop.configure(state=ctk.NORMAL)
         
-        audio_thread = threading.Thread(target=self.record)
-        audio_thread.start()
+        self.record()
     
     
     def record(self):
-        self.audio_capture = AudioRecorder()
-        loudness = Loudness()
-        
-        self.audio_capture.stream.start_stream()
+        self.audio_capture = AudioRecorder(
+            audio_loudness_label=self.audio_loudness_label,
+            audio_rcs_label=self.audio_rcs_label)
         self.audio_loudness_label.configure(
             text=Path.TEXT_GUI_AUDIO_3.value,
-            font=("Helvetica", 16), 
+            font=("Helvetica", 16),
             text_color="green")
-        
-        while(self.audio_capture.open):
-            try:
-                data = self.audio_capture.stream.read(
-                    self.audio_capture.frames_per_buffer
-                ) 
-                self.audio_capture.audio_frames.append(data)
-                # Compute the loudness of the audio and display it if it is 
-                # greater than 0.5
-                rcs = loudness.compute_loudness(data)
-                self.audio_rcs_label.configure(text=Path.TEXT_GUI_AUDIO_4.value + str(rcs))
-                if rcs > 0.5:
-                    self.audio_loudness_label.configure(
-                        text=Path.TEXT_GUI_AUDIO_5.value + str(rcs), 
-                        text_color="red")
-                
-                if self.audio_capture.open==False:
-                    break
-            except  Exception as e:
-                print(e)
-                break
+        self.audio_capture.start()
     
     
     def audio_stop(self):
@@ -126,5 +105,5 @@ class AudioFrame(ctk.CTkFrame):
         Function called when the "Go Back to Main Page" button is pressed
         """
         if self.audio_capture is not None:
-            self.stop()
+            self.audio_stop()
         self.controller.show_frame("MainFrame")

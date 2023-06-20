@@ -85,8 +85,8 @@ class AudioVideoFrame(ctk.CTkFrame):
         self.video_capture = VideoRecorder()
         self.update_video()
         
-        audio_thread = threading.Thread(target=self.record_audio)
-        audio_thread.start()
+        self.record_audio()
+        
     
     def video_stop(self):
         """
@@ -130,38 +130,14 @@ class AudioVideoFrame(ctk.CTkFrame):
         
     
     def record_audio(self):
-        self.audio_capture = AudioRecorder()
-        loudness = Loudness()
-        
-        self.audio_capture.stream.start_stream()
+        self.audio_capture = AudioRecorder(
+            audio_loudness_label=self.audio_loudness_label,
+            audio_rcs_label=self.audio_rcs_label)
         self.audio_loudness_label.configure(
             text=Path.TEXT_GUI_AUDIO_3.value,
-            font=("Helvetica", 16), 
+            font=("Helvetica", 16),
             text_color="green")
-        
-        while(self.audio_capture.open):
-            try:
-                data = self.audio_capture.stream.read(
-                    self.audio_capture.frames_per_buffer
-                ) 
-                self.audio_capture.audio_frames.append(data)
-                # Compute the loudness of the audio and display it if it is 
-                # greater than 0.5
-                rcs = loudness.compute_loudness(data)
-                self.audio_rcs_label.configure(
-                    text=Path.TEXT_GUI_AUDIO_4.value + str(rcs))
-                if rcs > 0.5:
-                    self.audio_loudness_label.configure(
-                        text=Path.TEXT_GUI_AUDIO_5.value + str(rcs), 
-                        text_color="red")
-                
-                if self.video_capture is None:
-                    break
-                if self.audio_capture.open==False:
-                    break
-            except  Exception as e:
-                print(e)
-                break
+        self.audio_capture.start()
             
     
     def video_go_back(self):
@@ -169,7 +145,7 @@ class AudioVideoFrame(ctk.CTkFrame):
         Function called when the "Go Back to Main Page" button is pressed
         """
         if self.video_capture is not None:
-            self.stop()
+            self.video_stop()
         self.controller.show_frame("MainFrame")
     
     def change_frame_color(self, i=0):
