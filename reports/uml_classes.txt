@@ -1,0 +1,393 @@
+@startuml
+ArgParser <-- Recorder
+ArgParser <-- App
+
+Recorder *-- AudioRecorder
+Recorder *-- VideoRecorder
+
+App *-- MainFrame
+MainFrame -- AudioVideoFrame
+MainFrame -- AudioFrame
+MainFrame -- VideoFrame
+
+AudioVideoFrame *-- AudioRecorder
+AudioVideoFrame *-- VideoRecorder
+AudioFrame *-- AudioRecorder
+VideoFrame *-- VideoRecorder
+
+
+VideoRecorder *-- Detector
+VideoRecorder *-- FaceMesh
+
+AudioRecorder *-- Detector
+
+Detector *-- Distracted
+Detector *-- Drowsiness
+Detector *-- LookingAway
+Detector *-- Loudness
+Detector *-- SimpleTextToSpeech
+
+Distracted -- LitEfficientNet
+Drowsiness *-- EyeAspectRatio
+LookingAway *-- Gaze
+
+Colors -- Detector
+Colors -- Drowsiness
+Colors -- LookingAway
+Colors -- Gaze
+
+Path -- MainFrame
+Path -- VideoFrame
+Path -- AudioFrame
+Path -- AudioVideoFrame
+
+Path -- Recorder
+Path -- AudioRecorder
+Path -- VideoRecorder
+
+class ArgParser {
+    parser: argparse.ArgumentParser
+    video_args: dict
+    audio_args: dict
+    app: App
+    recorder: Recorder
+
+    parse_args()
+}
+
+
+class App {
+    container: ctk.CTkFrame
+    frames: dict
+
+    show_frame(page_name)
+}
+
+class MainFrame {
+    button: ctk.CTkButton
+    button1: ctk.CTkButton
+    button2: ctk.CTkButton
+    controller
+    icon: ctk.CTkImage
+    image: ctk.CTkLabel
+    label: ctk.CTkLabel
+}
+
+class AudioVideoFrame {
+    audio_capture: None
+    audio_loudness_label: ctk.CTkLabel
+    audio_rcs_label: ctk.CTkLabel
+    controller
+    icon: ctk.CTkImage
+    parent
+    video_button: ctk.CTkButton
+    video_button_start: ctk.CTkButton
+    video_button_stop: ctk.CTkButton
+    video_capture: None
+    video_label: ctk.CTkLabel
+
+    change_frame_color(i)
+    record_audio()
+    update_video()
+    video_go_back()
+    video_start()
+    video_stop()
+}
+
+class AudioFrame {
+    audio_button_back: ctk.CTkButton
+    audio_button_start: ctk.CTkButton
+    audio_button_stop: ctk.CTkButton
+    audio_capture: None
+    audio_image: ctk.CTkLabel
+    audio_label: ctk.CTkLabel
+    audio_loudness_label: ctk.CTkLabel
+    audio_rcs_label: ctk.CTkLabel
+    controller
+
+    audio_go_back()
+    audio_start()
+    audio_stop()
+    record()
+}
+
+class VideoFrame {
+    controller
+    icon: ctk.CTkImage
+    video_button: ctk.CTkButton
+    video_button_start: ctk.CTkButton
+    video_button_stop: ctk.CTkButton
+    video_capture: None
+    video_label: ctk.CTkLabel
+
+    change_frame_color(i)
+    update_video()
+    video_go_back()
+    video_start()
+    video_stop()
+}
+
+
+class Recorder {
+    audio_args: dict
+    video_args: dict
+    audio_thread: threading.Thread
+    video_thread: threading.Thread
+    path_audio: str
+    path_video: str
+    audio_filename: str
+    video_filename: str
+
+    start_AVrecording()
+    start_video_recording()
+    start_audio_recording()
+    stop_AVrecording(filename)
+    stop_video_recording()
+    stop_audio_recording()
+    file_manager(filename)
+}
+
+class VideoRecorder {
+    blink_alarm: bool
+    detector: Detector
+    face_mesh: FaceMesh
+    open: bool
+    fps: int
+    fourcc: cv2.VideoWriter_fourcc
+    device_index: int
+    frame_counts: int
+    frame_size: tuple
+    path: str
+    video_filename: str
+    video_cap: cv2.VideoCapture
+    video_writer: cv2.VideoWriter
+    width: int
+    height: int
+    start_time: float
+
+    record()
+    stop()
+    start()
+    get_frame()
+}
+
+class AudioRecorder {
+    open: bool
+    rate: int
+    device_index: int
+    frames_per_buffer: int
+    format: pyaudio.paInt16
+    path: str
+    audio_filename: str
+    channels: int
+    audio: pyaudio.PyAudio
+    stream: pyaudio.Stream
+    audio_frames: list
+    detector: Detector
+    audio_loudness_label: ctk.CTkLabel
+    audio_rcs_label: ctk.CTkLabel
+
+    record()
+    stop()
+    start()
+}
+
+
+class FaceMesh {
+    mp_drawing: mp.solutions.drawing_utils
+    mp_drawing_styles: mp.solutions.drawing_styles
+    mp_face_mesh: mp.solutions.face_mesh
+    face_mesh: mp.solutions.face_mesh.FaceMesh
+
+    compute_face_landmarks(frame)
+    plot_face_mesh(frame, face_landmarks)
+}
+
+class Detector {
+    width: int
+    height: int
+    drowsiness: Drowsiness
+    looking_away: LookingAway
+    loudness: Loudness
+    tts: SimpleTextToSpeech
+    distracted: Distracted
+    rec: str
+    txt_origin_gaze: (int, int)
+    txt_origin_drowy: (int, int)
+    txt_origin_alarm: (int, int)
+    txt_origin_ear: (int, int)
+    txt_origin_gaze_time: (int, int)
+
+    detect(frame, landmarks, audio_data)
+    plot_text_on_frame(frame, state_distraction, state_drowsiness, state_looking_away, font, fntScale, thickness)
+}
+
+class Distracted {
+    device: torch.device
+    model: LitEfficientNet
+
+    detect_distraction(image)
+}
+
+class Drowsiness {
+    ear_treshold: float
+    time_treshold: float
+    state: dict
+    width: int
+    height: int
+    ear: EyeAspectRatio
+
+    detect_drowsiness(frame, landmarks)
+    plot_landmarks(frame, eye_coordinates, color)
+}
+
+class LookingAway {
+    fps: int 
+    gaze_treshold: float
+    time_treshold: float
+    delta_time_frame: float
+    gaze_act_tresh: float
+    gaze_counter: int
+    state: dict
+    gaze: Gaze
+
+    detect_looking_away(frame, landmarks)
+}
+
+class Loudness {
+    width: int
+    normalization: int
+
+    compute_loudness(audio_data)
+    display_loudness(rms)
+}
+
+class SimpleTextToSpeech {
+    engine: pyttsx3.Engine
+    voices: list
+    
+    speak(text)
+}
+
+class EyeAspectRatio {
+    image_w: int
+    image_h: int
+    left_eye_idxs: list
+    right_eye_idxs: list
+
+    distance(p1, p2)
+    get_ear(refer_idxs, landmarks)
+    calculate_avg_ear(landmarks)
+}
+
+class Gaze {
+    relative: tuple
+    relativeT: tuple
+    left_eye_idxs: list
+    right_eye_idxs: list
+    face_coordinates_2D: dict
+    face_coordinates_3D: dict
+    dist_coeffs: np.ndarray
+    rotation_vector: None
+    translation_vector: None
+    transformation: None
+    camera_matrix: np.ndarray
+    frame_width: int
+    frame_height: int
+
+    get_relative(frame, points, function)
+    get_camera_matrix(frame)
+    get_gaze_3d(pupil, eye_ball_center)
+    project_points(coords)
+    correct_gaze(pupil, eye_pupil2D, head_pose)
+    compute_eye_six_points(landmarks, eye_landmarks)
+    compute_gaze_score(landmarks. eye_landmarks, pupil_center)
+    plot_gaze(frame, pupil, gaze, roi_box, roi_center)
+    compute_gaze(frame, points)
+}
+
+class LitEfficientNet <<LightningModule>> {
+    model: EfficientNet
+    lr: float
+    gamma: float
+    num_classes: int
+
+    forward(x)
+    training_step(batch, batch_idx)
+    evaluate(batch, batch_idx)
+    validation_step(batch, batch_idx)
+    test_step(batch, batch_idx)
+    configure_optimizers()
+}
+
+class DataTransform {
+    data_transforms: dict
+}
+
+class Dataset {
+    df: pd.DataFrame
+    phase: str
+    transform: DataTransform
+
+    pull_item(idx)
+}
+
+enum Colors {
+    RED: tuple
+    GREEN: tuple
+    BLUE: tuple
+    BLACK: tuple
+    WHITE: tuple
+    YELLOW: tuple
+}
+
+enum Path {
+    IMAGE_GUI_MAIN: str
+    IMAGE_GUI_AUDIO: str
+    IMAGE_GUI_VIDEO: str
+    TEXT_GUI_MAIN_1: str
+    TEXT_GUI_MAIN_2: str
+    TEXT_GUI_MAIN_3: str
+    TEXT_GUI_MAIN_4: str
+    TEXT_GUI_1: str
+    TEXT_GUI_2: str
+    TEXT_GUI_3: str
+    TEXT_GUI_AV_1: str
+    TEXT_GUI_AUDIO_0: str
+    TEXT_GUI_AUDIO_1: str
+    TEXT_GUI_AUDIO_2: str
+    TEXT_GUI_AUDIO_3: str
+    TEXT_GUI_AUDIO_4: str
+    TEXT_GUI_AUDIO_5: str
+    TEXT_GUI_VIDEO_0: str
+    AUDIO_FILE_NAME: str
+    PATH_AUDIO_RECORDING: str
+    VIDEO_FILE_NAME: str
+    PATH_VIDEO_RECORDING: str
+}
+
+enum StaticDataset {
+    ACTIVITY_MAP: dict
+    DATA_DIR: str
+    CSV_FILE_PATH: str
+    MODEL_PATH: str
+}
+
+enum StaticLearningParameter {
+    MODEL_NAME_0: str
+    MODEL_NAME_3: str
+    COLOR_MEAN: (float, float, float)
+    COLOR_STD: (float, float, float)
+    INPUT_SIZE: int
+    NUM_CLASSES: int
+    BATCH_SIZE: int
+    EPOCHS: int
+    FOLDS: int
+    LR: float
+    GAMMA: float
+    DEBUG: bool
+    TRAIN: bool
+    SEED: int
+    USE_ALBUMENTATIONS: bool
+}
+@enduml
