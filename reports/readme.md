@@ -14,7 +14,7 @@ To obtain images from PlantUML, use the following command:
 python -m plantuml filename.txt -o path/to/output 
 ```
 
-Example, execute the following command in `reports` folder to obtain the image from the file `uml_classes.txt` and save it in the folder `figures/`:
+Example, execute the following command in `reports` folder to obtain the image from the file `uml_classes.txt` and save it in the folder `figures/classes/`:
 
 ```cli
 python -m plantuml uml_classes.txt -o figures/
