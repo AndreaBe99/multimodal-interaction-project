@@ -66,15 +66,16 @@ class Detector():
             state_looking_away = self.looking_away.detect_looking_away(frame, landmarks)
             
             # Plot text on the frame
-            # frame, blink = self.plot_text_on_frame(frame, state_distraction, state_drowness, state_looking_away)
+            frame, blink = self.plot_text_on_frame(
+                frame=frame, 
+                state_distraction=state_distraction, 
+                state_drownsiness=state_drownsiness, 
+                state_looking_away=state_looking_away)
             
             # NOTE: TO TEST ONLY THE MODEL
             # frame, blink = self.plot_text_on_frame(frame, state_distraction)
             # NOTE: TO TEST ONLY THE OPENCV FUNCTIONALITY
-            frame, blink = self.plot_text_on_frame(
-                frame, 
-                state_drownsiness=state_drownsiness, 
-                state_looking_away=state_looking_away)
+            # frame, blink = self.plot_text_on_frame(frame, state_drownsiness=state_drownsiness, state_looking_away=state_looking_away)
             
         if (self.rec == "audio" or self.rec == "both") and audio_data is not None:
             # Detect loudness
@@ -87,8 +88,8 @@ class Detector():
     def plot_text_on_frame(
         self, 
         frame:np.array, 
-        state_distraction: str=None,
-        state_drownsiness: typing.Dict[str, typing.Any] = None,
+        state_distraction: typing.Dict[str, typing.Any]=None,
+        state_drownsiness: typing.Dict[str, typing.Any]=None,
         state_looking_away: typing.Dict[str, typing.Any]=None,
         font=cv2.FONT_HERSHEY_SIMPLEX, 
         fntScale=0.8, 
@@ -98,6 +99,7 @@ class Detector():
 
         Args:
             frame (np.array): Frame of the video
+            state_distraction (typing.Dict[str, typing.Any]): State of distraction
             state_drowness (typing.Dict[str, typing.Any]): State of drowsiness
             state_looking_away (typing.Dict[str, typing.Any]): State of looking away
             font (cv2.FONT, optional): Font of the text. Defaults to cv2.FONT_HERSHEY_SIMPLEX.
@@ -124,24 +126,30 @@ class Detector():
                 "play_alarm": False
             }
         if state_distraction is None:
-            state_distraction = "c0"
+            state_distraction = {
+                "color": Colors.GREEN.value,
+                "play_alarm": False,
+                "class": 'c0',
+            }
         #################################################
+        
         blink = False
         alarm_color = Colors.GREEN.value
-        if state_distraction != "c0":
-            txt_alarm = sd.ACTIVITY_MAP.value[state_distraction]
+    
+        if state_distraction["play_alarm"]:
+            txt_alarm = sd.ACTIVITY_MAP.value[state_distraction["class"]]
             alarm_color = Colors.RED.value
-            tts_alarm = self.tts.speak("Detected: " + sd.ACTIVITY_MAP.value[state_distraction])
+            self.tts.speak("Detected: " + sd.ACTIVITY_MAP.value[state_distraction["class"]])
             blink = True
-        if state_drownsiness["play_alarm"]:
+        elif state_drownsiness["play_alarm"]:
             txt_alarm = "WAKE UP!"
             alarm_color = Colors.RED.value
-            tts_alarm = self.tts.speak("WAKE UP!")
+            self.tts.speak("WAKE UP!")
             blink = True
-        if state_looking_away["play_alarm"]:
+        elif state_looking_away["play_alarm"]:
             txt_alarm = "LOOK STRAIGHT!"
             alarm_color = Colors.RED.value
-            tts_alarm = self.tts.speak("LOOK STRAIGHT!")
+            self.tts.speak("LOOK STRAIGHT!")
             blink = True
         else:
             txt_alarm = sd.ACTIVITY_MAP.value["c0"]
@@ -166,9 +174,9 @@ class Detector():
             state_looking_away["color"])
         
         put_text(frame, txt_drowsy, self.txt_origin_drowsy,
-                 state_drownsiness["color"])
+            state_drownsiness["color"])
         put_text(frame, txt_ear, self.txt_origin_ear,
-                 state_drownsiness["color"])
+            state_drownsiness["color"])
         
         put_text(frame, txt_alarm, self.txt_origin_alarm, alarm_color)
         
