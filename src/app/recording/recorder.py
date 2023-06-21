@@ -39,7 +39,7 @@ class Recorder():
         """
         Start the recording of video.
         """
-        self.video_thread = VideoRecorder()
+        self.video_thread = VideoRecorder(**self.video_args)
         self.video_thread.start()
 
 
@@ -47,7 +47,7 @@ class Recorder():
         """
         Start the recording of audio.
         """
-        self.audio_thread = AudioRecorder()
+        self.audio_thread = AudioRecorder(**self.audio_args)
         self.audio_thread.start()
 
 
@@ -128,7 +128,7 @@ if __name__ == "__main__":
     
     video_args = {"fps":6,
                   "fourcc":"MJPG",
-                  "device_index":0,
+                  "device_index":-1,
                   "frame_counts":1,
                   "frameSize":(640,480),
                   "video_filename":"temp_video.avi"}
