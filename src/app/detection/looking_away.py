@@ -8,7 +8,7 @@ from src.app.utils.config import Colors
 
 class LookingAway():
     """Class to detect if the driver is looking away"""
-    def __init__(self, fps, gaze_treshold=0.2, time_treshold=2) -> None:
+    def __init__(self, fps, gaze_treshold=0.2, time_treshold=3) -> None:
         """
         Args:
             fps (int): fps of the video
@@ -18,10 +18,6 @@ class LookingAway():
         self.fps = fps
         self.gaze_treshold = gaze_treshold
         self.time_treshold = time_treshold
-
-        self.delta_time_frame = 1.0 / self.fps
-        self.gaze_act_tresh = time_treshold / self.delta_time_frame
-        self.gaze_counter = 0
         
         # Variable used to compute drowsiness
         # For tracking counters and sharing states in and out of callbacks.
@@ -76,19 +72,4 @@ class LookingAway():
         
         self.state["gaze"] = gaze_score
         
-        # NOTE! This is an alternative way to compute the gaze time
-        # from https://github.com/e-candeloro/Driver-State-Detection/tree/master
-        """ 
-        looking_away = False
-        if self.gaze_counter >= self.gaze_act_tresh:
-            looking_away = True
-            self.state["color"] = Colors.RED.value
-            self.state["play_alarm"] = True
-            self.state["gaze"] = gaze_score
-        if gaze_score is not None and gaze_score >= self.gaze_treshold:
-            if not looking_away:
-                self.gaze_counter += 1
-        elif self.gaze_counter > 0:
-            self.gaze_counter -= 1
-        """
         return self.state
