@@ -1,0 +1,13 @@
+@startuml
+actor User as u
+rectangle DriverMonitoringSystem{
+    usecase "Open the car" as UC1
+    usecase "Start driving" as UC2
+    usecase "Start monitoring system: audio and video" as UC3
+    usecase "Possible alert from the infotainment for distracted driving" as UC4
+}
+u -- UC1
+UC1 --> UC2
+UC2 --> UC3
+UC3 --> UC4
+@enduml
