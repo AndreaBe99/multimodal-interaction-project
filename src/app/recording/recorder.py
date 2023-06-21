@@ -126,7 +126,7 @@ class Recorder():
 
 if __name__ == "__main__":
     
-    video_args = {"fps":6,
+    video_args = {"fps":15,
                   "fourcc":"MJPG",
                   "device_index":-1,
                   "frame_counts":1,
