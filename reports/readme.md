@@ -20,4 +20,4 @@ Example, execute the following command in `reports` folder to obtain the image f
 python -m plantuml uml_classes.txt -o figures/
 ```
 
-
+If we need other type of generated file (es, svg) we can copy our code in the [online web server](https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000).
