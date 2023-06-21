@@ -15,7 +15,7 @@ import torch.utils.data as data
 
 import pytorch_lightning as pl
 from pytorch_lightning import LightningModule, Trainer, seed_everything
-from pytorch_lightning.callbacks import LearningRateMonitor
+from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 from pytorch_lightning.callbacks.progress import TQDMProgressBar
 from pytorch_lightning.loggers import CSVLogger
 
@@ -27,7 +27,9 @@ from src.train.model import LitEfficientNet
 
 
 class Train:
-    def __init__(self, verbose=True, plot=False, df_path=sd.CSV_FILE_PATH.value) -> None:
+    def __init__(
+        self, verbose=True, plot=False, df_path=sd.CSV_FILE_PATH.value
+    ) -> None:
         self.verbose = True  # Set True if you want to see some logs
         self.plot = False  # Set True if you want to plot the image
         self.df_path = df_path
@@ -47,8 +49,7 @@ class Train:
     def preprocess(self):
         # Add file path column
         self.df["file_path"] = self.df.apply(
-            lambda x: os.path.join(
-                sd.DATA_DIR.value, "imgs/train", x.classname, x.img),
+            lambda x: os.path.join(sd.DATA_DIR.value, "imgs/train", x.classname, x.img),
             axis=1,
         )
         # Add Column by Converting Correct Answer Labels to Numbers
@@ -79,7 +80,8 @@ class Train:
         """
         # data division
         df_train, df_val = train_test_split(
-            self.df, stratify=self.df["subject"], random_state=seed)
+            self.df, stratify=self.df["subject"], random_state=seed
+        )
         if self.verbose:
             print("train num:", len(df_train))
             print("val num:", len(df_val))
@@ -113,9 +115,9 @@ class Train:
 
         return train_dataset, val_dataset
 
-
     def create_datamodule(
-        self, train_dataset, val_dataset, batch_size=slp.BATCH_SIZE.value):
+        self, train_dataset, val_dataset, batch_size=slp.BATCH_SIZE.value
+    ):
         """
         Create dataloader for training and validation.
 
@@ -167,6 +169,7 @@ class Train:
             callbacks=[
                 LearningRateMonitor(logging_interval="step"),
                 TQDMProgressBar(refresh_rate=10),
+                ModelCheckpoint(save_top_k=2, monitor="val_f1", mode="max"),
             ],
         )
         trainer.fit(model, datamodule=datamodule)
@@ -174,12 +177,12 @@ class Train:
 
 if __name__ == "__main__":
     train = Train()
-    
+
     train.fix_seed()
     train.preprocess()
     train_dataset, val_dataset = train.create_dataset()
     datamodule = train.create_datamodule(train_dataset, val_dataset)
-    
+
     if train.verbose:
         image = datamodule.train_dataloader().dataset[0]
         print(image[0].shape)
