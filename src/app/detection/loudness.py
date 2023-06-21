@@ -9,7 +9,7 @@ class Loudness():
     Compute the RMS level of the audio data.
     """
     
-    def __init__(self, width=2, normalization=32767) -> None:
+    def __init__(self, audio_width=2, normalization=32767) -> None:
         """
         Args:
             width (int): Width of the audio data. Default is 2.
@@ -21,7 +21,7 @@ class Loudness():
                 represented as signed 16-bit integers, with a range from -32768 
                 to 32767.
         """
-        self.width = width
+        self.audio_width = audio_width
         self.normalization = normalization
     
     
@@ -33,7 +33,6 @@ class Loudness():
         
         Args:
             data (bytes): Audio data.
-            width (int): Width of the audio data.
         
         Returns:
             rms (float): Root Mean Square (RMS) level of the audio data.
@@ -41,7 +40,7 @@ class Loudness():
         """
         data = np.frombuffer(data, dtype=np.int16)
         data = np.amax(data)
-        return audioop.rms(data, self.width) / self.normalization
+        return audioop.rms(data, self.audio_width) / self.normalization
     
     
     def display_loudness(self, rms)->None:
