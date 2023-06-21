@@ -94,7 +94,7 @@ if __name__ == "__main__":
                 "video_filename": "temp_video.avi"}
 
     audio_args = {"rate": 44100,
-                    "device_index": -1,
+                    "device_index": 0,
                     "frames_per_buffer": 1024,
                     "py_format": pyaudio.paInt16,
                     "audio_filename": "temp_audio.wav",
