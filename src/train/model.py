@@ -64,7 +64,14 @@ class LitEfficientNet(LightningModule):
         loss = F.nll_loss(logits, labels)
         preds = torch.argmax(logits, dim=1)
         acc = accuracy(preds, labels)  # self.accuracy(preds, labels)
-        f1 = f1_score(preds, labels)
+        f1 = f1_score(
+            preds,
+            labels,
+            task="multiclass",
+            num_classes=self.num_classes,
+            top_k=1,
+            average="macro",
+        )
 
         if stage:
             self.log(f"{stage}_loss", loss, prog_bar=True)
