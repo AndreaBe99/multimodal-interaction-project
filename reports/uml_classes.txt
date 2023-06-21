@@ -21,6 +21,8 @@ package detection <<Rectangle>> {
     }
 
     class Distracted {
+        time_treshold: float
+        state: dict
         device: torch.device
         model: LitEfficientNet
 
@@ -40,20 +42,17 @@ package detection <<Rectangle>> {
     }
 
     class LookingAway {
-        fps: int 
         gaze_treshold: float
         time_treshold: float
-        delta_time_frame: float
-        gaze_act_tresh: float
-        gaze_counter: int
         state: dict
+        fps: int 
         gaze: Gaze
 
         detect_looking_away(frame, landmarks)
     }
 
     class Loudness {
-        width: int
+        audio_width: int
         normalization: int
 
         compute_loudness(audio_data)
@@ -82,9 +81,6 @@ package recording <<Rectangle>> {
     }
 
     class VideoRecorder {
-        blink_alarm: bool
-        detector: Detector
-        face_mesh: FaceMesh
         open: bool
         fps: int
         fourcc: cv2.VideoWriter_fourcc
@@ -97,7 +93,10 @@ package recording <<Rectangle>> {
         video_writer: cv2.VideoWriter
         width: int
         height: int
+        detector: Detector
+        face_mesh: FaceMesh
         start_time: float
+        blink_alarm: bool
 
         record()
         stop()
@@ -157,6 +156,7 @@ package gui <<Rectangle>> {
         video_button_stop: ctk.CTkButton
         video_capture: None
         video_label: ctk.CTkLabel
+        lock_count: int
 
         video_go_back()
         video_start()
@@ -189,6 +189,7 @@ package gui <<Rectangle>> {
         video_button_stop: ctk.CTkButton
         video_capture: None
         video_label: ctk.CTkLabel
+        lock_count: int
         
         video_go_back()
         video_start()
@@ -335,8 +336,10 @@ class FaceMesh {
 class SimpleTextToSpeech {
     engine: pyttsx3.Engine
     voices: list
+    lock_count: int
     
     speak(text)
+    call(text)
 }
 
 class EyeAspectRatio {
