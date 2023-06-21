@@ -1,0 +1,15 @@
+@startuml
+actor User as u
+rectangle DriverMonitoringSystem{
+    usecase "Use the application" as UC1
+    usecase "Choose the recording mode: Video Only" as UC2
+    usecase "Video Management" as UC3
+    usecase "Record video of yourself" as UC4
+    usecase "Detection by video" as UC5
+}
+u -- UC1
+UC1 --> UC2
+UC2 --> UC3
+UC3 <|-- UC4
+UC4 --> UC5
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+actor User as u
+rectangle DriverMonitoringSystem{
+    usecase "Use the application" as UC1
+    usecase "Choose the recording mode: Audio Only" as UC2
+    usecase "Audio Management" as UC3
+    usecase "Record Audio of yourself" as UC4
+    usecase "Detect the presence of a loud noise" as UC5
+}
+u -- UC1
+UC1 --> UC2
+UC2 --> UC3
+UC3 <|-- UC4
+UC4 --> UC5
+@enduml
