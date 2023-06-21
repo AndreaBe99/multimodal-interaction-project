@@ -1,10 +1,57 @@
 import platform
 import subprocess
 import os
-
+import threading
 import pyttsx3
+import time
 
 
+class SimpleTextToSpeech:
+    """
+    Produce a real time speech from a text, but the quality is not as good as
+    ComplexTextToSpeech class.
+    """
+
+    def __init__(self):
+        # Using pyttsx3
+        self.engine = pyttsx3.init()
+        self.engine.setProperty('rate', 125)     # setting up new voice rate
+        self.engine.setProperty('volume', 1.0)
+
+        # Set voices: 0 Male, 1 Female
+        self.voices = self.engine.getProperty('voices')
+        self.engine.setProperty('voice', self.voices[1].id)
+
+        # We use a lock to avoid the same alarm to be played multiple times
+        self.lock_count = 0
+
+    def call(self, text):
+        operating_system = platform.system()
+        if operating_system == 'Windows':
+            subprocess.call(
+                ['PowerShell', '-Command', f'(New-Object -ComObject SAPI.SpVoice).Speak("{text}")'])
+        elif operating_system == 'Darwin':  # MacOS
+            subprocess.call(['say', text])
+        elif operating_system == 'Linux':
+            subprocess.call(['espeak', text])
+
+        # Using pyttsx3, we can modify the voice rate and volume.
+        # This library use the same engine (espeak) as the Linux command.
+        # pyttsx3.speak(text)
+
+    def speak(self, text):
+        current_time = time.time()
+        time_elapsed = current_time - self.lock_count
+        # We only allow the alarm to be played every 3 seconds
+        if time_elapsed < 3:
+            return
+        self.lock_count = current_time
+        speak_thread = threading.Thread(target=self.call, args=(text,))
+        speak_thread.start()
+
+
+
+# NOTE!: This class is not used in the project
 class ComplexTextToSpeech:
     """
     This class uses the TTS library to generate a wav file from a text.
@@ -60,35 +107,6 @@ class ComplexTextToSpeech:
             raise ValueError("The alarm name does not exist.")
         file_path = self.path + alarm + ".wav"
         os.system(file_path)
-
-class SimpleTextToSpeech:
-    """
-    Produce a real time speech from a text, but the quality is not as good as
-    ComplexTextToSpeech class.
-    """
-    def __init__(self):
-        # Using pyttsx3
-        self.engine = pyttsx3.init() 
-        self.engine.setProperty('rate', 125)     # setting up new voice rate
-        self.engine.setProperty('volume', 1.0)
-        
-        # Set voices: 0 Male, 1 Female
-        self.voices = self.engine.getProperty('voices')
-        self.engine.setProperty('voice', self.voices[1].id)
-    
-    def speak(self, text):
-        operating_system = platform.system()
-        if operating_system == 'Windows':
-            subprocess.call(['PowerShell', '-Command', f'(New-Object -ComObject SAPI.SpVoice).Speak("{text}")'])
-        elif operating_system == 'Darwin':  # MacOS
-            subprocess.call(['say', text])
-        elif operating_system == 'Linux':
-            subprocess.call(['espeak', text])
-        
-        # Using pyttsx3, we can modify the voice rate and volume.
-        # This library use the same engine (espeak) as the Linux command.
-        # pyttsx3.speak(text)
-    
 
 
 if __name__ == "__main__":
