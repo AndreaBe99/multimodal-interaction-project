@@ -13,8 +13,8 @@ class Drowsiness():
     """Class to detect drowsiness"""
     def __init__(
         self,
-        ear_treshold: float = 0.1,
-        time_treshold: float = 0.2,
+        ear_treshold: float = 0.2,
+        time_treshold: float = 1.0,
         width=640, 
         height=480
         ) -> None:
