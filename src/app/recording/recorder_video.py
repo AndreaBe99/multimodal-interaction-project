@@ -15,7 +15,7 @@ class VideoRecorder():
         self,
         fps=15,
         fourcc="MJPG",
-        device_index=-1,
+        device_index=0,
         frame_counts=1,
         frameSize=(640,480),
         video_filename=Path.VIDEO_FILE_NAME.value):
@@ -44,8 +44,6 @@ class VideoRecorder():
         self.video_filename = self.path + video_filename
         
         self.video_cap = cv2.VideoCapture(self.device_index)
-        if not self.video_cap.isOpened():
-            raise ValueError("Unable to open video source", device_index)
         
         self.video_writer = cv2.VideoWriter_fourcc(*self.fourcc)
         self.video_out = cv2.VideoWriter(
