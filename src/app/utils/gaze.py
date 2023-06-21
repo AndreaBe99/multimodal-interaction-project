@@ -246,7 +246,9 @@ class Gaze:
         """
         # Get the corresponding points P1, P2, P3, P4, P5, P6
         eye_points = self.compute_eye_six_points(landmarks.landmark, eye_landmarks)
-                
+        
+        if eye_points is None:
+            return None, None, None
         # Compute eye ROI coordinates, i.e. the box
         x_coordinates = [landmark[0] for landmark in eye_points]
         y_coordinates = [landmark[1] for landmark in eye_points]
@@ -411,6 +413,8 @@ class Gaze:
         right_gaze_score, right_roi_box, right_roi_center = self.compute_gaze_score(
             points, self.right_eye_idxs, right_pupil)
         
+        if left_gaze_score is None or right_gaze_score is None:
+            return None
         # Draw gaze line into screen
         self.plot_gaze(frame, left_pupil, 
             left_gaze_point, left_roi_box, left_roi_center)
