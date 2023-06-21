@@ -55,6 +55,9 @@ class ArgParser():
 
     def parse_args(self):
         self.parser.parse_args()
+
+        t = self.parser.parse_args().time
+        print("Recording for {} seconds".format(t))
         
         if self.parser.parse_args().execution_type == "GUI":
             self.app.mainloop()
@@ -65,36 +68,46 @@ class ArgParser():
 
             elif self.parser.parse_args().what_to_record == "video":
                 # VIDEO RECORDING
+                print("Recording video...")
+                self.recorder.start_video_recording()
+                # Video recording for 5 seconds
+                time.sleep(t)
+                self.recorder.stop_video_recording()
+                
+                """
                 self.recorder.start_video_recording()
                 # Video recording for 5 seconds  by default
                 time.sleep(parser.parse_args().time)
                 self.recorder.stop_video_recording()
+                """
 
             elif self.parser.parse_args().what_to_record == "audio":
                 # AUDIO RECORDING
+                print("Recording audio...")
                 self.recorder.start_audio_recording()
                 # Audio recording for 5 seconds  by default
-                time.sleep(parser.parse_args().time)
+                time.sleep(t)
                 self.recorder.stop_audio_recording()
 
             elif parser.parse_args().what_to_record == "both":
                 # VIDEO AND AUDIO RECORDING
+                print("Recording video and audio...")
                 self.recorder.start_AVrecording()
                 # Video recording for 5 seconds by default
-                time.sleep(parser.parse_args().time)
+                time.sleep(t)
                 self.recorder.stop_AVrecording(filename="test")
 
 if __name__ == "__main__":
     
-    video_args = {"fps": 6,
+    video_args = {"fps": 15,
                 "fourcc": "MJPG",
-                "device_index": 0,
+                "device_index": -1,
                 "frame_counts": 1,
                 "frameSize": (640, 480),
                 "video_filename": "temp_video.avi"}
 
     audio_args = {"rate": 44100,
-                    "device_index": 0,
+                    "device_index": -1,
                     "frames_per_buffer": 1024,
                     "py_format": pyaudio.paInt16,
                     "audio_filename": "temp_audio.wav",
