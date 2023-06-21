@@ -1,36 +1,297 @@
 @startuml
-ArgParser <-- Recorder
-ArgParser <-- App
 
-Recorder *-- AudioRecorder
-Recorder *-- VideoRecorder
+package detection <<Rectangle>> {
+    class Detector {
+        width: int
+        height: int
+        drowsiness: Drowsiness
+        looking_away: LookingAway
+        loudness: Loudness
+        tts: SimpleTextToSpeech
+        distracted: Distracted
+        rec: str
+        txt_origin_gaze: (int, int)
+        txt_origin_drowy: (int, int)
+        txt_origin_alarm: (int, int)
+        txt_origin_ear: (int, int)
+        txt_origin_gaze_time: (int, int)
+
+        detect(frame, landmarks, audio_data)
+        plot_text_on_frame(frame, state_distraction, state_drowsiness, state_looking_away, font, fntScale, thickness)
+    }
+
+    class Distracted {
+        device: torch.device
+        model: LitEfficientNet
+
+        detect_distraction(image)
+    }
+
+    class Drowsiness {
+        ear_treshold: float
+        time_treshold: float
+        state: dict
+        width: int
+        height: int
+        ear: EyeAspectRatio
+
+        detect_drowsiness(frame, landmarks)
+        plot_landmarks(frame, eye_coordinates, color)
+    }
+
+    class LookingAway {
+        fps: int 
+        gaze_treshold: float
+        time_treshold: float
+        delta_time_frame: float
+        gaze_act_tresh: float
+        gaze_counter: int
+        state: dict
+        gaze: Gaze
+
+        detect_looking_away(frame, landmarks)
+    }
+
+    class Loudness {
+        width: int
+        normalization: int
+
+        compute_loudness(audio_data)
+        display_loudness(rms)
+    }
+}
+
+package recording <<Rectangle>> {
+    class Recorder {
+        audio_args: dict
+        video_args: dict
+        audio_thread: threading.Thread
+        video_thread: threading.Thread
+        path_audio: str
+        path_video: str
+        audio_filename: str
+        video_filename: str
+
+        start_AVrecording()
+        start_video_recording()
+        start_audio_recording()
+        stop_AVrecording(filename)
+        stop_video_recording()
+        stop_audio_recording()
+        file_manager(filename)
+    }
+
+    class VideoRecorder {
+        blink_alarm: bool
+        detector: Detector
+        face_mesh: FaceMesh
+        open: bool
+        fps: int
+        fourcc: cv2.VideoWriter_fourcc
+        device_index: int
+        frame_counts: int
+        frame_size: tuple
+        path: str
+        video_filename: str
+        video_cap: cv2.VideoCapture
+        video_writer: cv2.VideoWriter
+        width: int
+        height: int
+        start_time: float
+
+        record()
+        stop()
+        start()
+        get_frame()
+    }
+
+    class AudioRecorder {
+        open: bool
+        rate: int
+        device_index: int
+        frames_per_buffer: int
+        format: pyaudio.paInt16
+        path: str
+        audio_filename: str
+        channels: int
+        audio: pyaudio.PyAudio
+        stream: pyaudio.Stream
+        audio_frames: list
+        detector: Detector
+        audio_loudness_label: ctk.CTkLabel
+        audio_rcs_label: ctk.CTkLabel
+
+        record()
+        stop()
+        start()
+    }
+}
+
+package gui <<Rectangle>> {
+    class App {
+        container: ctk.CTkFrame
+        frames: dict
+
+        show_frame(page_name)
+    }
+
+    class MainFrame {
+        button: ctk.CTkButton
+        button1: ctk.CTkButton
+        button2: ctk.CTkButton
+        controller
+        icon: ctk.CTkImage
+        image: ctk.CTkLabel
+        label: ctk.CTkLabel
+    }
+
+    class AudioVideoFrame {
+        audio_capture: None
+        audio_loudness_label: ctk.CTkLabel
+        audio_rcs_label: ctk.CTkLabel
+        controller
+        icon: ctk.CTkImage
+        parent
+        video_button: ctk.CTkButton
+        video_button_start: ctk.CTkButton
+        video_button_stop: ctk.CTkButton
+        video_capture: None
+        video_label: ctk.CTkLabel
+
+        video_go_back()
+        video_start()
+        update_video()
+        video_stop()
+        change_frame_color(i)
+    }
+
+    class AudioFrame {
+        audio_button_back: ctk.CTkButton
+        audio_button_start: ctk.CTkButton
+        audio_button_stop: ctk.CTkButton
+        audio_capture: None
+        audio_image: ctk.CTkLabel
+        audio_label: ctk.CTkLabel
+        audio_loudness_label: ctk.CTkLabel
+        audio_rcs_label: ctk.CTkLabel
+        controller
+
+        audio_go_back()
+        audio_start()
+        audio_stop()
+    }
+
+    class VideoFrame {
+        controller
+        icon: ctk.CTkImage
+        video_button: ctk.CTkButton
+        video_button_start: ctk.CTkButton
+        video_button_stop: ctk.CTkButton
+        video_capture: None
+        video_label: ctk.CTkLabel
+        
+        video_go_back()
+        video_start()
+        update_video()
+        video_stop()
+        change_frame_color(i)
+    }
+}
+
+package train <<Rectangle>> {
+    class LitEfficientNet <<LightningModule>> {
+        model: EfficientNet
+        lr: float
+        gamma: float
+        num_classes: int
+
+        forward(x)
+        training_step(batch, batch_idx)
+        evaluate(batch, batch_idx)
+        validation_step(batch, batch_idx)
+        test_step(batch, batch_idx)
+        configure_optimizers()
+    }
+
+    class DataTransform {
+        data_transforms: dict
+    }
+
+    class Dataset {
+        df: pd.DataFrame
+        phase: str
+        transform: DataTransform
+
+        pull_item(idx)
+    }
+
+    class Train {
+        verbose: bool
+        plot: bool
+        df_path: str
+        df: pd.DataFrame
+
+        fix_seed(seed)
+        preprocess()
+        create_datasets(seed, input_size, color_mean, color_std)
+        create_datamodule(train_dataset, val_dataset, batch_size)
+        train(datamodule, class_names)
+
+    }
+}
+
+ArgParser o-right- Recorder
+ArgParser o-left- App
+
+Recorder --> AudioRecorder
+Recorder --> VideoRecorder
+
+Recorder -[hidden]left--> AudioRecorder
+AudioRecorder -[hidden]left--> VideoRecorder
+
 
 App *-- MainFrame
 MainFrame -- AudioVideoFrame
 MainFrame -- AudioFrame
 MainFrame -- VideoFrame
 
-AudioVideoFrame *-- AudioRecorder
-AudioVideoFrame *-- VideoRecorder
-AudioFrame *-- AudioRecorder
-VideoFrame *-- VideoRecorder
+/'hidden link to force layout
+MainFrame -[hidden]up--> App
+MainFrame -[hidden]down--> VideoFrame
+MainFrame -[hidden]down--> AudioFrame
+MainFrame -[hidden]down--> AudioVideoFrame'/
+
+AudioVideoFrame ..> AudioRecorder
+AudioVideoFrame ..> VideoRecorder
+AudioFrame ..> AudioRecorder
+VideoFrame ..> VideoRecorder
 
 
-VideoRecorder *-- Detector
-VideoRecorder *-- FaceMesh
+VideoRecorder --> Detector
+VideoRecorder --> FaceMesh
+/'Hidden arrow to force layout'/
+VideoRecorder -[hidden]left--> FaceMesh
 
-AudioRecorder *-- Detector
+AudioRecorder --> Detector
 
-Detector *-- Distracted
-Detector *-- Drowsiness
-Detector *-- LookingAway
-Detector *-- Loudness
-Detector *-- SimpleTextToSpeech
 
-Distracted -- LitEfficientNet
-Drowsiness *-- EyeAspectRatio
-LookingAway *-- Gaze
+Detector -right-> Distracted
+Detector --> Drowsiness
+Detector --> LookingAway
+Detector --> Loudness
+Detector --> SimpleTextToSpeech
+/'Hidden arrow to force layout'/
+Detector -[hidden]left--> SimpleTextToSpeech
 
+LookingAway --> Gaze
+Distracted --> LitEfficientNet
+Drowsiness --> EyeAspectRatio
+
+/'force layout with hidden keyword'/
+Gaze -[hidden]left--> train
+Gaze -[hidden]right--> EyeAspectRatio
+
+/' These lines are commented for a better visualization of the diagram
 Colors -- Detector
 Colors -- Drowsiness
 Colors -- LookingAway
@@ -44,6 +305,12 @@ Path -- AudioVideoFrame
 Path -- Recorder
 Path -- AudioRecorder
 Path -- VideoRecorder
+'/
+
+Train ..> Dataset
+Dataset --> DataTransform
+Train ..> LitEfficientNet
+
 
 class ArgParser {
     parser: argparse.ArgumentParser
@@ -55,144 +322,6 @@ class ArgParser {
     parse_args()
 }
 
-
-class App {
-    container: ctk.CTkFrame
-    frames: dict
-
-    show_frame(page_name)
-}
-
-class MainFrame {
-    button: ctk.CTkButton
-    button1: ctk.CTkButton
-    button2: ctk.CTkButton
-    controller
-    icon: ctk.CTkImage
-    image: ctk.CTkLabel
-    label: ctk.CTkLabel
-}
-
-class AudioVideoFrame {
-    audio_capture: None
-    audio_loudness_label: ctk.CTkLabel
-    audio_rcs_label: ctk.CTkLabel
-    controller
-    icon: ctk.CTkImage
-    parent
-    video_button: ctk.CTkButton
-    video_button_start: ctk.CTkButton
-    video_button_stop: ctk.CTkButton
-    video_capture: None
-    video_label: ctk.CTkLabel
-
-    change_frame_color(i)
-    record_audio()
-    update_video()
-    video_go_back()
-    video_start()
-    video_stop()
-}
-
-class AudioFrame {
-    audio_button_back: ctk.CTkButton
-    audio_button_start: ctk.CTkButton
-    audio_button_stop: ctk.CTkButton
-    audio_capture: None
-    audio_image: ctk.CTkLabel
-    audio_label: ctk.CTkLabel
-    audio_loudness_label: ctk.CTkLabel
-    audio_rcs_label: ctk.CTkLabel
-    controller
-
-    audio_go_back()
-    audio_start()
-    audio_stop()
-    record()
-}
-
-class VideoFrame {
-    controller
-    icon: ctk.CTkImage
-    video_button: ctk.CTkButton
-    video_button_start: ctk.CTkButton
-    video_button_stop: ctk.CTkButton
-    video_capture: None
-    video_label: ctk.CTkLabel
-
-    change_frame_color(i)
-    update_video()
-    video_go_back()
-    video_start()
-    video_stop()
-}
-
-
-class Recorder {
-    audio_args: dict
-    video_args: dict
-    audio_thread: threading.Thread
-    video_thread: threading.Thread
-    path_audio: str
-    path_video: str
-    audio_filename: str
-    video_filename: str
-
-    start_AVrecording()
-    start_video_recording()
-    start_audio_recording()
-    stop_AVrecording(filename)
-    stop_video_recording()
-    stop_audio_recording()
-    file_manager(filename)
-}
-
-class VideoRecorder {
-    blink_alarm: bool
-    detector: Detector
-    face_mesh: FaceMesh
-    open: bool
-    fps: int
-    fourcc: cv2.VideoWriter_fourcc
-    device_index: int
-    frame_counts: int
-    frame_size: tuple
-    path: str
-    video_filename: str
-    video_cap: cv2.VideoCapture
-    video_writer: cv2.VideoWriter
-    width: int
-    height: int
-    start_time: float
-
-    record()
-    stop()
-    start()
-    get_frame()
-}
-
-class AudioRecorder {
-    open: bool
-    rate: int
-    device_index: int
-    frames_per_buffer: int
-    format: pyaudio.paInt16
-    path: str
-    audio_filename: str
-    channels: int
-    audio: pyaudio.PyAudio
-    stream: pyaudio.Stream
-    audio_frames: list
-    detector: Detector
-    audio_loudness_label: ctk.CTkLabel
-    audio_rcs_label: ctk.CTkLabel
-
-    record()
-    stop()
-    start()
-}
-
-
 class FaceMesh {
     mp_drawing: mp.solutions.drawing_utils
     mp_drawing_styles: mp.solutions.drawing_styles
@@ -201,65 +330,6 @@ class FaceMesh {
 
     compute_face_landmarks(frame)
     plot_face_mesh(frame, face_landmarks)
-}
-
-class Detector {
-    width: int
-    height: int
-    drowsiness: Drowsiness
-    looking_away: LookingAway
-    loudness: Loudness
-    tts: SimpleTextToSpeech
-    distracted: Distracted
-    rec: str
-    txt_origin_gaze: (int, int)
-    txt_origin_drowy: (int, int)
-    txt_origin_alarm: (int, int)
-    txt_origin_ear: (int, int)
-    txt_origin_gaze_time: (int, int)
-
-    detect(frame, landmarks, audio_data)
-    plot_text_on_frame(frame, state_distraction, state_drowsiness, state_looking_away, font, fntScale, thickness)
-}
-
-class Distracted {
-    device: torch.device
-    model: LitEfficientNet
-
-    detect_distraction(image)
-}
-
-class Drowsiness {
-    ear_treshold: float
-    time_treshold: float
-    state: dict
-    width: int
-    height: int
-    ear: EyeAspectRatio
-
-    detect_drowsiness(frame, landmarks)
-    plot_landmarks(frame, eye_coordinates, color)
-}
-
-class LookingAway {
-    fps: int 
-    gaze_treshold: float
-    time_treshold: float
-    delta_time_frame: float
-    gaze_act_tresh: float
-    gaze_counter: int
-    state: dict
-    gaze: Gaze
-
-    detect_looking_away(frame, landmarks)
-}
-
-class Loudness {
-    width: int
-    normalization: int
-
-    compute_loudness(audio_data)
-    display_loudness(rms)
 }
 
 class SimpleTextToSpeech {
@@ -306,31 +376,7 @@ class Gaze {
     compute_gaze(frame, points)
 }
 
-class LitEfficientNet <<LightningModule>> {
-    model: EfficientNet
-    lr: float
-    gamma: float
-    num_classes: int
 
-    forward(x)
-    training_step(batch, batch_idx)
-    evaluate(batch, batch_idx)
-    validation_step(batch, batch_idx)
-    test_step(batch, batch_idx)
-    configure_optimizers()
-}
-
-class DataTransform {
-    data_transforms: dict
-}
-
-class Dataset {
-    df: pd.DataFrame
-    phase: str
-    transform: DataTransform
-
-    pull_item(idx)
-}
 
 enum Colors {
     RED: tuple
