@@ -85,8 +85,38 @@ class AudioVideoFrame(ctk.CTkFrame):
         self.video_capture = VideoRecorder()
         self.update_video()
         
-        self.record_audio()
+        self.audio_capture = AudioRecorder(
+            audio_loudness_label=self.audio_loudness_label,
+            audio_rcs_label=self.audio_rcs_label)
+        self.audio_loudness_label.configure(
+            text=Path.TEXT_GUI_AUDIO_3.value,
+            font=("Helvetica", 16),
+            text_color="green")
+        self.audio_capture.start()
         
+    
+    def update_video(self):
+        """
+        Function called to update the video frame
+        """
+        if self.video_capture is None:
+            return
+        ret, frame, blink = self.video_capture.get_frame()
+        if frame is not None:
+            image = Image.fromarray(frame)
+            image = image.resize((400, 300))
+            # photo = ImageTk.PhotoImage(image)
+            photo = ctk.CTkImage(image, size=(400, 300))
+            self.video_label.configure(image=photo)
+            self.video_label.image = photo
+
+            # if the alarm is activated, flash the background color
+            if blink:
+                threading.Thread(target=self.change_frame_color).start()
+                # self.change_frame_color()
+
+        self.after(15, self.update_video)
+
     
     def video_stop(self):
         """
@@ -105,39 +135,6 @@ class AudioVideoFrame(ctk.CTkFrame):
             self.audio_capture.stop()
         self.audio_capture = None
         
-        
-    def update_video(self):
-        """
-        Function called to update the video frame
-        """
-        if self.video_capture is None:
-            return
-        ret, frame, blink = self.video_capture.get_frame()
-        if frame is not None:
-            image = Image.fromarray(frame)
-            image = image.resize((400, 300))
-            # photo = ImageTk.PhotoImage(image)
-            photo = ctk.CTkImage(image, size=(400, 300))
-            self.video_label.configure(image=photo)
-            self.video_label.image = photo
-            
-            # if the alarm is activated, flash the background color
-            if blink:
-                threading.Thread(target=self.change_frame_color).start()
-                # self.change_frame_color()
-                
-        self.after(15, self.update_video)
-        
-    
-    def record_audio(self):
-        self.audio_capture = AudioRecorder(
-            audio_loudness_label=self.audio_loudness_label,
-            audio_rcs_label=self.audio_rcs_label)
-        self.audio_loudness_label.configure(
-            text=Path.TEXT_GUI_AUDIO_3.value,
-            font=("Helvetica", 16),
-            text_color="green")
-        self.audio_capture.start()
             
     
     def video_go_back(self):

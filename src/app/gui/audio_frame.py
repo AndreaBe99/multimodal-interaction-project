@@ -71,10 +71,6 @@ class AudioFrame(ctk.CTkFrame):
         self.audio_button_start.configure(state=ctk.DISABLED)
         self.audio_button_stop.configure(state=ctk.NORMAL)
         
-        self.record()
-    
-    
-    def record(self):
         self.audio_capture = AudioRecorder(
             audio_loudness_label=self.audio_loudness_label,
             audio_rcs_label=self.audio_rcs_label)
