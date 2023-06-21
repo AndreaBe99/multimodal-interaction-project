@@ -1,6 +1,7 @@
 import customtkinter as ctk
 import sys 
 import threading
+import time
 
 sys.path.append('./')
 from src.app.recording.recorder_video import VideoRecorder
@@ -74,6 +75,8 @@ class AudioVideoFrame(ctk.CTkFrame):
         self.video_button.pack(side=ctk.BOTTOM, pady=12, padx=10)
         #self.video_button.place(relx=0.5, rely=0.90, anchor='center')
         #############
+        
+        self.lock_count = 0
     
     def video_start(self):
         """
@@ -111,9 +114,14 @@ class AudioVideoFrame(ctk.CTkFrame):
             self.video_label.image = photo
 
             # if the alarm is activated, flash the background color
-            if blink:
-                threading.Thread(target=self.change_frame_color).start()
-                # self.change_frame_color()
+            if blink == True:
+                current_time = time.time()
+                time_elapsed = current_time - self.lock_count
+                if time_elapsed > 5:
+                    self.lock_count = current_time
+                    threading.Thread(target=self.change_frame_color).start()
+                pass
+            pass
 
         self.after(15, self.update_video)
 
@@ -151,12 +159,14 @@ class AudioVideoFrame(ctk.CTkFrame):
         of the alarm.
         """
         # Counter to stop the flashing after 10 iterations
-        if i < 20:
+        if i < 15:
             # default is 'gray17'
             current_color = self.cget("fg_color")
-            next_color = "red" if current_color != "red" else "gray17"
+            next_color = [current_color[0], "red"] if current_color[1] != "red" else [
+                current_color[0], "gray17"]
             self.configure(fg_color=next_color)
-            self.after(500, self.change_frame_color, i+1)
+            self.after(100, self.change_frame_color, i+1)
         else:
             self.configure(fg_color="gray17")
+            # Stop the alarm
             return
