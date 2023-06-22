@@ -52,8 +52,11 @@ package detection <<Rectangle>> {
     }
 
     class Loudness {
+        time_treshold: float
+        rms_treshold: float
         audio_width: int
         normalization: int
+        state: dict
 
         compute_loudness(audio_data)
         display_loudness(rms)
