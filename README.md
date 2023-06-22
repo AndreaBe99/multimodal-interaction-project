@@ -1,11 +1,59 @@
-# multimodal-interaction-project
+# DRIVER MONITORING SYSTEM
+
 Project for the Multimodal Interaction course, for the master's degree program at the Sapienza University of Rome.
 
-# TODO
+# Temp. TODO
 
-- [ ] Casi d'uso
+- [ ] Scrivere dopo l'indroduzione gli obiettivi che vogliamo raggiungere.
+- [ ] Analisi dei Requisiti, si può prendere spunto dal report di crescentini maggi e toscani. I nostri requisiti funzionali credo siano solo i vari tipi di detection, mentre per quelli non funzionali si possono quasi copiare e incollare. Così definiamo anche i limiti e i vincoli del progetto.
+- [ ] Scrivere la parte Audio, sia input che outpu.
+- [ ] Scrivere le conclusioni, i cui descriviamo i vari miglioramenti che si possono fare al progetto avendo a disposizione più tempo e risorse. Si può descrivere anche che sarebbe meglio allenare il modello su immagini frontali. Inoltre si possono fare delle considerazioni sulle varie difficoltà incontrate durante lo sviluppo del progetto.
 
+## Overview
 
+In the modern era, road safety has become a significant concern of society. Human factors, such as **driver distraction**, **drowsiness** or **lack** of attention behind the steering wheel cause many road accidents.
+More specifically, our goal is to detect such situations through the integration of different input modes, such as **gaze tracking**, **eyelid tracking**, and **driver activity** monitoring.
+
+To achieve this goal, we have adopted **deep learning** approaches and **Computer Vision** techniques for processing and analyzing the data from the cameras inside the vehicle.
+The driver monitoring system developed in our project can detect the driver's gaze, i.e. the direction and point of gaze fixation, to evaluate the driver's attention and concentration on the road. In addition, the system can identify signs of drowsiness, such as prolonged closing of the eyes.
+
+In addition, the system can also detect driver distractions by analyzing their activities and positions while driving. This helps identify times when the driver might be distracted by external factors, such as mobile phone use or conversations with passengers.
+If distraction or sleepiness is detected, the system can provide warnings or intervene to reduce the risk of an accident.
+
+## Architecture
+
+### Class Diagram
+
+![Clas Diagram](reports/figures/classes/uml_classes.svg)
+
+### Activity Diagram
+
+![Video Activity Diagram](reports/figures/activity/video_activity_diagram.svg)
+![Audio Activity Diagram](reports/figures/activity/audio_activity_diagram.svg)
+
+### Sequence Diagram
+
+![Video Sequence Diagram](reports/figures/sequence/sequence_diagram_video.svg)
+![Audio Sequence Diagram](reports/figures/sequence/sequence_diagram_audio.svg)
+
+## Use Cases
+
+![Use Case Diagram](reports/figures/use_case/use_case_general.png)
+
+![Use Case Video](reports/figures/use_case/use_case_video.png)
+
+![Use Case Audio](reports/figures/use_case/use_case_audio.png)
+## GUI
+
+To facilitate the tests and the presentation of the project we have decided to develop a \textit{simple graphical interface} that allows you to start an audio and/or video recording, and display the detection results of our system, showing the frames captured by the laptop's webcam, and processed drawing above them the points of the eyes, used for detecting drowsiness, and the line representing the direction of the gaze.
+
+![GUI Main](reports/figures/gui/gui_main.png)
+
+![GUI Video](reports/figures/gui/gui_video.png)
+
+![GUI Video Recording](reports/figures/gui/gui_rec.png)
+
+![GUI Alert](reports/figures/gui/gui_alert.png)
 ## Requirements
 
 To use the real-time TTS (Text To Speech) feature, you need to install the following packages if you are using Linux:
@@ -59,23 +107,6 @@ python app.py -e GUI: to run the GUI
 ```
 
 - to use the graphical interface to record audio and video
-
-#### GUI Main
-
-![GUI Main](data/gui_main.png)
-
-#### GUI Video
-
-![GUI Video](data/gui_video_1.png)
-
-![GUI Video Execution](data/gui_video_2.png)
-
-#### GUI Audio
-
-![GUI Audio](data/gui_audio_1.png)
-
-![GUI Audio Execution](data/gui_audio_2.png)
-
 
 
 ## Folder Structure
