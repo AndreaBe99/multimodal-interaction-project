@@ -1,6 +1,11 @@
 # multimodal-interaction-project
 Project for the Multimodal Interaction course, for the master's degree program at the Sapienza University of Rome.
 
+# TODO
+
+- [ ] Casi d'uso
+
+
 ## Requirements
 
 To use the real-time TTS (Text To Speech) feature, you need to install the following packages if you are using Linux:
