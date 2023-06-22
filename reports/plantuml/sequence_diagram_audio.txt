@@ -1,0 +1,33 @@
+@startuml
+
+actor User
+participant AudioRecorder << (C,#ADD1B2) >>
+participant Detector << (C,#ADD1B2) >>
+participant Loudness << (C,#ADD1B2) >>
+
+autonumber
+User -> AudioRecorder: Start Audio Recording
+Activate AudioRecorder
+
+AudioRecorder -> Detector: Send Audio Data
+Activate Detector
+
+Detector -> Loudness: Send Audio Data
+Activate Loudness
+
+Loudness -> Loudness: Calculate RMS Value\nand set Loudness State
+
+Loudness -> Detector: Return Loudness State
+deactivate Loudness
+
+Detector -> AudioRecorder: Return Loudness State
+deactivate Detector
+
+AudioRecorder -> User: Play Alarm Sound if\nLoudness State is set to True
+
+== Repeat ==
+
+AudioRecorder -> Detector: Send Audio Data
+Activate Detector
+
+@enduml

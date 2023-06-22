@@ -1,0 +1,54 @@
+@startuml
+
+actor User
+participant VideoRecorder << (C,#ADD1B2) >>
+participant FaceMesh << (C,#ADD1B2) >>
+participant Detector << (C,#ADD1B2) >>
+participant Distraction << (C,#ADD1B2) >>
+participant Drowsiness << (C,#ADD1B2) >>
+participant LookingAway << (C,#ADD1B2) >>
+
+autonumber
+User -> VideoRecorder: Start Video Recording
+Activate VideoRecorder
+
+VideoRecorder -> FaceMesh: Send Video Frame
+Activate FaceMesh
+
+FaceMesh -> Detector: Compute and Send\nFacial Landmarks
+Activate Detector
+
+FaceMesh --> VideoRecorder: No Face Detected
+deactivate FaceMesh
+
+Detector -> Distraction: Send Video Frame
+Activate Distraction
+
+Detector -> Drowsiness: Send Video Frame\nand Facial\nLandmarks
+Activate Drowsiness
+
+Detector -> LookingAway: Send Video Frame\nand Facial\nLandmarks
+Activate LookingAway
+
+Distraction -> Distraction: Detect Distraction\nand set Alarm
+Distraction -> Detector: Return\nDistraction State
+deactivate Distraction 
+
+Drowsiness -> Drowsiness: Detect Drowsiness\nand set Alarm
+Drowsiness -> Detector: Return\nDrowsiness State
+deactivate Drowsiness
+
+LookingAway -> LookingAway: Detect LookingAway\nand set Alarm
+LookingAway -> Detector: Return\nLookingAway State
+deactivate LookingAway
+
+Detector -> Detector: Check Alarm\nand if True reproduce\nAlarm Sound
+Detector --> VideoRecorder
+deactivate Detector
+
+== Repeat ==
+
+VideoRecorder -> FaceMesh: Send Video Frame
+Activate FaceMesh
+
+@enduml
