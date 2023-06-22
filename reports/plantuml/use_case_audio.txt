@@ -6,10 +6,12 @@ rectangle DriverMonitoringSystem{
     usecase "Audio Management" as UC3
     usecase "Record Audio of yourself" as UC4
     usecase "Detect the presence of a loud noise" as UC5
+    usecase "Receives possible alert" as UC6
 }
 u -- UC1
 UC1 --> UC2
 UC2 --> UC3
 UC3 <|-- UC4
 UC4 --> UC5
+UC5 --> UC6
 @enduml

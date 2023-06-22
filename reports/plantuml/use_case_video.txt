@@ -6,10 +6,12 @@ rectangle DriverMonitoringSystem{
     usecase "Video Management" as UC3
     usecase "Record video of yourself" as UC4
     usecase "Detection by video" as UC5
+    usecase "Receives possible alert" as UC6
 }
 u -- UC1
 UC1 --> UC2
 UC2 --> UC3
 UC3 <|-- UC4
 UC4 --> UC5
+UC5 --> UC6
 @enduml
