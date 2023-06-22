@@ -9,25 +9,23 @@ autonumber
 User -> AudioRecorder: Start Audio Recording
 Activate AudioRecorder
 
-AudioRecorder -> Detector: Send Audio Data
-Activate Detector
+loop if Audio Stream\nis open
+    AudioRecorder -> Detector: Send Audio Data
+    Activate Detector
 
-Detector -> Loudness: Send Audio Data
-Activate Loudness
+    Detector -> Loudness: Send Audio Data
+    Activate Loudness
 
-Loudness -> Loudness: Calculate RMS Value\nand set Loudness State
+    Loudness -> Loudness: Calculate RMS Value\nand set Loudness State
 
-Loudness -> Detector: Return Loudness State
-deactivate Loudness
+    Loudness -> Detector: Return Loudness State
+    deactivate Loudness
 
-Detector -> AudioRecorder: Return Loudness State
-deactivate Detector
+    Detector -> AudioRecorder: Return Loudness State
+    deactivate Detector
 
-AudioRecorder -> User: Play Alarm Sound if\nLoudness State is set to True
+    AudioRecorder -> User: Play Alarm Sound if\nLoudness State is set to True
 
-== Repeat ==
-
-AudioRecorder -> Detector: Send Audio Data
-Activate Detector
+end
 
 @enduml

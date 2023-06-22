@@ -12,43 +12,42 @@ autonumber
 User -> VideoRecorder: Start Video Recording
 Activate VideoRecorder
 
-VideoRecorder -> FaceMesh: Send Video Frame
-Activate FaceMesh
+loop if Video Stream\nis Open
+    VideoRecorder -> FaceMesh: Send Video Frame
+    Activate FaceMesh
 
-FaceMesh -> Detector: Compute and Send\nFacial Landmarks
-Activate Detector
+    FaceMesh -> Detector: Compute and Send\nFacial Landmarks
+    Activate Detector
 
-FaceMesh --> VideoRecorder: No Face Detected
-deactivate FaceMesh
+    FaceMesh --> VideoRecorder: No Face Detected
+    deactivate FaceMesh
 
-Detector -> Distraction: Send Video Frame
-Activate Distraction
+    Detector -> Distraction: Send Video Frame
+    Activate Distraction
 
-Detector -> Drowsiness: Send Video Frame\nand Facial\nLandmarks
-Activate Drowsiness
+    Detector -> Drowsiness: Send Video Frame\nand Facial\nLandmarks
+    Activate Drowsiness
 
-Detector -> LookingAway: Send Video Frame\nand Facial\nLandmarks
-Activate LookingAway
+    Detector -> LookingAway: Send Video Frame\nand Facial\nLandmarks
+    Activate LookingAway
 
-Distraction -> Distraction: Detect Distraction\nand set Alarm
-Distraction -> Detector: Return\nDistraction State
-deactivate Distraction 
+    Distraction -> Distraction: Detect Distraction\nand set Alarm
+    Distraction -> Detector: Return\nDistraction State
+    deactivate Distraction 
 
-Drowsiness -> Drowsiness: Detect Drowsiness\nand set Alarm
-Drowsiness -> Detector: Return\nDrowsiness State
-deactivate Drowsiness
+    Drowsiness -> Drowsiness: Detect Drowsiness\nand set Alarm
+    Drowsiness -> Detector: Return\nDrowsiness State
+    deactivate Drowsiness
 
-LookingAway -> LookingAway: Detect LookingAway\nand set Alarm
-LookingAway -> Detector: Return\nLookingAway State
-deactivate LookingAway
+    LookingAway -> LookingAway: Detect LookingAway\nand set Alarm
+    LookingAway -> Detector: Return\nLookingAway State
+    deactivate LookingAway
 
-Detector -> Detector: Check Alarm\nand if True reproduce\nAlarm Sound
-Detector --> VideoRecorder
-deactivate Detector
+    Detector -> Detector: Check Alarm\nand if True reproduce\nAlarm Sound
+    Detector -> VideoRecorder: Return\nAlarm State
+    deactivate Detector
 
-== Repeat ==
-
-VideoRecorder -> FaceMesh: Send Video Frame
-Activate FaceMesh
+    VideoRecorder -> User: Play Alarm Sound\nif Alarm is True 
+end
 
 @enduml
