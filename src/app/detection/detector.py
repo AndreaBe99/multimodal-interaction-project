@@ -49,15 +49,14 @@ class Detector():
             frame (np.array): frame with landmarks and text
         """
         blink = None
-        rms = None
+        state_distraction = None
+        state_drownsiness = None
+        state_looking_away = None
+        state_loudness = None
         
         if (self.rec == "video" or self.rec == "both") and landmarks is not None:
-            state_distraction = None  
-            state_drowness = None
-            state_looking_away = None
-            
             # Detect distraction
-            # state_distraction = self.distracted.detect_distraction(frame)
+            state_distraction = self.distracted.detect_distraction(frame)
             
             # Detect drowsiness
             state_drownsiness = self.drowsiness.detect_drowsiness(frame, landmarks)
@@ -79,10 +78,10 @@ class Detector():
             
         if (self.rec == "audio" or self.rec == "both") and audio_data is not None:
             # Detect loudness
-            rms = self.loudness.compute_loudness(audio_data)
+            state_loudness = self.loudness.compute_loudness(audio_data)
             # self.loudness.display_loudness(rms)
 
-        return frame, blink, rms
+        return frame, blink, state_loudness
     
     
     def plot_text_on_frame(

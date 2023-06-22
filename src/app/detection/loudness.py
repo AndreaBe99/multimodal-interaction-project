@@ -3,13 +3,17 @@ import sys
 import pyaudio
 import audioop
 import numpy as np
+import time
+
+sys.path.append('./')
+from src.app.utils.config import Colors
 
 class Loudness():
     """
     Compute the RMS level of the audio data.
     """
     
-    def __init__(self, audio_width=2, normalization=32767) -> None:
+    def __init__(self, time_treshold=1.0, rms_treshold=0.8, audio_width=2, normalization=32767) -> None:
         """
         Args:
             width (int): Width of the audio data. Default is 2.
@@ -21,11 +25,21 @@ class Loudness():
                 represented as signed 16-bit integers, with a range from -32768 
                 to 32767.
         """
+        self.time_treshold = time_treshold
+        self.rms_treshold = rms_treshold
         self.audio_width = audio_width
         self.normalization = normalization
+        self.state = {
+            "start_time": time.perf_counter(),
+            "distracted_time": 0.0,  # Holds the amount of time passed with EAR < EAR_THRESH
+            "color": Colors.GREEN.value,
+            "play_alarm": False,
+            "rms": 0.0,
+        }
+        
     
     
-    def compute_loudness(self, data)->float:
+    def compute_loudness(self, data):
         """
         Compute the rms level of the audio data.
         Return the root-mean-square of the fragment, i.e. sqrt(sum(S_i^2)/n).
@@ -40,7 +54,23 @@ class Loudness():
         """
         data = np.frombuffer(data, dtype=np.int16)
         data = np.amax(data)
-        return audioop.rms(data, self.audio_width) / self.normalization
+        rms = audioop.rms(data, self.audio_width) / self.normalization
+        
+        if rms >= self.rms_treshold:
+            end_time = time.perf_counter()
+            self.state["distracted_time"] += end_time - self.state["start_time"]
+            self.state["start_time"] = end_time
+            self.state["color"] = Colors.RED.value
+            if self.state["distracted_time"] >= self.time_treshold:
+                self.state["play_alarm"] = True
+        else:
+            self.state["start_time"] = time.perf_counter()
+            self.state["distracted_time"] = 0.0
+            self.state["color"] = Colors.GREEN.value
+            self.state["play_alarm"] = False
+        
+        self.state["rms"] = rms
+        return self.state
     
     
     def display_loudness(self, rms)->None:

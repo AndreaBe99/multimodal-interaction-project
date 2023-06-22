@@ -67,14 +67,15 @@ class AudioRecorder():
             while(self.open == True):
                 data = self.stream.read(self.frames_per_buffer) 
                 self.audio_frames.append(data)
-                _, _, rms = self.detector.detect(audio_data=data)
+                _, _, state_loudness = self.detector.detect(audio_data=data)
                 
                 if self.audio_loudness_label is not None:
                     self.audio_rcs_label.configure(
-                        text=Path.TEXT_GUI_AUDIO_4.value + str(rms))
-                if rms > 0.5 and self.audio_loudness_label is not None:
+                        text=Path.TEXT_GUI_AUDIO_4.value + str(state_loudness["rms"]))
+                if state_loudness["play_alarm"] and self.audio_loudness_label is not None:
                     self.audio_loudness_label.configure(
-                        text=Path.TEXT_GUI_AUDIO_5.value + str(rms),
+                        text=Path.TEXT_GUI_AUDIO_5.value +
+                        str(state_loudness["rms"]),
                         text_color="red")
                 
                 if self.open==False:
