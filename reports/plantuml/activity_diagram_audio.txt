@@ -1,0 +1,33 @@
+@startuml
+start
+partition "**object** AudioRecorder" {
+    while (Recording?) is (yes)
+        :Read Audio Frame;
+        
+        partition "**object** Detector" {
+            :Detector;
+            
+            partition "**object** Loudness" {
+                :Detect Loudness;
+                :Compute RMS Value;
+                if (Loudness Detected?) then (yes)
+                    :Increment Time Counter;
+                    if (Time Counter > Threshold?) then (yes)
+                        :Set Alarm;
+                    else (no)
+                    endif
+                else (no)
+                    :Reset Time Counter;
+                endif
+            }
+
+        if (Alarm is setted?) then (yes)
+            :Visualize Alarm;
+        else (no)
+        endif
+        }
+    endwhile (no)
+
+    stop
+}
+@enduml
