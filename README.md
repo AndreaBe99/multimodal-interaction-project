@@ -4,11 +4,12 @@ Project for the Multimodal Interaction course, for the master's degree program a
 
 # Temp. TODO
 
+- [ ] Aggiungere una spiegazione/sezione su cosa è Mediapipe
 - [ ] Scrivere dopo l'indroduzione gli obiettivi che vogliamo raggiungere.
 - [ ] Da fare il deployment diagram, per capire come funziona il sistema.
 - [ ] Riorganizzare un pò la struttura dei capitoli e del testo, perchè dopo aver messo i diagrammi di attività e sequenza l'ordine è un pò confusionario.
 - [ ] Analisi dei Requisiti, si può prendere spunto dal report di crescentini maggi e toscani. I nostri requisiti funzionali credo siano solo i vari tipi di detection, mentre per quelli non funzionali si possono quasi copiare e incollare. Così definiamo anche i limiti e i vincoli del progetto.
-- [ ] Scrivere la parte Audio, sia input che outpu.
+- [ ] Scrivere la parte Audio, sia input che output.
 - [ ] Scrivere le conclusioni, i cui descriviamo i vari miglioramenti che si possono fare al progetto avendo a disposizione più tempo e risorse. Si può descrivere anche che sarebbe meglio allenare il modello su immagini frontali. Inoltre si possono fare delle considerazioni sulle varie difficoltà incontrate durante lo sviluppo del progetto.
 
 ## Overview
