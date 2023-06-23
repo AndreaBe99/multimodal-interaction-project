@@ -1,0 +1,43 @@
+@startuml
+node "On-Board System" as obc {
+ 
+    node Microphone
+    node Camera
+
+    component Recorder 
+
+    component VideoRecorder
+    component AudioRecorder
+
+    
+
+    component Detector
+
+    component Distracted
+    component Drowsiness
+    component LookingAway
+
+    component Loudness
+
+    component GUI
+
+    VideoRecorder -- Camera : get video
+    AudioRecorder -- Microphone : get audio
+
+    VideoRecorder -- Detector
+    AudioRecorder -- Detector
+
+    Detector -- Distracted
+    Detector -- Drowsiness
+    Detector -- LookingAway
+    Detector -- Loudness
+
+    Detector -0)- GUI : send alarm state
+
+    Recorder --> VideoRecorder
+    Recorder --> AudioRecorder
+
+    Recorder -(0- GUI: start/stop\nrecording
+
+}
+@enduml
