@@ -1,0 +1,71 @@
+@startuml
+
+actor User
+participant Recorder << (C,#ADD1B2) >>
+participant AudioRecorder << (C,#ADD1B2) >>
+participant VideoRecorder << (C,#ADD1B2) >>
+participant FaceMesh << (C,#ADD1B2) >>
+participant Detector << (C,#ADD1B2) >>
+participant Loudness << (C,#ADD1B2) >>
+participant Distraction << (C,#ADD1B2) >>
+participant Drowsiness << (C,#ADD1B2) >>
+participant LookingAway << (C,#ADD1B2) >>
+
+
+autonumber
+
+User -> Recorder: Start Recording
+Activate Recorder
+
+Recorder -> AudioRecorder: Start Audio Recording
+Activate AudioRecorder
+Recorder -> VideoRecorder: Start Video Recording
+Activate VideoRecorder
+
+loop if Video/Audio\nStream is Open
+
+    AudioRecorder -> Detector: Send Audio Frame
+    Activate Detector
+
+    VideoRecorder -> FaceMesh: Send Video Frame
+    Activate FaceMesh
+    FaceMesh -> Detector: Compute and Send\nFacial Landmarks
+    FaceMesh --> VideoRecorder: No Face Detected
+    deactivate FaceMesh
+
+    Detector -> Loudness: Send Audio Frame
+    Activate Loudness
+    Loudness -> Loudness: Detect Loudness\nand set Alarm
+    Loudness -> Detector: Return\nLoudness State
+    deactivate Loudness
+    
+    Detector -> Distraction: Send Video Frame
+    Activate Distraction
+    Distraction -> Distraction: Detect Distraction\nand set Alarm
+    Distraction -> Detector: Return\nDistraction State
+    deactivate Distraction 
+
+    Detector -> Drowsiness: Send Video Frame\nand Facial\nLandmarks
+    Activate Drowsiness
+    Drowsiness -> Drowsiness: Detect Drowsiness\nand set Alarm
+    Drowsiness -> Detector: Return\nDrowsiness State
+    deactivate Drowsiness
+
+    Detector -> LookingAway: Send Video Frame\nand Facial\nLandmarks
+    Activate LookingAway
+    LookingAway -> LookingAway: Detect LookingAway\nand set Alarm
+    LookingAway -> Detector: Return\nLookingAway State
+    deactivate LookingAway
+
+    Detector --> User: Play Alarm Sound\nif Alarm is True 
+    Detector -> VideoRecorder: Return\nAlarm State\n(Plot in the GUI)
+    Detector -> AudioRecorder: Return\nAlarm State\n(Plot in the GUI)
+    deactivate Detector
+
+    AudioRecorder --> User: Plot State in GUI
+    VideoRecorder --> User: Plot State in GUI
+
+    
+end
+
+@enduml
