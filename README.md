@@ -4,7 +4,6 @@ Project for the Multimodal Interaction course, for the master's degree program a
 
 # Temp. TODO
 
-- [ ] Aggiungere una spiegazione/sezione su cosa è Mediapipe
 - [ ] Scrivere dopo l'indroduzione gli obiettivi che vogliamo raggiungere.
 - [ ] Da fare il deployment diagram, per capire come funziona il sistema.
 - [ ] Riorganizzare un pò la struttura dei capitoli e del testo, perchè dopo aver messo i diagrammi di attività e sequenza l'ordine è un pò confusionario.
