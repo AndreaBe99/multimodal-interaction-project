@@ -246,12 +246,12 @@ class Gaze:
         """
         # Get the corresponding points P1, P2, P3, P4, P5, P6
         eye_points = self.compute_eye_six_points(landmarks.landmark, eye_landmarks)
-        
-        if eye_points is None:
+        try:
+            # Compute eye ROI coordinates, i.e. the box
+            x_coordinates = [landmark[0] for landmark in eye_points]
+            y_coordinates = [landmark[1] for landmark in eye_points]
+        except:
             return None, None, None
-        # Compute eye ROI coordinates, i.e. the box
-        x_coordinates = [landmark[0] for landmark in eye_points]
-        y_coordinates = [landmark[1] for landmark in eye_points]
         x_min = min(x_coordinates)
         x_max = max(x_coordinates)
         y_min = min(y_coordinates)
