@@ -15,7 +15,7 @@ If distraction or sleepiness is detected, the system can provide warnings or int
 
 ## Video Demo 
 
-![Video Demo](src/data/video/video_test_demo.mp4)
+![Video Demo](src/data/video/video_test_demo.webm)
 
 ## Architecture
 
