@@ -25,7 +25,7 @@ class Distracted:
 
         self.device = torch.device("cpu")
         if torch.cuda.is_available():
-            self.device = torch.device("gpu")
+            self.device = torch.device("cuda")
 
         efficient_model = timm.create_model(
             slp.MODEL_NAME_0.value,
@@ -40,7 +40,9 @@ class Distracted:
     def detect_distraction(self, image):
         self.model.eval()
 
-        image = torch.tensor(image).permute(2, 0, 1).unsqueeze(0).float()
+        image = (
+            torch.tensor(image).permute(2, 0, 1).unsqueeze(0).float().to(self.device)
+        )
         logits = self.model(image)
         pred = torch.argmax(logits, dim=1)
 
