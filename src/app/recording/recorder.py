@@ -35,13 +35,12 @@ class Recorder():
         self.video_thread.start()
 
 
-    def start_video_recording(self)->None:
+    def start_video_recording(self, video_from_file=False)->None:
         """
         Start the recording of video.
         """
         self.video_thread = VideoRecorder(**self.video_args)
-        self.video_thread.start()
-
+        self.video_thread.start(video_from_file)
 
     def start_audio_recording(self)->None:
         """
@@ -140,6 +139,8 @@ if __name__ == "__main__":
                   "audio_filename":"temp_audio.wav",
                   "channel":2}
     
+    # To play video from a file
+    video_args["video_from_file_path"] = "src/data/video/video_test.avi"
     recorder = Recorder(video_args=video_args, audio_args=audio_args)
     
     # VIDEO AND AUDIO RECORDING
@@ -149,10 +150,10 @@ if __name__ == "__main__":
     # recorder.stop_AVrecording(filename="test")
     
     # VIDEO RECORDING
-    recorder.start_video_recording()
+    recorder.start_video_recording(video_from_file=True)
     # Video recording for 5 seconds
-    time.sleep(5)
-    recorder.stop_video_recording()
+    # time.sleep(5)
+    # recorder.stop_video_recording()
     
     # AUDIO RECORDING
     # recorder.start_audio_recording()
