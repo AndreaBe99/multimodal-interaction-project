@@ -46,3 +46,7 @@ class Path(Enum):
     
     VIDEO_FILE_NAME = "temp_video.avi"
     PATH_VIDEO_RECORDING = "src/data/video/"
+    
+    # Path of the video to be played to avoid to use the system camera in
+    # real-time
+    VIDEO_FROM_FILE_PATH = "src/data/video/video_test.avi"
