@@ -2,12 +2,6 @@
 
 Project for the Multimodal Interaction course, for the master's degree program at the Sapienza University of Rome.
 
-# Temp. TODO
-
-- [ ] Analisi dei Requisiti, si può prendere spunto dal report di crescentini maggi e toscani. I nostri requisiti funzionali credo siano solo i vari tipi di detection, mentre per quelli non funzionali si possono quasi copiare e incollare. Così definiamo anche i limiti e i vincoli del progetto.
-- [ ] Scrivere la parte Audio, sia input che output.
-- [ ] Scrivere le conclusioni, i cui descriviamo i vari miglioramenti che si possono fare al progetto avendo a disposizione più tempo e risorse. Si può descrivere anche che sarebbe meglio allenare il modello su immagini frontali. Inoltre si possono fare delle considerazioni sulle varie difficoltà incontrate durante lo sviluppo del progetto.
-
 ## Overview
 
 In the modern era, road safety has become a significant concern of society. Human factors, such as **driver distraction**, **drowsiness** or **lack** of attention behind the steering wheel cause many road accidents.
@@ -19,7 +13,15 @@ The driver monitoring system developed in our project can detect the driver's ga
 In addition, the system can also detect driver distractions by analyzing their activities and positions while driving. This helps identify times when the driver might be distracted by external factors, such as mobile phone use or conversations with passengers.
 If distraction or sleepiness is detected, the system can provide warnings or intervene to reduce the risk of an accident.
 
+## Video Demo 
+
+![Video Demo](src/data/video/video_test_demo.mp4)
+
 ## Architecture
+
+### Deployment Diagram
+
+![Deployment Diagram](reports/figures/deployment/deployment_diagram.svg)
 
 ### Class Diagram
 
@@ -27,21 +29,16 @@ If distraction or sleepiness is detected, the system can provide warnings or int
 
 ### Activity Diagram
 
-![Video Activity Diagram](reports/figures/activity/video_activity_diagram.svg)
-![Audio Activity Diagram](reports/figures/activity/audio_activity_diagram.svg)
+![Activity Diagram](reports/figures/activity/activity_diagram.svg)
 
 ### Sequence Diagram
 
-![Video Sequence Diagram](reports/figures/sequence/sequence_diagram_video.svg)
-![Audio Sequence Diagram](reports/figures/sequence/sequence_diagram_audio.svg)
+![Sequence Diagram](reports/figures/sequence/sequence_diagram.svg)
 
 ## Use Cases
 
 ![Use Case Diagram](reports/figures/use_case/use_case_general.png)
 
-![Use Case Video](reports/figures/use_case/use_case_video.png)
-
-![Use Case Audio](reports/figures/use_case/use_case_audio.png)
 ## GUI
 
 To facilitate the tests and the presentation of the project we have decided to develop a \textit{simple graphical interface} that allows you to start an audio and/or video recording, and display the detection results of our system, showing the frames captured by the laptop's webcam, and processed drawing above them the points of the eyes, used for detecting drowsiness, and the line representing the direction of the gaze.
@@ -53,6 +50,7 @@ To facilitate the tests and the presentation of the project we have decided to d
 ![GUI Video Recording](reports/figures/gui/gui_rec.png)
 
 ![GUI Alert](reports/figures/gui/gui_alert.png)
+
 ## Requirements
 
 To use the real-time TTS (Text To Speech) feature, you need to install the following packages if you are using Linux:
@@ -77,35 +75,34 @@ mediapipe==0.9.1.0
 
 ## How to use
 
-From the terminal, run the following command:
+You have two execution modes available, one that analyzes a video file, and another that records a video from the camera and processes it in real-time:
 
-### CLI
+- From File:
+    ```cli
+    python app.py from_file -p path/to/video.avi
+    ```
 
-```cli
-python app.py -e CLI -w video -t 10
-```
+- From Camera:
 
-- to record only the video for 10 seconds
+    - CLI:
+        ```cli
+        python app.py from_camera -e CLI -w video -t 10
+        ```
+        - to record only the video for 10 seconds
+        ```cli
+        python app.py from_camera -e CLI -w audio -t 10
+        ```
+        - to record only the audio for 10 seconds
+        ```cli
+        python app.py from_camera -e CLI -w both -t 10
+        ```
+        - to record both audio and video for 10 seconds
+    - GUI:
+        ```cli
+        python app.py from_camera -e GUI
+        ```
+        - to use the graphical interface to record audio and video
 
-```cli
-python app.py -e CLI -w audio -t 10
-```
-
-- to record only the audio for 10 seconds
-
-```cli
-python app.py -e CLI -w both -t 10
-```
-
-- to record both audio and video for 10 seconds
-
-### GUI
-
-```cli
-python app.py -e GUI: to run the GUI
-```
-
-- to use the graphical interface to record audio and video
 
 
 ## Folder Structure
