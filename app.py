@@ -4,7 +4,7 @@ import time
 from src.app.recording.recorder import Recorder
 from src.app.recording.recorder_video import VideoRecorder
 from src.app.recording.recorder_audio import AudioRecorder
-
+from src.app.utils.config import Path
 from src.app.gui.controller import App
 
 
@@ -27,28 +27,40 @@ From the terminal, run the following command:
 class ArgParser():
     
     def __init__(self, video_args, audio_args):
+        self.time_default = 5
         # Initialize parser
         self.parser = argparse.ArgumentParser()
         # Adding optional argument
-        self.parser.add_argument("-e",
-                            "--execution_type",
-                            choices=['CLI', 'GUI'],
-                            help="GUI or CLI",
-                            default="GUI")
-        self.parser.add_argument("-w",
-                            "--what_to_record",
-                            choices=['video', 'audio', 'both'],
-                            help="video, audio or both",
-                            default="both")
-        self.parser.add_argument("-t",
-                            "--time",
-                            type=int,
-                            help="Time in seconds to record",
-                            default=5)
+        self.subparsers = self.parser.add_subparsers(help="sub-command help")
         
+        # Reproduce video from file
+        self.from_file_parser = self.subparsers.add_parser("from_file", help="Reproduce video from file")
+        self.from_file_parser.add_argument(
+            "-p", "--path_video", help="Path of the video to analyze")
+        
+        # Record video from webcam in real time
+        self.from_camera_parser = self.subparsers.add_parser("from_camera", help="Reproduce video from camera")
+        self.from_camera_parser.add_argument(
+            "-e", "--execution_type", choices=['CLI', 'GUI'], help="GUI or CLI",
+            default="GUI", required=True)
+        self.from_camera_parser.add_argument(
+            "-w", "--what_to_record", choices=['video', 'audio', 'both'],
+            help="video, audio or both", default="both")
+        self.from_camera_parser.add_argument(
+            "-t", "--time", type=int, help="Time in seconds to record", default=self.time_default)
+
         self.video_args = video_args
         self.audio_args = audio_args
         
+        # Check if the video is from a file or from the webcam and add the path
+        # to the video recorder arguments
+        self.video_from_path = False
+        self.args = self.parser.parse_args()
+
+        if "path_video" in self.args:
+            self.video_args["video_from_file_path"] = self.args.path_video
+            self.video_from_path = True
+
         self.app = App()
         self.recorder = Recorder(video_args=self.video_args, audio_args=self.audio_args)
 
@@ -56,49 +68,46 @@ class ArgParser():
     def parse_args(self):
         self.parser.parse_args()
 
-        
-        
-        if self.parser.parse_args().execution_type == "GUI":
-            self.app.mainloop()
-        
-        elif self.parser.parse_args().execution_type == "CLI":
-            if self.parser.parse_args().what_to_record not in ['video', 'audio', 'both']:
-                print("Invalid type. Valid types are: video, audio or both")
-            
-            else:
-                t = self.parser.parse_args().time
-                print("Recording for {} seconds".format(t))
-
-                if self.parser.parse_args().what_to_record == "video":
-                    # VIDEO RECORDING
-                    print("Recording video...")
-                    self.recorder.start_video_recording()
-                    # Video recording for 5 seconds
-                    time.sleep(t)
-                    self.recorder.stop_video_recording()
+        if "path_video" in self.args:
+            # Reproduce video from file
+            print("Reproducing video...")
+            self.recorder.start_video_recording(self.video_from_path)
+        else:
+            if "execution_type" in self.args:
+                
+                if self.args.execution_type == "GUI":
+                    self.app.mainloop()
+                
+                elif self.args.execution_type == "CLI":
                     
-                    """
-                    self.recorder.start_video_recording()
-                    # Video recording for 5 seconds  by default
-                    time.sleep(parser.parse_args().time)
-                    self.recorder.stop_video_recording()
-                    """
-
-                elif self.parser.parse_args().what_to_record == "audio":
-                    # AUDIO RECORDING
-                    print("Recording audio...")
-                    self.recorder.start_audio_recording()
-                    # Audio recording for 5 seconds  by default
-                    time.sleep(t)
-                    self.recorder.stop_audio_recording()
-
-                elif parser.parse_args().what_to_record == "both":
-                    # VIDEO AND AUDIO RECORDING
-                    print("Recording video and audio...")
-                    self.recorder.start_AVrecording()
-                    # Video recording for 5 seconds by default
-                    time.sleep(t)
-                    self.recorder.stop_AVrecording(filename="test")
+                    if "what_to_record" in self.args:
+                        if self.args.what_to_record not in ['video', 'audio', 'both']: 
+                            print("Invalid type. Valid types are: video, audio or both")
+                        else:
+                            if "time" in self.args:
+                                self.time_default = self.args.time
+                                
+                            if self.args.what_to_record == "video":
+                                # VIDEO RECORDING
+                                print("Recording video...")
+                                self.recorder.start_video_recording()
+                                # Video recording for 5 seconds
+                                time.sleep(self.time_default)
+                                self.recorder.stop_video_recording()
+                            elif self.args.what_to_record == "audio":
+                                # AUDIO RECORDING
+                                print("Recording audio...")
+                                self.recorder.start_audio_recording()
+                                # Audio recording for 5 seconds  by default
+                                time.sleep(self.time_default)
+                                self.recorder.stop_audio_recording()
+                            elif self.args.what_to_record == "both":
+                                # VIDEO AND AUDIO RECORDING
+                                print("Recording video and audio...")
+                                self.recorder.start_AVrecording()
+                                # Video recording for 5 seconds by default
+                                time.sleep(self.time_default)
+                                self.recorder.stop_AVrecording(filename="test")
 
 if __name__ == "__main__":
     
