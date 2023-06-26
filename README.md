@@ -15,7 +15,9 @@ If distraction or sleepiness is detected, the system can provide warnings or int
 
 ## Video Demo 
 
-![Video Demo](src/data/video/video_test_demo.webm)
+https://github.com/AndreaBe99/multimodal-interaction-project/assets/36330520/96431458-4adf-4946-84c0-dd6a4f775c7f
+
+Note: Video without audio.
 
 ## Architecture
 
