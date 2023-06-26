@@ -109,7 +109,9 @@ class LitEfficientNet(LightningModule):
             # weight_decay=5e-4,
         )
         """
-        optimizer = torch.optim.Adam(self.parameters(), lr=self.lr)
+        optimizer = torch.optim.AdamW(
+            self.parameters(), lr=self.lr, weight_decay=0.0001
+        )
 
         scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=self.gamma)
 

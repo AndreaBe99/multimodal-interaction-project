@@ -165,7 +165,7 @@ class Train:
             max_epochs=slp.EPOCHS.value,
             accelerator="gpu" if torch.cuda.is_available() else "cpu",
             devices="auto",
-            logger=CSVLogger(save_dir="logs/"),
+            logger=CSVLogger(save_dir="models/logs/"),
             callbacks=[
                 LearningRateMonitor(logging_interval="step"),
                 TQDMProgressBar(refresh_rate=10),
