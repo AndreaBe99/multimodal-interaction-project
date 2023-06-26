@@ -34,10 +34,10 @@ class Detector():
     
     def detect(
         self, 
+        frame_counts: int,
         frame:np.array=None, 
         landmarks:np.array=None, 
-        audio_data:np.array=None, 
-        frame_counts:int) -> np.ndarray:
+        audio_data:np.array=None) -> np.ndarray:
         """
         Detect drowsiness, looking away, and loudness
 
