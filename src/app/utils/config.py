@@ -36,7 +36,7 @@ class Path(Enum):
     TEXT_GUI_AUDIO_1 = "No Volume Recorded"
     TEXT_GUI_AUDIO_2 = "Loudness: "
     TEXT_GUI_AUDIO_3 = "Normal Volume"
-    TEXT_GUI_AUDIO_4 = "RCS: "
+    TEXT_GUI_AUDIO_4 = "dB Value: "
     TEXT_GUI_AUDIO_5 = "Attention!!! Loud Noise: "
     
     TEXT_GUI_VIDEO_0 = "Recording Video"

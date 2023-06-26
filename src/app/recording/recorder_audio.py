@@ -59,8 +59,8 @@ class AudioRecorder():
     
     def record(self)->None:
         """
-        Audio starts being recorded from the microphone and print the rms level 
-        if it is greater than 0.5.
+        Audio starts being recorded from the microphone and print the db level 
+        if it is greater than 60.
         """
         self.stream.start_stream()
         try:
@@ -71,11 +71,11 @@ class AudioRecorder():
                 
                 if self.audio_loudness_label is not None:
                     self.audio_rcs_label.configure(
-                        text=Path.TEXT_GUI_AUDIO_4.value + str(state_loudness["rms"]))
+                        text=Path.TEXT_GUI_AUDIO_4.value + str(state_loudness["db"]))
                 if state_loudness["play_alarm"] and self.audio_loudness_label is not None:
                     self.audio_loudness_label.configure(
                         text=Path.TEXT_GUI_AUDIO_5.value +
-                        str(state_loudness["rms"]),
+                        str(state_loudness["db"]),
                         text_color="red")
                 
                 if self.open==False:
