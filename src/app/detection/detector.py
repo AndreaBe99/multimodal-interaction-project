@@ -36,7 +36,8 @@ class Detector():
         self, 
         frame:np.array=None, 
         landmarks:np.array=None, 
-        audio_data:np.array=None) -> np.ndarray:
+        audio_data:np.array=None, 
+        frame_counts=int) -> np.ndarray:
         """
         Detect drowsiness, looking away, and loudness
 
@@ -55,8 +56,12 @@ class Detector():
         state_loudness = None
         
         if (self.rec == "video" or self.rec == "both") and landmarks is not None:
-            # Detect distraction
-            state_distraction = self.distracted.detect_distraction(frame)
+            
+            # We want to execute the detection with the model every 3 frames
+            # because it is eavy withouth GPU
+            if frame_counts % 3 == 0:
+                # Detect distraction
+                state_distraction = self.distracted.detect_distraction(frame)
             
             # Detect drowsiness
             state_drownsiness = self.drowsiness.detect_drowsiness(frame, landmarks)
