@@ -47,16 +47,13 @@ class Loudness():
     
     def compute_loudness(self, data):
         """
-        Compute the rms level of the audio data.
-        Return the root-mean-square of the fragment, i.e. sqrt(sum(S_i^2)/n).
-        This is a measure of the power in an audio signal.
+        Compute the db level of the audio data.
         
         Args:
             data (bytes): Audio data.
         
         Returns:
-            rms (float): Root Mean Square (RMS) level of the audio data.
-                Value is between 0 and 1.
+            state (dict): State of the loudness.
         """
         data = np.frombuffer(data, dtype=np.int16)
         data = np.amax(data)
@@ -80,19 +77,6 @@ class Loudness():
         
         self.state["db"] = db
         return self.state
-    
-    
-    def display_loudness(self, rms)->None:
-        """
-        Print the rms level of the audio data.
-        # NOTE! In the future this methodwill used to give a visual feedback
-        
-        Args:
-            data (bytes): Audio data.
-        """
-        if rms >= 0.5:
-            print('Attention!!! There is a lot of noise, the RMS value is %.3f' % rms)
-        pass
 
 
 if __name__ == "__main__":
