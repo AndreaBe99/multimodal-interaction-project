@@ -69,11 +69,12 @@ If installation of requirements fail on PyAudio can'find portaudio.h do the foll
 sudo apt install portaudio19-dev
 ```
 
-If you use MacOS and you have problems with mediapipe, try to install the following version:
+If you use MacOS and you have Python 3.10, you might have problems with mediapipe, try to install the following version:
 
 ```cli
 mediapipe==0.9.1.0
 ```
+Instead, if you use MacOS and Python 3.11, you can easily use the version of mediapipe specified in the requirement file.
 
 ## How to use
 
