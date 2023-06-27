@@ -6,6 +6,7 @@ import time
 sys.path.append('./')
 from src.app.recording.recorder_video import VideoRecorder
 from src.app.utils.config import Path
+from src.app.utils.config import CameraDevices
 from PIL import Image
 
 class VideoFrame(ctk.CTkFrame):
@@ -57,25 +58,34 @@ class VideoFrame(ctk.CTkFrame):
         self.video_button.pack(side=ctk.BOTTOM, pady=12, padx=10)
         self.video_button.place(relx=0.5, rely=0.85, anchor='center')
         
-        self.side_camera = ctk.BooleanVar()
+        self.side_camera = ctk.IntVar()
         
         self.radiobutton_1 = ctk.CTkRadioButton(
             self,
             text="Side camera", 
             variable=self.side_camera,
-            value=True, 
+            value=CameraDevices.SIDE_CAMERA.value, 
         )
         self.radiobutton_1.pack(side=ctk.BOTTOM, pady=12, padx=10)
-        self.radiobutton_1.place(relx=0.35, rely=0.95, anchor='center')
+        self.radiobutton_1.place(relx=0.20, rely=0.95, anchor='center')
 
         self.radiobutton_2 = ctk.CTkRadioButton(
             self,
             text="Front Camera", 
             variable=self.side_camera,
-            value=False,
+            value=CameraDevices.FRONT_CAMERA.value,
         )
         self.radiobutton_2.pack(side=ctk.BOTTOM, pady=12, padx=10)
-        self.radiobutton_2.place(relx=0.65, rely=0.95, anchor='center')
+        self.radiobutton_2.place(relx=0.50, rely=0.95, anchor='center')
+        
+        self.radiobutton_3 = ctk.CTkRadioButton(
+            self,
+            text="One Camera (both detection)",
+            variable=self.side_camera,
+            value=CameraDevices.ONE_CAMERA.value,
+        )
+        self.radiobutton_3.pack(side=ctk.BOTTOM, pady=12, padx=10)
+        self.radiobutton_3.place(relx=0.80, rely=0.95, anchor='center')
         
         # We use a counter to avoid multiple calls to the change_frame_color
         # function, we want to call it only once every 5 seconds.
