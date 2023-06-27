@@ -76,7 +76,7 @@ mediapipe==0.9.1.0
 ```
 Instead, if you use MacOS and Python 3.11, you can easily use the version of mediapipe specified in the requirement file.
 
-On MacOS with Python 3.11 the library \textbf{pytts3} does not work, so in the file \texttt{tts.py} comment the lines of code regarding it.
+On MacOS with Python 3.11 the library **pytts3** does not work, so in the file *tts.py* comment the lines of code regarding it.
 
 ## How to use
 
