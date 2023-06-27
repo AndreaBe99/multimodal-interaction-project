@@ -50,3 +50,15 @@ class Path(Enum):
     # Path of the video to be played to avoid to use the system camera in
     # real-time
     VIDEO_FROM_FILE_PATH = "src/data/video/video_test.avi"
+    
+
+class CameraDevices(Enum):
+    """
+    This class contains the camera devices IDs
+    - SIDE_CAMERA: We use only the side camera for the detection with the model
+    - FRONT_CAMERA: We use only the front camera for the detection of the ear and gaze. 
+    - ONE_CAMERA: We use only the front camera for the detection with the model and the ear and gaze.
+    """
+    SIDE_CAMERA = 0
+    FRONT_CAMERA = 1
+    ONE_CAMERA = 2
