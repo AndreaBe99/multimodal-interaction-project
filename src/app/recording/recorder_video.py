@@ -135,7 +135,7 @@ class VideoRecorder:
                 break
                 # 0.16 delay -> 6 fps
 
-    def get_frame(self, side_camera=False, imshow=False) -> tuple:
+    def get_frame(self, side_camera:int=2, imshow:bool=False) -> tuple:
         """
         Alternative function of `record` to capture video using the GUI
         with tkinter.
@@ -144,7 +144,10 @@ class VideoRecorder:
         `update_video`.
         
         Args:
-            side_camera (bool): If True, the side camera is used.
+            side_camera (int): 
+                - 0 use only the side camera and only the model detection, 
+                - 1 use only the front camera and only the ear and gaze detection, 
+                - 2 use front camera but both predictions, model, ear and gaze detection
             imshow (bool): If True, the video frame is shown.
 
         Returns:

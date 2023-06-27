@@ -39,7 +39,7 @@ class Detector:
         frame: np.array = None,
         landmarks: np.array = None,
         audio_data: np.array = None,
-        side_camera: bool = False,
+        side_camera: int = 2,
     ) -> np.ndarray:
         """
         Detect drowsiness, looking away, and loudness
@@ -49,7 +49,10 @@ class Detector:
             frame (np.array): frame of the video
             landmarks (np.array): landmarks of the face
             audio_data (np.array): audio data
-            side_camera (bool): True if the camera is the side camera, False if use the front camera
+            side_camera (int): 
+                - 0 use only the side camera and only the model detection, 
+                - 1 use only the front camera and only the ear and gaze detection, 
+                - 2 use front camera but both predictions, model, ear and gaze detection
 
         Returns:
             frame (np.array): frame with landmarks and text
@@ -64,11 +67,11 @@ class Detector:
             # We want to execute the detection with the model every 3 frames
             # because it is eavy withouth GPU
             
-            if side_camera:
+            if side_camera == 0 or side_camera == 2:
                 # if frame_counts % 3 == 0:
                 # Detect distraction
                 state_distraction = self.distracted.detect_distraction(frame)
-            else:
+            if side_camera == 1 or side_camera == 2:
                 # Detect drowsiness
                 state_drownsiness = self.drowsiness.detect_drowsiness(frame, landmarks)
 
