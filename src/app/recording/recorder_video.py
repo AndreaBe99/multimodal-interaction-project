@@ -72,6 +72,27 @@ class VideoRecorder:
         self.detector = Detector(rec="video", width=self.width, height=self.height)
 
         self.blink_alarm = False
+    
+    def stop(self) -> None:
+        """
+        Finishes the video recording therefore the thread too
+        """
+        if self.open == True:
+            self.open = False
+            self.video_out.release()
+            self.video_cap.release()
+            cv2.destroyAllWindows()
+        pass
+
+    def start(self, video_from_file=False) -> None:
+        """
+        Launches the video recording function using a thread
+        """
+        if video_from_file:
+            video_thread = threading.Thread(target=self.play_video_from_path())
+        else:
+            video_thread = threading.Thread(target=self.record)
+        video_thread.start()
 
     def record(self) -> None:
         """
@@ -114,28 +135,7 @@ class VideoRecorder:
                 break
                 # 0.16 delay -> 6 fps
 
-    def stop(self) -> None:
-        """
-        Finishes the video recording therefore the thread too
-        """
-        if self.open == True:
-            self.open = False
-            self.video_out.release()
-            self.video_cap.release()
-            cv2.destroyAllWindows()
-        pass
-
-    def start(self, video_from_file=False) -> None:
-        """
-        Launches the video recording function using a thread
-        """
-        if video_from_file:
-            video_thread = threading.Thread(target=self.play_video_from_path())
-        else:
-            video_thread = threading.Thread(target=self.record)
-        video_thread.start()
-
-    def get_frame(self, imshow=False) -> tuple:
+    def get_frame(self, side_camera=False, imshow=False) -> tuple:
         """
         Alternative function of `record` to capture video using the GUI
         with tkinter.
@@ -158,7 +158,10 @@ class VideoRecorder:
                 if landmarks:
                     landmarks = landmarks[0]
                     video_frame, blink_alarm, _ = self.detector.detect(
-                        self.frame_counts, video_frame, landmarks
+                        frame_counts=self.frame_counts, 
+                        frame=video_frame, 
+                        landmarks=landmarks,
+                        side_camera=side_camera,
                     )
                     self.blink_alarm = blink_alarm
 
