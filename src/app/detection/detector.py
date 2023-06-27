@@ -49,9 +49,9 @@ class Detector:
             frame (np.array): frame of the video
             landmarks (np.array): landmarks of the face
             audio_data (np.array): audio data
-            side_camera (int): 
-                - 0 use only the side camera and only the model detection, 
-                - 1 use only the front camera and only the ear and gaze detection, 
+            side_camera (int):
+                - 0 use only the side camera and only the model detection,
+                - 1 use only the front camera and only the ear and gaze detection,
                 - 2 use front camera but both predictions, model, ear and gaze detection
 
         Returns:
@@ -63,20 +63,25 @@ class Detector:
         state_looking_away = None
         state_loudness = None
 
-        if (self.rec == "video" or self.rec == "both") and landmarks is not None:
+        if self.rec == "video" or self.rec == "both":
             # We want to execute the detection with the model every 3 frames
             # because it is eavy withouth GPU
-            
+
             if side_camera == 0 or side_camera == 2:
                 # if frame_counts % 3 == 0:
                 # Detect distraction
                 state_distraction = self.distracted.detect_distraction(frame)
             if side_camera == 1 or side_camera == 2:
-                # Detect drowsiness
-                state_drownsiness = self.drowsiness.detect_drowsiness(frame, landmarks)
+                if landmarks is not None:
+                    # Detect drowsiness
+                    state_drownsiness = self.drowsiness.detect_drowsiness(
+                        frame, landmarks
+                    )
 
-                # Detect looking away
-                state_looking_away = self.looking_away.detect_looking_away(frame, landmarks)
+                    # Detect looking away
+                    state_looking_away = self.looking_away.detect_looking_away(
+                        frame, landmarks
+                    )
 
             # Plot text on the frame
             frame, blink = self.plot_text_on_frame(

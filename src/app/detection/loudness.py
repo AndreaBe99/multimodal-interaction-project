@@ -18,7 +18,7 @@ class Loudness:
         self,
         time_treshold=1.0,
         # rms_treshold=0.8,
-        db_treshold=85,
+        db_treshold=75,
         audio_width=2,
         normalization=32767,
     ) -> None:
@@ -59,7 +59,9 @@ class Loudness:
         data = np.amax(data)
         rms = audioop.rms(data, self.audio_width) / self.normalization
         # Multiply per 20 beacuse it is a root power quantity
-        db = 20 * np.log10(rms + 1e-6) + 120
+        db = 20 * np.log10((rms + 1e-14) / 20) + 130
+        if db < 0:
+            db = 0
 
         # if rms >= self.rms_treshold:
         if db >= self.db_treshold:
