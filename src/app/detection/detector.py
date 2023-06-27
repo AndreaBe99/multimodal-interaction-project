@@ -35,18 +35,21 @@ class Detector:
 
     def detect(
         self,
-        frame_counts: int,
+        frame_counts: int = 1,
         frame: np.array = None,
         landmarks: np.array = None,
         audio_data: np.array = None,
+        side_camera: bool = False,
     ) -> np.ndarray:
         """
         Detect drowsiness, looking away, and loudness
 
         Args:
+            frame_counts (int): frame counter
             frame (np.array): frame of the video
             landmarks (np.array): landmarks of the face
             audio_data (np.array): audio data
+            side_camera (bool): True if the camera is the side camera, False if use the front camera
 
         Returns:
             frame (np.array): frame with landmarks and text
@@ -60,15 +63,17 @@ class Detector:
         if (self.rec == "video" or self.rec == "both") and landmarks is not None:
             # We want to execute the detection with the model every 3 frames
             # because it is eavy withouth GPU
-            if frame_counts % 3 == 0:
+            
+            if side_camera:
+                # if frame_counts % 3 == 0:
                 # Detect distraction
                 state_distraction = self.distracted.detect_distraction(frame)
+            else:
+                # Detect drowsiness
+                state_drownsiness = self.drowsiness.detect_drowsiness(frame, landmarks)
 
-            # Detect drowsiness
-            state_drownsiness = self.drowsiness.detect_drowsiness(frame, landmarks)
-
-            # Detect looking away
-            state_looking_away = self.looking_away.detect_looking_away(frame, landmarks)
+                # Detect looking away
+                state_looking_away = self.looking_away.detect_looking_away(frame, landmarks)
 
             # Plot text on the frame
             frame, blink = self.plot_text_on_frame(
