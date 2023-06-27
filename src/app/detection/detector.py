@@ -60,20 +60,25 @@ class Detector:
         state_looking_away = None
         state_loudness = None
 
-        if (self.rec == "video" or self.rec == "both") and landmarks is not None:
+        if self.rec == "video" or self.rec == "both":
             # We want to execute the detection with the model every 3 frames
             # because it is eavy withouth GPU
-            
+
             if side_camera:
                 # if frame_counts % 3 == 0:
                 # Detect distraction
                 state_distraction = self.distracted.detect_distraction(frame)
             else:
-                # Detect drowsiness
-                state_drownsiness = self.drowsiness.detect_drowsiness(frame, landmarks)
+                if landmarks is not None:
+                    # Detect drowsiness
+                    state_drownsiness = self.drowsiness.detect_drowsiness(
+                        frame, landmarks
+                    )
 
-                # Detect looking away
-                state_looking_away = self.looking_away.detect_looking_away(frame, landmarks)
+                    # Detect looking away
+                    state_looking_away = self.looking_away.detect_looking_away(
+                        frame, landmarks
+                    )
 
             # Plot text on the frame
             frame, blink = self.plot_text_on_frame(

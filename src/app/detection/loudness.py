@@ -5,30 +5,32 @@ import audioop
 import numpy as np
 import time
 
-sys.path.append('./')
+sys.path.append("./")
 from src.app.utils.config import Colors
 
-class Loudness():
+
+class Loudness:
     """
     Compute the RMS level of the audio data.
     """
-    
+
     def __init__(
-        self, 
-        time_treshold=1.0, 
-        # rms_treshold=0.8, 
+        self,
+        time_treshold=1.0,
+        # rms_treshold=0.8,
         db_treshold=60,
-        audio_width=2, 
-        normalization=32767) -> None:
+        audio_width=2,
+        normalization=32767,
+    ) -> None:
         """
         Args:
             width (int): Width of the audio data. Default is 2.
-            normalization (int): Normalization of the audio data. 
+            normalization (int): Normalization of the audio data.
                 Default is 32767.
-                The division by 32767 is performed in the code to normalize the 
+                The division by 32767 is performed in the code to normalize the
                 RMS (Root Mean Square) value of the audio data.
-                In audio processing, the values of audio samples are typically 
-                represented as signed 16-bit integers, with a range from -32768 
+                In audio processing, the values of audio samples are typically
+                represented as signed 16-bit integers, with a range from -32768
                 to 32767.
         """
         self.time_treshold = time_treshold
@@ -42,16 +44,14 @@ class Loudness():
             "play_alarm": False,
             "db": 0.0,
         }
-        
-    
-    
+
     def compute_loudness(self, data):
         """
         Compute the db level of the audio data.
-        
+
         Args:
             data (bytes): Audio data.
-        
+
         Returns:
             state (dict): State of the loudness.
         """
@@ -59,8 +59,8 @@ class Loudness():
         data = np.amax(data)
         rms = audioop.rms(data, self.audio_width) / self.normalization
         # Multiply per 20 beacuse it is a root power quantity
-        db = 20 * np.log10(rms) + 120
-        
+        db = 20 * np.log10(rms + 1e-6) + 120
+
         # if rms >= self.rms_treshold:
         if db >= self.db_treshold:
             end_time = time.perf_counter()
@@ -74,7 +74,7 @@ class Loudness():
             self.state["distracted_time"] = 0.0
             self.state["color"] = Colors.GREEN.value
             self.state["play_alarm"] = False
-        
+
         self.state["db"] = db
         return self.state
 
@@ -82,22 +82,19 @@ class Loudness():
 if __name__ == "__main__":
     # Instantiate the loudness class
     loudness = Loudness()
-    
+
     audio = pyaudio.PyAudio()
     chunk = 1024
     py_format = pyaudio.paInt16
     rate = 44100
-    channel = 1 if sys.platform == 'darwin' else 2
+    channel = 1 if sys.platform == "darwin" else 2
     rate = 44100
-    
-    stream = audio.open(format=py_format, 
-                        channels=channel, 
-                        rate=rate, 
-                        input=True)
-    
+
+    stream = audio.open(format=py_format, channels=channel, rate=rate, input=True)
+
     output_path = "src/data/audio/temp_audio.wav"
-    print('Recording...')
-    with wave.open(output_path, 'wb') as wf:
+    print("Recording...")
+    with wave.open(output_path, "wb") as wf:
         wf.setnchannels(channel)
         wf.setsampwidth(audio.get_sample_size(py_format))
         wf.setframerate(rate)
@@ -109,7 +106,7 @@ if __name__ == "__main__":
 
                 loudness.display_loudness(data)
         except KeyboardInterrupt:
-            print('Done')
+            print("Done")
         except Exception as e:
             print(e)
         finally:

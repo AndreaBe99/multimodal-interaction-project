@@ -72,7 +72,7 @@ class VideoRecorder:
         self.detector = Detector(rec="video", width=self.width, height=self.height)
 
         self.blink_alarm = False
-    
+
     def stop(self) -> None:
         """
         Finishes the video recording therefore the thread too
@@ -118,6 +118,10 @@ class VideoRecorder:
                     video_frame, _, _ = self.detector.detect(
                         self.frame_counts, video_frame, landmarks
                     )
+                else:
+                    video_frame, _, _ = self.detector.detect(
+                        self.frame_counts, video_frame
+                    )
 
                 # video_frame = cv2.flip(video_frame, 1)
                 cv2.imshow("video_frame", video_frame)
@@ -142,7 +146,7 @@ class VideoRecorder:
         In this case, we do not need to use a loop because this function is
         called every time the GUI updates, with `self.after(---)` in
         `update_video`.
-        
+
         Args:
             side_camera (bool): If True, the side camera is used.
             imshow (bool): If True, the video frame is shown.
@@ -162,9 +166,16 @@ class VideoRecorder:
                 if landmarks:
                     landmarks = landmarks[0]
                     video_frame, blink_alarm, _ = self.detector.detect(
-                        frame_counts=self.frame_counts, 
-                        frame=video_frame, 
+                        frame_counts=self.frame_counts,
+                        frame=video_frame,
                         landmarks=landmarks,
+                        side_camera=side_camera,
+                    )
+                    self.blink_alarm = blink_alarm
+                else:
+                    video_frame, blink_alarm, _ = self.detector.detect(
+                        frame_counts=self.frame_counts,
+                        frame=video_frame,
                         side_camera=side_camera,
                     )
                     self.blink_alarm = blink_alarm
@@ -207,6 +218,11 @@ class VideoRecorder:
                     video_frame, _, _ = self.detector.detect(
                         self.frame_counts, video_frame, landmarks
                     )
+                else:
+                    video_frame, _, _ = self.detector.detect(
+                        self.frame_counts, video_frame
+                    )
+
                 cv2.imshow("video_frame", video_frame)
                 # Write the frame to the current video file
                 self.video_out.write(video_frame)
