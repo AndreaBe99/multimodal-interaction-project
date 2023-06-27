@@ -47,11 +47,13 @@ class AudioVideoFrame(ctk.CTkFrame):
             text_color="yellow",
         )
         self.audio_loudness_label.pack(pady=15, padx=10)
+        self.audio_loudness_label.place(relx=0.5, rely=0.72, anchor="center")
 
         self.audio_rcs_label = ctk.CTkLabel(
             self, text=Path.TEXT_GUI_AUDIO_2.value + str(0)
         )
         self.audio_rcs_label.pack(pady=15, padx=10)
+        self.audio_rcs_label.place(relx=0.5, rely=0.75, anchor="center")
         #############
 
         ### Video ###
@@ -59,20 +61,39 @@ class AudioVideoFrame(ctk.CTkFrame):
             self, text=Path.TEXT_GUI_1.value, command=self.video_start
         )
         self.video_button_start.pack(side=ctk.LEFT, pady=12, padx=10)
-        self.video_button_start.place(relx=0.35, rely=0.87, anchor="center")
+        self.video_button_start.place(relx=0.35, rely=0.80, anchor="center")
 
         self.video_button_stop = ctk.CTkButton(
             self, text=Path.TEXT_GUI_2.value, command=self.video_stop
         )
         self.video_button_stop.pack(side=ctk.LEFT, pady=12, padx=10)
-        self.video_button_stop.place(relx=0.65, rely=0.87, anchor="center")
+        self.video_button_stop.place(relx=0.65, rely=0.80, anchor="center")
         self.video_button_stop.configure(state=ctk.DISABLED)
 
         self.video_button = ctk.CTkButton(
             self, text=Path.TEXT_GUI_3.value, command=self.video_go_back
         )
         self.video_button.pack(side=ctk.BOTTOM, pady=12, padx=10)
-        # self.video_button.place(relx=0.5, rely=0.90, anchor='center')
+        self.video_button.place(relx=0.5, rely=0.87, anchor='center')
+        
+        self.side_camera = ctk.BooleanVar()
+        self.radiobutton_1 = ctk.CTkRadioButton(
+            self,
+            text="Side camera",
+            variable=self.side_camera,
+            value=True,
+        )
+        self.radiobutton_1.pack(side=ctk.BOTTOM, pady=12, padx=10)
+        self.radiobutton_1.place(relx=0.40, rely=0.95, anchor='center')
+
+        self.radiobutton_2 = ctk.CTkRadioButton(
+            self,
+            text="Front Camera",
+            variable=self.side_camera,
+            value=False,
+        )
+        self.radiobutton_2.pack(side=ctk.BOTTOM, pady=12, padx=10)
+        self.radiobutton_2.place(relx=0.60, rely=0.95, anchor='center')
         #############
 
         self.lock_count = 0
@@ -102,7 +123,7 @@ class AudioVideoFrame(ctk.CTkFrame):
         """
         if self.video_capture is None:
             return
-        ret, frame, blink = self.video_capture.get_frame()
+        ret, frame, blink = self.video_capture.get_frame(self.side_camera.get())
         if frame is not None:
             image = Image.fromarray(frame)
             image = image.resize((400, 300))
