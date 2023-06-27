@@ -48,7 +48,7 @@ class AudioVideoFrame(ctk.CTkFrame):
             text_color="yellow",
         )
         self.audio_loudness_label.pack(pady=15, padx=10)
-        self.audio_loudness_label.place(relx=0.5, rely=0.72, anchor="center")
+        self.audio_loudness_label.place(relx=0.5, rely=0.69, anchor="center")
 
         self.audio_rcs_label = ctk.CTkLabel(
             self, text=Path.TEXT_GUI_AUDIO_2.value + str(0)
@@ -75,8 +75,8 @@ class AudioVideoFrame(ctk.CTkFrame):
             self, text=Path.TEXT_GUI_3.value, command=self.video_go_back
         )
         self.video_button.pack(side=ctk.BOTTOM, pady=12, padx=10)
-        self.video_button.place(relx=0.5, rely=0.87, anchor='center')
-        
+        self.video_button.place(relx=0.5, rely=0.87, anchor="center")
+
         self.side_camera = ctk.IntVar()
         self.radiobutton_1 = ctk.CTkRadioButton(
             self,
@@ -85,7 +85,7 @@ class AudioVideoFrame(ctk.CTkFrame):
             value=CameraDevices.SIDE_CAMERA.value,
         )
         self.radiobutton_1.pack(side=ctk.BOTTOM, pady=12, padx=10)
-        self.radiobutton_1.place(relx=0.20, rely=0.95, anchor='center')
+        self.radiobutton_1.place(relx=0.20, rely=0.95, anchor="center")
 
         self.radiobutton_2 = ctk.CTkRadioButton(
             self,
@@ -94,8 +94,8 @@ class AudioVideoFrame(ctk.CTkFrame):
             value=CameraDevices.FRONT_CAMERA.value,
         )
         self.radiobutton_2.pack(side=ctk.BOTTOM, pady=12, padx=10)
-        self.radiobutton_2.place(relx=0.50, rely=0.95, anchor='center')
-        
+        self.radiobutton_2.place(relx=0.50, rely=0.95, anchor="center")
+
         self.radiobutton_3 = ctk.CTkRadioButton(
             self,
             text="One Camera (both detection)",
@@ -103,10 +103,8 @@ class AudioVideoFrame(ctk.CTkFrame):
             value=CameraDevices.ONE_CAMERA.value,
         )
         self.radiobutton_3.pack(side=ctk.BOTTOM, pady=12, padx=10)
-        self.radiobutton_3.place(relx=0.80, rely=0.95, anchor='center')
+        self.radiobutton_3.place(relx=0.80, rely=0.95, anchor="center")
         #############
-        
-        
 
         self.lock_count = 0
 
@@ -190,6 +188,8 @@ class AudioVideoFrame(ctk.CTkFrame):
         if i < 15:
             # default is 'gray17'
             current_color = self.cget("fg_color")
+            if type(current_color) == str:
+                current_color = [current_color, current_color]
             next_color = (
                 [current_color[0], "red"]
                 if current_color[1] != "red"

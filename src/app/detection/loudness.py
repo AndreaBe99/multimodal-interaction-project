@@ -18,7 +18,7 @@ class Loudness:
         self,
         time_treshold=1.0,
         # rms_treshold=0.8,
-        db_treshold=60,
+        db_treshold=85,
         audio_width=2,
         normalization=32767,
     ) -> None:
