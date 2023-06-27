@@ -142,6 +142,10 @@ class VideoRecorder:
         In this case, we do not need to use a loop because this function is
         called every time the GUI updates, with `self.after(---)` in
         `update_video`.
+        
+        Args:
+            side_camera (bool): If True, the side camera is used.
+            imshow (bool): If True, the video frame is shown.
 
         Returns:
             tuple: (ret, frame)
