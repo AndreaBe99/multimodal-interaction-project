@@ -34,7 +34,7 @@ Note: Video without audio.
 
 ### Activity Diagram
 
-![Activity Diagram](reports/figures/activity/activity_diagram.svg)
+![Activity Diagram](reports/figures/activity/activity_diagram_new.svg)
 
 ### Sequence Diagram
 

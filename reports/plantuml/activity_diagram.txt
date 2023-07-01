@@ -11,59 +11,62 @@ partition "**object** Recorder" {
         partition #lightYellow "**object** VideoRecorder" {
             
             while (Recording Video?) is (yes)
-                repeat
-                :Read Video Frame;
-                :Compute Face Landmarks;
-                repeat while (Face Found?) is (no)
-                
                 partition "**object** Detector" {
-                    :Detector;
-                    
+                        :Detector;
+
                     split
                         partition "**object** Distraction" {
-                            :Detect Distraction;
-                            :Apply LitEfficientNet Model to Frame;
-                            if (Distraction Detected?) then (yes)
-                                :Increment Time Counter;
-                                if (Time Counter > Threshold?) then (yes)
-                                    :Set Alarm;
-                                else (no)
-                                endif
-                            else (no)
-                                :Reset Time Counter;
-                            endif
-                        }
-
-                    split again
-                        partition "**object** Drowsiness" {
-                            :Detect Drowsiness;
-                            :Compute Eye Aspect Ratio;
-                            if (Drowsiness Detected?) then (yes)
-                                :Increment Time Counter;
-                                if (Time Counter > Threshold?) then (yes)
-                                    :Set Alarm;
-                                else (no)
-                                endif
-                            else (no)
-                                :Reset Time Counter;
-                            endif
-                        }
+                                    :Detect Distraction;
+                                    :Apply LitEfficientNet Model to Frame;
+                                    if (Distraction Detected?) then (yes)
+                                        :Increment Time Counter;
+                                        if (Time Counter > Threshold?) then (yes)
+                                            :Set Alarm;
+                                        else (no)
+                                        endif
+                                    else (no)
+                                        :Reset Time Counter;
+                                    endif
+                                }
                     
                     split again
-                        partition "**object** LookingAway" {
-                            :Detect Gaze Direction;
-                            :Compute Average Gaze Score;
-                            if (Wrong Gaze Direction Detected?) then (yes)
-                                :Increment Time Counter;
-                                if (Time Counter > Threshold?) then (yes)
-                                    :Set Alarm;
+                        repeat
+                        :Read Video Frame;
+                        :Compute Face Landmarks;
+                        repeat while (Face Found?) is (no)
+
+                        split
+                            partition "**object** Drowsiness" {
+                                :Detect Drowsiness;
+                                :Compute Eye Aspect Ratio;
+                                if (Drowsiness Detected?) then (yes)
+                                    :Increment Time Counter;
+                                    if (Time Counter > Threshold?) then (yes)
+                                        :Set Alarm;
+                                    else (no)
+                                    endif
                                 else (no)
+                                    :Reset Time Counter;
                                 endif
-                            else (no)
-                                :Reset Time Counter;
-                            endif
-                        }
+                            }
+                        
+                        split again
+                            partition "**object** LookingAway" {
+                                :Detect Gaze Direction;
+                                :Compute Average Gaze Score;
+                                if (Wrong Gaze Direction Detected?) then (yes)
+                                    :Increment Time Counter;
+                                    if (Time Counter > Threshold?) then (yes)
+                                        :Set Alarm;
+                                    else (no)
+                                    endif
+                                else (no)
+                                    :Reset Time Counter;
+                                endif
+                            }
+                        end split
                     end split
+
                     
                     :Draw Points and Text on the Frame;
                     if (One Alarm is setted?) then (yes)
