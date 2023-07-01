@@ -20,7 +20,7 @@ If distraction or sleepiness is detected, the system can provide warnings or int
 
 https://github.com/AndreaBe99/multimodal-interaction-project/assets/36330520/96431458-4adf-4946-84c0-dd6a4f775c7f
 
-Note: Video without audio.
+Note: Video without audio to be played on GitHub.
 
 ## Architecture
 
