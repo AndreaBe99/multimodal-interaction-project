@@ -68,9 +68,9 @@ class Detector:
             # because it is eavy withouth GPU
 
             if side_camera == 0 or side_camera == 2:
-                # if frame_counts % 3 == 0:
+                if frame_counts % 3 == 0:
                 # Detect distraction
-                state_distraction = self.distracted.detect_distraction(frame)
+                    state_distraction = self.distracted.detect_distraction(frame)
             if side_camera == 1 or side_camera == 2:
                 if landmarks is not None:
                     # Detect drowsiness
