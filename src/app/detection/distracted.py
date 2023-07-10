@@ -13,7 +13,7 @@ from src.train.config import StaticLearningParameter as slp
 
 
 class Distracted:
-    def __init__(self, time_treshold=5.0, path=sd.MODEL_PATH.value):
+    def __init__(self, time_treshold=3.0, path=sd.MODEL_PATH.value):
         self.time_treshold = time_treshold
         self.state = {
             "start_time": time.perf_counter(),
@@ -36,6 +36,10 @@ class Distracted:
         self.model = LitEfficientNet.load_from_checkpoint(
             model=efficient_model, checkpoint_path=path, map_location=self.device
         )
+        
+        # Variables to store the previous prediction
+        self.old_predicition = [None, None, None]
+        self.i = 0
 
     def detect_distraction(self, image):
         self.model.eval()
@@ -54,7 +58,7 @@ class Distracted:
         # then the driver is distracted, so we update the state and we check
         # the time passed since the driver is distracted, if it is greater than
         # the treshold, we play the alarm
-        if char_index != "c0":
+        if char_index != "c0" and char_index in self.old_predicition:
             end_time = time.perf_counter()
             self.state["distracted_time"] += end_time - self.state["start_time"]
             self.state["start_time"] = end_time
@@ -68,4 +72,7 @@ class Distracted:
             self.state["play_alarm"] = False
 
         self.state["class"] = char_index
+        
+        self.i = (self.i + 1) % 3
+        self.old_predicition[self.i] = char_index
         return self.state
