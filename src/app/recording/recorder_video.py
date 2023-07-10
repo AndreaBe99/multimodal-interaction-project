@@ -219,7 +219,7 @@ class VideoRecorder:
                     landmarks = landmarks[0]
                     # Function with all the detections
                     video_frame, _, _ = self.detector.detect(
-                        self.frame_counts, video_frame, landmarks
+                        self.frame_counts, video_frame, landmarks, side_camera=0
                     )
                 else:
                     video_frame, _, _ = self.detector.detect(
