@@ -81,7 +81,7 @@ class Distracted:
 
         # get index of the class
         index = pred.item()
-        print(index)
+        # print(index)
         char_index = "c" + str(index)
 
         # if the class is not 'c0' (i.e. different from 'safe driving')
