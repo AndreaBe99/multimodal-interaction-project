@@ -21,6 +21,8 @@ class StaticDataset(Enum):
     CSV_FILE_PATH = osp.join(DATA_DIR, "driver_imgs_list.csv")
     MODEL_PATH = (
         "models/logs/lightning_logs/version_4/checkpoints/epoch=19-step=5260.ckpt"
+        # "models/logs/lightning_logs/version_3/checkpoints/epoch=2-step=789.ckpt"
+        # "models/logs/lightning_logs/version_1/checkpoints/epoch=19-step=5260.ckpt"
     )
 
 

@@ -10,6 +10,9 @@ from src.train.model import LitEfficientNet
 from src.train.config import StaticDataset as sd
 from src.app.utils.config import Colors
 from src.train.config import StaticLearningParameter as slp
+import torchvision.transforms as transforms
+from PIL import Image
+import cv2
 
 
 class Distracted:
@@ -36,22 +39,49 @@ class Distracted:
         self.model = LitEfficientNet.load_from_checkpoint(
             model=efficient_model, checkpoint_path=path, map_location=self.device
         )
-        
+
         # Variables to store the previous prediction
-        self.old_predicition = [None, None, None]
+        self.old_predicition = [None, None, None, None, None, None]
         self.i = 0
 
     def detect_distraction(self, image):
         self.model.eval()
 
-        image = (
-            torch.tensor(image).permute(2, 0, 1).unsqueeze(0).float().to(self.device)
+        transform = transforms.Compose(
+            [
+                transforms.ToTensor(),
+                transforms.Resize(
+                    (slp.INPUT_SIZE.value, slp.INPUT_SIZE.value), antialias=None
+                ),  # resize(input_size)
+                # transforms.Normalize(slp.COLOR_MEAN.value, slp.COLOR_STD.value),
+            ]
         )
-        logits = self.model(image)
+
+        cv2_img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+        image = transform(cv2_img).unsqueeze(0).to(self.device)
+        # (
+        #     torch.nn.functional.interpolate(
+        #         (
+        #             (torch.tensor(image) - torch.tensor(slp.COLOR_MEAN.value))
+        #             * torch.tensor(slp.COLOR_STD.value)
+        #         )
+        #         .permute(2, 1, 0)
+        #         .unsqueeze(0),
+        #         size=(slp.INPUT_SIZE.value, slp.INPUT_SIZE.value),
+        #         mode="area",
+        #     )
+        # .float()
+        # .to(self.device)
+        # )
+        with torch.no_grad():
+            logits = self.model(image)
+        # print(logits)
         pred = torch.argmax(logits, dim=1)
 
         # get index of the class
         index = pred.item()
+        print(index)
         char_index = "c" + str(index)
 
         # if the class is not 'c0' (i.e. different from 'safe driving')
@@ -72,7 +102,7 @@ class Distracted:
             self.state["play_alarm"] = False
 
         self.state["class"] = char_index
-        
-        self.i = (self.i + 1) % 3
+
+        self.i = (self.i + 1) % len(self.old_predicition)
         self.old_predicition[self.i] = char_index
         return self.state

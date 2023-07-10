@@ -1,20 +1,22 @@
 import customtkinter as ctk
-import sys 
+import sys
 import threading
 import time
 
-sys.path.append('./')
+sys.path.append("./")
 from src.app.recording.recorder_video import VideoRecorder
 from src.app.utils.config import Path
 from src.app.utils.config import CameraDevices
 from PIL import Image
 
+
 class VideoFrame(ctk.CTkFrame):
     """Second Page of the GUI"""
+
     def __init__(self, parent, controller):
         """
         Initialize the second page
-        
+
         Args:
             parent (tk.Frame): Parent frame
             controller (App): Controller class for the GUI
@@ -28,56 +30,53 @@ class VideoFrame(ctk.CTkFrame):
         self.icon = ctk.CTkImage(
             light_image=Image.open(Path.IMAGE_GUI_VIDEO.value),
             dark_image=Image.open(Path.IMAGE_GUI_VIDEO.value),
-            size=(200, 200)
-            )
-        
+            size=(200, 200),
+        )
+
         self.video_label = ctk.CTkLabel(self, image=self.icon, text="")
         self.video_label.pack(pady=15, padx=10)
 
         self.video_capture = None
 
         self.video_button_start = ctk.CTkButton(
-            self, 
-            text=Path.TEXT_GUI_1.value, 
-            command=self.video_start)
+            self, text=Path.TEXT_GUI_1.value, command=self.video_start
+        )
         self.video_button_start.pack(side=ctk.LEFT, pady=12, padx=10)
-        self.video_button_start.place(relx=0.35, rely=0.75, anchor='center')
-        
+        self.video_button_start.place(relx=0.35, rely=0.75, anchor="center")
+
         self.video_button_stop = ctk.CTkButton(
-            self, 
-            text=Path.TEXT_GUI_2.value, 
-            command=self.video_stop)
+            self, text=Path.TEXT_GUI_2.value, command=self.video_stop
+        )
         self.video_button_stop.pack(side=ctk.LEFT, pady=12, padx=10)
-        self.video_button_stop.place(relx=0.65, rely=0.75, anchor='center')
+        self.video_button_stop.place(relx=0.65, rely=0.75, anchor="center")
         self.video_button_stop.configure(state=ctk.DISABLED)
-        
+
         self.video_button = ctk.CTkButton(
-            self, 
-            text=Path.TEXT_GUI_3.value, 
-            command=self.video_go_back)
+            self, text=Path.TEXT_GUI_3.value, command=self.video_go_back
+        )
         self.video_button.pack(side=ctk.BOTTOM, pady=12, padx=10)
-        self.video_button.place(relx=0.5, rely=0.85, anchor='center')
-        
+        self.video_button.place(relx=0.5, rely=0.85, anchor="center")
+
         self.side_camera = ctk.IntVar()
-        
+
         self.radiobutton_1 = ctk.CTkRadioButton(
             self,
-            text="Side camera", 
+            text="Side camera",
             variable=self.side_camera,
-            value=CameraDevices.SIDE_CAMERA.value, 
+            value=CameraDevices.SIDE_CAMERA.value,
         )
         self.radiobutton_1.pack(side=ctk.BOTTOM, pady=12, padx=10)
-        self.radiobutton_1.place(relx=0.20, rely=0.95, anchor='center')
+        self.radiobutton_1.place(relx=0.20, rely=0.95, anchor="center")
 
         self.radiobutton_2 = ctk.CTkRadioButton(
             self,
-            text="Front Camera", 
+            text="Front Camera",
             variable=self.side_camera,
             value=CameraDevices.FRONT_CAMERA.value,
         )
         self.radiobutton_2.pack(side=ctk.BOTTOM, pady=12, padx=10)
-        self.radiobutton_2.place(relx=0.50, rely=0.95, anchor='center')
-        
+        self.radiobutton_2.place(relx=0.50, rely=0.95, anchor="center")
+
         self.radiobutton_3 = ctk.CTkRadioButton(
             self,
             text="One Camera (both detection)",
@@ -85,12 +84,12 @@ class VideoFrame(ctk.CTkFrame):
             value=CameraDevices.ONE_CAMERA.value,
         )
         self.radiobutton_3.pack(side=ctk.BOTTOM, pady=12, padx=10)
-        self.radiobutton_3.place(relx=0.80, rely=0.95, anchor='center')
-        
+        self.radiobutton_3.place(relx=0.80, rely=0.95, anchor="center")
+
         # We use a counter to avoid multiple calls to the change_frame_color
         # function, we want to call it only once every 5 seconds.
         self.lock_count = 0
-    
+
     def video_start(self):
         """
         Function called when the "Start" button is pressed
@@ -99,8 +98,7 @@ class VideoFrame(ctk.CTkFrame):
         self.video_button_stop.configure(state=ctk.NORMAL)
         self.video_capture = VideoRecorder()
         self.update_video()
-        
-    
+
     def video_stop(self):
         """
         Function called when the "Stop" button is pressed
@@ -111,15 +109,16 @@ class VideoFrame(ctk.CTkFrame):
         self.video_capture = None
         self.video_label.configure(image=self.icon)
         self.video_label.image = self.icon
-        
-        
+
     def update_video(self):
         """
         Function called to update the video frame
         """
         if self.video_capture is None:
             return
-        ret, frame, blink = self.video_capture.get_frame(side_camera=self.side_camera.get())
+        ret, frame, blink = self.video_capture.get_frame(
+            side_camera=self.side_camera.get()
+        )
         if frame is not None:
             image = Image.fromarray(frame)
             image = image.resize((400, 300))
@@ -127,7 +126,7 @@ class VideoFrame(ctk.CTkFrame):
             photo = ctk.CTkImage(image, size=(400, 300))
             self.video_label.configure(image=photo)
             self.video_label.image = photo
-            
+
             # if the alarm is activated, flash the background color
             if blink == True:
                 current_time = time.time()
@@ -137,10 +136,10 @@ class VideoFrame(ctk.CTkFrame):
                     threading.Thread(target=self.change_frame_color).start()
                 pass
             pass
-                # self.change_frame_color()
-                
+            # self.change_frame_color()
+
         self.after(15, self.update_video)
-    
+
     def video_go_back(self):
         """
         Function called when the "Go Back to Main Page" button is pressed
@@ -148,8 +147,7 @@ class VideoFrame(ctk.CTkFrame):
         if self.video_capture is not None:
             self.video_stop()
         self.controller.show_frame("MainFrame")
-    
-    
+
     def change_frame_color(self, i=0):
         """
         Flashing the background color of the frame to indicate the activation
@@ -159,9 +157,15 @@ class VideoFrame(ctk.CTkFrame):
         if i < 15:
             # default is 'gray17'
             current_color = self.cget("fg_color")
-            next_color = [current_color[0], "red"] if current_color[1] != "red" else [current_color[0], "gray17"]
+            if type(current_color) == str:
+                current_color = [current_color, current_color]
+            next_color = (
+                [current_color[0], "red"]
+                if current_color[1] != "red"
+                else [current_color[0], "gray17"]
+            )
             self.configure(fg_color=next_color)
-            self.after(100, self.change_frame_color, i+1)
+            self.after(100, self.change_frame_color, i + 1)
         else:
             self.configure(fg_color="gray17")
             # Stop the alarm
